@@ -81,7 +81,7 @@ class Substack {
         
         let name: String
         let description: String?
-        let logoUrl: String
+        let logoUrl: String?
         
         let authorId: Int
         let authorName: String?

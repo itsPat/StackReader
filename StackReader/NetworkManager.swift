@@ -23,8 +23,8 @@ class NetworkManager {
     // MARK: - Fetch Image for URL
     
     func fetchImage(with url: String,
-                  cellId: String = .uuid,
-                  completion: @escaping (Result<UIImage, Error>) -> ()) {
+                    cellId: String = .uuid,
+                    completion: @escaping (Result<UIImage, Error>) -> ()) {
         guard let url = URL(string: url) else {
             return completion(.failure(NetworkError.invalidUrl))
         }
@@ -32,7 +32,7 @@ class NetworkManager {
             if let error = err {
                 completion(.failure(error))
             } else if let data = data,
-                let image = UIImage(data: data) {
+                      let image = UIImage(data: data) {
                 completion(.success(image))
             }
         }
@@ -45,14 +45,14 @@ class NetworkManager {
     func fetchDiscoverPageData(completion: @escaping (Result<[Substack.Category: [Substack.Publication]], Error>) -> ()) {
         let group = DispatchGroup()
         var discoverPageData = [Substack.Category: [Substack.Publication]]()
-        Substack.Category.allCases.enumerated().forEach { (i, category) in
+        Substack.Category.allCases.forEach { category in
             group.enter()
             NetworkManager.shared.fetchPublications(by: category) { (res) in
                 switch res {
                 case .success(let publications):
                     discoverPageData[category] = publications
                 case .failure(let err):
-                    print("\(#function) failed with error: \(err)")
+                    print("\(#function) failed to get data for category: \(category) with error: \(err)")
                 }
                 group.leave()
             }
@@ -75,10 +75,15 @@ class NetworkManager {
                 return completion(.failure(err))
             }
             
-            if let data = data,
-               let response = try? JSONDecoder().decode(Substack.PublicationsByCategoryResponse.self, from: data) {
-                return completion(.success(response.publications))
+            if let data = data {
+                do {
+                    let response = try JSONDecoder().decode(Substack.PublicationsByCategoryResponse.self, from: data)
+                    return completion(.success(response.publications))
+                } catch {
+                    return completion(.failure(error))
+                }
             } else {
+                print("❌ Failed to parse response: \(url)")
                 return completion(.failure(NetworkError.failedToParseResponse))
             }
         }.resume()
@@ -89,8 +94,8 @@ class NetworkManager {
     /// This method returns only the generic metadata for the given post.
     /// You must fetch details for the post in order to get the content data.
     func fetchPosts(for publication: Substack.Publication,
-                   offset: Int = 0,
-                   completion: @escaping (Result<[Substack.Post], Error>) -> ()) {
+                    offset: Int = 0,
+                    completion: @escaping (Result<[Substack.Post], Error>) -> ()) {
         guard let url = URL(string: publication.baseUrl + "/api/v1/archive?sort=new&offset=\(offset)&limit=20") else {
             return completion(.failure(NetworkError.invalidUrl))
         }
@@ -103,7 +108,6 @@ class NetworkManager {
                let posts = try? JSONDecoder().decode([Substack.Post].self, from: data) {
                 return completion(.success(posts.compactMap {
                     var post = $0
-                    guard !post.isPaidOnly && post.isSupportedType else { return nil }
                     post.publication = publication
                     return post
                 }))

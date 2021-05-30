@@ -49,7 +49,7 @@ class PublicationCell: UICollectionViewCell {
     }
     
     func configure(with publication: Substack.Publication, didTapAdd: @escaping () -> ()) {
-        imageView.setImageWith(url: publication.logoUrl)
+        imageView.setImageWith(url: publication.logoUrl ?? publication.authorPhotoUrl)
         titleLabel.text = publication.name
         descriptionLabel.text = publication.description
         descriptionLabel.isHidden = publication.description == nil

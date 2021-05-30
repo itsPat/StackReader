@@ -41,7 +41,7 @@ class PostCell: UICollectionViewCell {
     }
     
     func configure(with post: Substack.Post, didTapSave: @escaping () -> ()) {
-        imageView.setImageWith(url: post.coverImageUrl ?? "")
+        imageView.setImageWith(url: post.coverImageUrl ?? post.publication?.logoUrl ?? post.publication?.authorPhotoUrl)
         titleLabel.text = post.title
         descriptionLabel.text = post.subtitle
         self.didTapSave = didTapSave
