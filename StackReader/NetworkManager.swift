@@ -11,7 +11,7 @@ import UIKit
 class NetworkManager {
     
     enum NetworkError: Error {
-        case invalidUrl, failedToParseResponse
+        case invalidUrl, failedToParseResponse, noData
     }
     
     // MARK: - Singleton declaration
@@ -43,34 +43,22 @@ class NetworkManager {
     // MARK: - Fetch Discover Page Data
     
     func fetchDiscoverPageData(completion: @escaping (Result<[Substack.Category: [Substack.Publication]], Error>) -> ()) {
-        let serialQueue = DispatchQueue(label: "serialQueue")
         let group = DispatchGroup()
         var discoverPageData = [Substack.Category: [Substack.Publication]]()
-        group.enter()
         Substack.Category.allCases.enumerated().forEach { (i, category) in
-            serialQueue.async {
-                if i > 0 {
-                    group.wait()
-                    group.enter()
+            group.enter()
+            NetworkManager.shared.fetchPublications(by: category) { (res) in
+                switch res {
+                case .success(let publications):
+                    discoverPageData[category] = publications
+                case .failure(let err):
+                    print("\(#function) failed with error: \(err)")
                 }
-                NetworkManager.shared.fetchPublications(by: category) { (res) in
-                    
-                    switch res {
-                    case .success(let publications):
-                        discoverPageData[category] = publications
-                    case .failure(let err):
-                        print("\(#function) failed with error: \(err)")
-                    }
-                    group.leave()
-                    
-                    if i == Substack.Category.allCases.count - 1,
-                       !discoverPageData.isEmpty {
-                        completion(.success(discoverPageData))
-                    } else {
-                        completion(.failure(NetworkError.failedToParseResponse))
-                    }
-                }
+                group.leave()
             }
+        }
+        group.notify(queue: .main) {
+            completion(discoverPageData.isEmpty ? .failure(NetworkError.noData) : .success(discoverPageData))
         }
     }
     

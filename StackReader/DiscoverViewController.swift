@@ -21,7 +21,15 @@ class DiscoverViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        collectionView.register(PublicationCell.nib, forCellWithReuseIdentifier: PublicationCell.reuseId)
+        collectionView.register(
+            PublicationSectionHeader.nib,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: PublicationSectionHeader.reuseId
+        )
+        collectionView.register(
+            PublicationCell.nib,
+            forCellWithReuseIdentifier: PublicationCell.reuseId
+        )
         NetworkManager.shared.fetchDiscoverPageData { [weak self] res in
             switch res {
             case .success(let data):
@@ -62,7 +70,9 @@ extension DiscoverViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PublicationSectionHeader.self, for: indexPath) as! PublicationSectionHeader
+        let header = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: PublicationSectionHeader.reuseId, for: indexPath) as! PublicationSectionHeader
         header.configure(with: sections[indexPath.section])
         return header
     }
