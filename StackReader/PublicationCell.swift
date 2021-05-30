@@ -23,11 +23,13 @@ class PublicationCell: UICollectionViewCell {
         contentView.layer.masksToBounds = true
         contentView.layer.cornerCurve = .continuous
         contentView.backgroundColor = .systemBackground
+        contentView.layer.borderWidth = 0.5
+        contentView.layer.borderColor = UIColor.separator.cgColor
         layer.shadowPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 8.0, height: 8.0)).cgPath
-        layer.shadowColor = UIColor.black.withAlphaComponent(0.66).cgColor
-        layer.shadowOpacity = 0.66
-        layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
-        layer.shadowRadius = 8
+        layer.shadowColor = UIColor.black.withAlphaComponent(0.5).cgColor
+        layer.shadowOpacity = 0.5
+        layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        layer.shadowRadius = 4
         layer.masksToBounds = false
     }
     
