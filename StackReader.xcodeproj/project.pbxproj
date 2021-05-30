@@ -13,6 +13,8 @@
 		78DCF41D2663C26800D16719 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78DCF41B2663C26800D16719 /* Main.storyboard */; };
 		78DCF41F2663C26900D16719 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78DCF41E2663C26900D16719 /* Assets.xcassets */; };
 		78DCF4222663C26900D16719 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78DCF4202663C26900D16719 /* LaunchScreen.storyboard */; };
+		78DCF42F2663C2AC00D16719 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF42E2663C2AC00D16719 /* NetworkManager.swift */; };
+		78DCF4342663C31100D16719 /* Substack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF4332663C31100D16719 /* Substack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		78DCF41E2663C26900D16719 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78DCF4212663C26900D16719 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		78DCF4232663C26900D16719 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		78DCF42E2663C2AC00D16719 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		78DCF4332663C31100D16719 /* Substack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Substack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,41 @@
 		78DCF4142663C26800D16719 /* StackReader */ = {
 			isa = PBXGroup;
 			children = (
-				78DCF4152663C26800D16719 /* AppDelegate.swift */,
-				78DCF4172663C26800D16719 /* SceneDelegate.swift */,
+				78DCF4322663C30200D16719 /* Models */,
 				78DCF4192663C26800D16719 /* ViewController.swift */,
 				78DCF41B2663C26800D16719 /* Main.storyboard */,
+				78DCF42D2663C29D00D16719 /* Services */,
+				78DCF42B2663C27600D16719 /* Template */,
+			);
+			path = StackReader;
+			sourceTree = "<group>";
+		};
+		78DCF42B2663C27600D16719 /* Template */ = {
+			isa = PBXGroup;
+			children = (
+				78DCF4152663C26800D16719 /* AppDelegate.swift */,
+				78DCF4172663C26800D16719 /* SceneDelegate.swift */,
 				78DCF41E2663C26900D16719 /* Assets.xcassets */,
 				78DCF4202663C26900D16719 /* LaunchScreen.storyboard */,
 				78DCF4232663C26900D16719 /* Info.plist */,
 			);
-			path = StackReader;
+			name = Template;
+			sourceTree = "<group>";
+		};
+		78DCF42D2663C29D00D16719 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				78DCF42E2663C2AC00D16719 /* NetworkManager.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		78DCF4322663C30200D16719 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				78DCF4332663C31100D16719 /* Substack.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +167,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78DCF42F2663C2AC00D16719 /* NetworkManager.swift in Sources */,
 				78DCF41A2663C26800D16719 /* ViewController.swift in Sources */,
 				78DCF4162663C26800D16719 /* AppDelegate.swift in Sources */,
+				78DCF4342663C31100D16719 /* Substack.swift in Sources */,
 				78DCF4182663C26800D16719 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,6 +321,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DTTK359L6E;
 				INFOPLIST_FILE = StackReader/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -308,6 +341,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DTTK359L6E;
 				INFOPLIST_FILE = StackReader/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
