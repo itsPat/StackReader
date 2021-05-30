@@ -120,6 +120,11 @@ class Substack {
         let bodyHtml: String?
         var publication: Substack.Publication?
         
+        var postUrl: String? {
+            guard let publication = publication else { return nil }
+            return "https://\(publication.subdomain).substack.com/p/\(slug)"
+        }
+        
         var postDetailUrl: String? {
             guard let publication = publication else { return nil }
             return "https://\(publication.subdomain).substack.com/api/v1/posts/\(slug)"

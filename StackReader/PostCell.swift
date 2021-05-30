@@ -1,5 +1,5 @@
 //
-//  PublicationCell.swift
+//  PostCell.swift
 //  StackReader
 //
 //  Created by Patrick Trudel on 2021-05-30.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class PublicationCell: UICollectionViewCell {
+class PostCell: UICollectionViewCell {
     
-    static let reuseId = "PublicationCell"
+    static let reuseId = "PostCell"
     static let nib = UINib(nibName: reuseId, bundle: .main)
     
     @IBOutlet weak var imageView: UIImageView!
@@ -17,21 +17,13 @@ class PublicationCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     
     private let cellId: String = .uuid
-    private var didTapAdd: (() -> ())?
+    private var didTapSave: (() -> ())?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.layer.cornerRadius = 8
-        contentView.layer.masksToBounds = true
-        contentView.layer.cornerCurve = .continuous
         contentView.backgroundColor = .systemBackground
-        contentView.layer.borderWidth = 0.5
+        contentView.layer.borderWidth = 1
         contentView.layer.borderColor = UIColor.separator.cgColor
-        layer.shadowColor = UIColor.black.withAlphaComponent(0.5).cgColor
-        layer.shadowOpacity = 0.5
-        layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-        layer.shadowRadius = 4
-        layer.masksToBounds = false
     }
     
     override func layoutSubviews() {
@@ -48,16 +40,15 @@ class PublicationCell: UICollectionViewCell {
         NetworkManager.shared.tasks[cellId] = nil
     }
     
-    func configure(with publication: Substack.Publication, didTapAdd: @escaping () -> ()) {
-        imageView.setImageWith(url: publication.logoUrl)
-        titleLabel.text = publication.name
-        descriptionLabel.text = publication.description
-        descriptionLabel.isHidden = publication.description == nil
-        self.didTapAdd = didTapAdd
+    func configure(with post: Substack.Post, didTapSave: @escaping () -> ()) {
+        imageView.setImageWith(url: post.coverImageUrl ?? "")
+        titleLabel.text = post.title
+        descriptionLabel.text = post.subtitle
+        self.didTapSave = didTapSave
     }
 
-    @IBAction func didTapAdd(_ sender: Any) {
-        didTapAdd?()
+    @IBAction func didTapSave(_ sender: Any) {
+        didTapSave?()
     }
-    
+
 }

@@ -13,10 +13,10 @@ class DiscoverViewController: UIViewController {
     
     var publicationsByCategory = [Substack.Category: [Substack.Publication]]() {
         didSet {
-            self.sections = publicationsByCategory.keys.sorted(by: { $0.rawValue < $1.rawValue })
+            self.categories = publicationsByCategory.keys.sorted(by: { $0.rawValue < $1.rawValue })
         }
     }
-    var sections = [Substack.Category]()
+    var categories = [Substack.Category]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +41,11 @@ class DiscoverViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     func reloadCollectionView() {
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
@@ -54,20 +59,20 @@ class DiscoverViewController: UIViewController {
 extension DiscoverViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        sections.count
+        categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        publicationsByCategory[sections[section]]?.count ?? 0
+        publicationsByCategory[categories[section]]?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PublicationCell.reuseId, for: indexPath) as! PublicationCell
-        if let publication = publicationsByCategory[sections[indexPath.section]]?[indexPath.item] {
+        if let publication = publicationsByCategory[categories[indexPath.section]]?[indexPath.item] {
             cell.configure(
                 with: publication,
-                didTapSave: {
-                    print("User tapped save for: \(publication) ✅")
+                didTapAdd: {
+                    print("User tapped add publication for: \(publication.name) ✅")
                 }
             )
         }
@@ -78,7 +83,7 @@ extension DiscoverViewController: UICollectionViewDataSource {
         let header = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
             withReuseIdentifier: PublicationSectionHeader.reuseId, for: indexPath) as! PublicationSectionHeader
-        header.configure(with: sections[indexPath.section])
+        header.configure(with: categories[indexPath.section])
         return header
     }
     
@@ -100,6 +105,16 @@ extension DiscoverViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         .zero
+    }
+    
+}
+
+extension DiscoverViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let publication = publicationsByCategory[categories[indexPath.section]]?[indexPath.item] {
+            navigationController?.pushViewController(.vc(.publicationDetail(publication: publication)), animated: true)
+        }
     }
     
 }

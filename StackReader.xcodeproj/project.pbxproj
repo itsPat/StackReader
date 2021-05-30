@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78089BD72663F8E800EDDD8B /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78089BD52663F8E800EDDD8B /* PostCell.swift */; };
+		78089BD82663F8E800EDDD8B /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78089BD62663F8E800EDDD8B /* PostCell.xib */; };
 		78DCF4162663C26800D16719 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF4152663C26800D16719 /* AppDelegate.swift */; };
 		78DCF4182663C26800D16719 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF4172663C26800D16719 /* SceneDelegate.swift */; };
 		78DCF41A2663C26800D16719 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF4192663C26800D16719 /* TabBarController.swift */; };
@@ -24,9 +26,14 @@
 		78DCF4512663E00C00D16719 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF4502663E00C00D16719 /* ImageManager.swift */; };
 		78DCF4552663E6EE00D16719 /* PublicationSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF4532663E6EE00D16719 /* PublicationSectionHeader.swift */; };
 		78DCF4562663E6EE00D16719 /* PublicationSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DCF4542663E6EE00D16719 /* PublicationSectionHeader.xib */; };
+		78EF0FD02663F4950059DE99 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF0FCF2663F4950059DE99 /* Extension+UIViewController.swift */; };
+		78EF0FD32663F5AF0059DE99 /* PublicationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF0FD22663F5AF0059DE99 /* PublicationDetailViewController.swift */; };
+		78EF0FD62663F5B60059DE99 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF0FD52663F5B60059DE99 /* PostDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		78089BD52663F8E800EDDD8B /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		78089BD62663F8E800EDDD8B /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		78DCF4122663C26800D16719 /* StackReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StackReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DCF4152663C26800D16719 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78DCF4172663C26800D16719 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +53,9 @@
 		78DCF4502663E00C00D16719 /* ImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		78DCF4532663E6EE00D16719 /* PublicationSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationSectionHeader.swift; sourceTree = "<group>"; };
 		78DCF4542663E6EE00D16719 /* PublicationSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PublicationSectionHeader.xib; sourceTree = "<group>"; };
+		78EF0FCF2663F4950059DE99 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
+		78EF0FD22663F5AF0059DE99 /* PublicationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationDetailViewController.swift; sourceTree = "<group>"; };
+		78EF0FD52663F5B60059DE99 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +134,8 @@
 				78DCF4192663C26800D16719 /* TabBarController.swift */,
 				78DCF43A2663D9F300D16719 /* DiscoverViewController.swift */,
 				78DCF43D2663D9FB00D16719 /* SavedViewController.swift */,
+				78EF0FD22663F5AF0059DE99 /* PublicationDetailViewController.swift */,
+				78EF0FD52663F5B60059DE99 /* PostDetailViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -131,10 +143,12 @@
 		78DCF4402663DE2400D16719 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				78DCF4412663DE4100D16719 /* PublicationCell.swift */,
-				78DCF4422663DE4100D16719 /* PublicationCell.xib */,
 				78DCF4532663E6EE00D16719 /* PublicationSectionHeader.swift */,
 				78DCF4542663E6EE00D16719 /* PublicationSectionHeader.xib */,
+				78DCF4412663DE4100D16719 /* PublicationCell.swift */,
+				78DCF4422663DE4100D16719 /* PublicationCell.xib */,
+				78089BD52663F8E800EDDD8B /* PostCell.swift */,
+				78089BD62663F8E800EDDD8B /* PostCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -144,6 +158,7 @@
 			children = (
 				78DCF4462663DFCE00D16719 /* Extension+UIImageView.swift */,
 				78DCF44C2663DFEB00D16719 /* Extension+String.swift */,
+				78EF0FCF2663F4950059DE99 /* Extension+UIViewController.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -206,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78DCF4562663E6EE00D16719 /* PublicationSectionHeader.xib in Resources */,
+				78089BD82663F8E800EDDD8B /* PostCell.xib in Resources */,
 				78DCF4222663C26900D16719 /* LaunchScreen.storyboard in Resources */,
 				78DCF41F2663C26900D16719 /* Assets.xcassets in Resources */,
 				78DCF4442663DE4100D16719 /* PublicationCell.xib in Resources */,
@@ -227,11 +243,15 @@
 				78DCF4432663DE4100D16719 /* PublicationCell.swift in Sources */,
 				78DCF4552663E6EE00D16719 /* PublicationSectionHeader.swift in Sources */,
 				78DCF43E2663D9FB00D16719 /* SavedViewController.swift in Sources */,
+				78EF0FD62663F5B60059DE99 /* PostDetailViewController.swift in Sources */,
 				78DCF4162663C26800D16719 /* AppDelegate.swift in Sources */,
+				78EF0FD32663F5AF0059DE99 /* PublicationDetailViewController.swift in Sources */,
+				78EF0FD02663F4950059DE99 /* Extension+UIViewController.swift in Sources */,
 				78DCF43B2663D9F300D16719 /* DiscoverViewController.swift in Sources */,
 				78DCF4342663C31100D16719 /* Substack.swift in Sources */,
 				78DCF4512663E00C00D16719 /* ImageManager.swift in Sources */,
 				78DCF4182663C26800D16719 /* SceneDelegate.swift in Sources */,
+				78089BD72663F8E800EDDD8B /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
