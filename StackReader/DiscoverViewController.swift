@@ -64,7 +64,12 @@ extension DiscoverViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PublicationCell.reuseId, for: indexPath) as! PublicationCell
         if let publication = publicationsByCategory[sections[indexPath.section]]?[indexPath.item] {
-            cell.configure(with: publication)
+            cell.configure(
+                with: publication,
+                didTapSave: {
+                    print("User tapped save for: \(publication) ✅")
+                }
+            )
         }
         return cell
     }

@@ -61,6 +61,9 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="bookmark" catalog="system"/>
+                                <connections>
+                                    <action selector="didTapSave:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Y6V-Kd-6Vq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>

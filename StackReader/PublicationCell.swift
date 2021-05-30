@@ -17,6 +17,8 @@ class PublicationCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    private var didTapSave: (() -> ())?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         contentView.layer.cornerRadius = 8
@@ -25,7 +27,6 @@ class PublicationCell: UICollectionViewCell {
         contentView.backgroundColor = .systemBackground
         contentView.layer.borderWidth = 0.5
         contentView.layer.borderColor = UIColor.separator.cgColor
-        layer.shadowPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 8.0, height: 8.0)).cgPath
         layer.shadowColor = UIColor.black.withAlphaComponent(0.5).cgColor
         layer.shadowOpacity = 0.5
         layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
@@ -47,11 +48,16 @@ class PublicationCell: UICollectionViewCell {
         NetworkManager.shared.tasks[cellId] = nil
     }
     
-    func configure(with publication: Substack.Publication) {
+    func configure(with publication: Substack.Publication, didTapSave: @escaping () -> ()) {
         imageView.setImageWith(url: publication.logoUrl)
         titleLabel.text = publication.name
         descriptionLabel.text = publication.description
         descriptionLabel.isHidden = publication.description == nil
+        self.didTapSave = didTapSave
     }
 
+    @IBAction func didTapSave(_ sender: Any) {
+        didTapSave?()
+    }
+    
 }
