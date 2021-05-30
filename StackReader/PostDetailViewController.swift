@@ -16,6 +16,7 @@ class PostDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        webview.navigationDelegate = self
         navigationItem.title = post?.title
         reloadWebview()
     }
@@ -46,4 +47,16 @@ class PostDetailViewController: UIViewController {
         }
     }
 
+}
+extension PostDetailViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        navigationItem.title = webview.title
+        decisionHandler(.allow)
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        navigationItem.title = webview.title
+    }
+    
 }

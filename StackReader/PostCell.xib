@@ -24,18 +24,25 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Xn0-Cf-99t">
-                        <rect key="frame" x="166" y="37.5" width="285" height="71.5"/>
+                        <rect key="frame" x="166" y="28" width="285" height="90"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="vv8-aJ-cpz">
-                                <rect key="frame" x="0.0" y="0.0" width="231" height="71.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="231" height="90"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribers only" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fSz-oy-92B">
+                                        <rect key="frame" x="0.0" y="0.0" width="231" height="14.5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7z-pX-3ia">
-                                        <rect key="frame" x="0.0" y="0.0" width="231" height="26.5"/>
+                                        <rect key="frame" x="0.0" y="18.5" width="231" height="26.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRT-dV-UsD">
-                                        <rect key="frame" x="0.0" y="30.5" width="231" height="41"/>
+                                        <rect key="frame" x="0.0" y="49" width="231" height="41"/>
                                         <string key="text">Ray Dalio is widely considered one of the best investors in the world. He started his asset management firm, Bridgewater Associates, in 1975 from his apartment bedroom.</string>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
@@ -45,7 +52,7 @@
                                 <viewLayoutGuide key="safeArea" id="Afg-6r-dQf"/>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeS-4b-3WY">
-                                <rect key="frame" x="241" y="13.5" width="44" height="44"/>
+                                <rect key="frame" x="241" y="23" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="63j-rz-b4W"/>
                                     <constraint firstAttribute="height" constant="44" id="ESR-WT-PQh"/>
@@ -81,9 +88,10 @@
             <connections>
                 <outlet property="descriptionLabel" destination="xRT-dV-UsD" id="lrq-uB-84p"/>
                 <outlet property="imageView" destination="xNE-WP-aSK" id="fNO-Bv-aVr"/>
+                <outlet property="paidMembersOnlyLabel" destination="fSz-oy-92B" id="g94-dp-bdn"/>
                 <outlet property="titleLabel" destination="r7z-pX-3ia" id="XKg-al-T1e"/>
             </connections>
-            <point key="canvasLocation" x="-262" y="62"/>
+            <point key="canvasLocation" x="-263.04347826086956" y="61.607142857142854"/>
         </collectionViewCell>
     </objects>
     <resources>

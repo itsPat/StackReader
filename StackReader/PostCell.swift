@@ -15,6 +15,7 @@ class PostCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var paidMembersOnlyLabel: UILabel!
     
     private let cellId: String = .uuid
     private var didTapSave: (() -> ())?
@@ -41,10 +42,11 @@ class PostCell: UICollectionViewCell {
     }
     
     func configure(with post: Substack.Post, didTapSave: @escaping () -> ()) {
+        self.didTapSave = didTapSave
         imageView.setImageWith(url: post.coverImageUrl ?? post.publication?.logoUrl ?? post.publication?.authorPhotoUrl)
         titleLabel.text = post.title
         descriptionLabel.text = post.subtitle
-        self.didTapSave = didTapSave
+        paidMembersOnlyLabel.isHidden = !post.isPaidOnly
     }
 
     @IBAction func didTapSave(_ sender: Any) {
