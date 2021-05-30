@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="PublicationSectionHeader" customModule="StackReader" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Art" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQu-NS-TKn">
+                    <rect key="frame" x="10" y="10" width="300" height="45"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <constraints>
+                <constraint firstItem="TQu-NS-TKn" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="10" id="52a-3r-xJ2"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="TQu-NS-TKn" secondAttribute="trailing" constant="10" id="GJN-In-8yu"/>
+                <constraint firstItem="TQu-NS-TKn" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="10" id="v8J-zJ-xtQ"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="TQu-NS-TKn" secondAttribute="bottom" constant="10" id="xMI-eX-YP6"/>
+            </constraints>
+            <connections>
+                <outlet property="label" destination="TQu-NS-TKn" id="yZ8-rh-BvL"/>
+            </connections>
+            <point key="canvasLocation" x="140.57971014492756" y="101.45089285714285"/>
+        </collectionReusableView>
+    </objects>
+</document>
