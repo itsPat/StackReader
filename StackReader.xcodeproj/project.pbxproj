@@ -11,6 +11,8 @@
 		78089BD82663F8E800EDDD8B /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78089BD62663F8E800EDDD8B /* PostCell.xib */; };
 		78D1BF9F266844F200A3EE82 /* MyStacksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1BF9E266844F200A3EE82 /* MyStacksViewController.swift */; };
 		78D1BFA32668461800A3EE82 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1BFA22668461800A3EE82 /* UserData.swift */; };
+		78D1BFA626684E8200A3EE82 /* Substack+Publication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1BFA526684E8200A3EE82 /* Substack+Publication.swift */; };
+		78D1BFA926684E8800A3EE82 /* Substack+Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1BFA826684E8800A3EE82 /* Substack+Post.swift */; };
 		78DCF4162663C26800D16719 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF4152663C26800D16719 /* AppDelegate.swift */; };
 		78DCF4182663C26800D16719 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF4172663C26800D16719 /* SceneDelegate.swift */; };
 		78DCF41A2663C26800D16719 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF4192663C26800D16719 /* TabBarController.swift */; };
@@ -38,6 +40,8 @@
 		78089BD62663F8E800EDDD8B /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		78D1BF9E266844F200A3EE82 /* MyStacksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStacksViewController.swift; sourceTree = "<group>"; };
 		78D1BFA22668461800A3EE82 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		78D1BFA526684E8200A3EE82 /* Substack+Publication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Substack+Publication.swift"; sourceTree = "<group>"; };
+		78D1BFA826684E8800A3EE82 /* Substack+Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Substack+Post.swift"; sourceTree = "<group>"; };
 		78DCF4122663C26800D16719 /* StackReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StackReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DCF4152663C26800D16719 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78DCF4172663C26800D16719 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				78DCF4332663C31100D16719 /* Substack.swift */,
+				78D1BFA826684E8800A3EE82 /* Substack+Post.swift */,
+				78D1BFA526684E8200A3EE82 /* Substack+Publication.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -249,6 +255,7 @@
 				78DCF4432663DE4100D16719 /* PublicationCell.swift in Sources */,
 				78DCF4552663E6EE00D16719 /* PublicationSectionHeader.swift in Sources */,
 				78D1BF9F266844F200A3EE82 /* MyStacksViewController.swift in Sources */,
+				78D1BFA626684E8200A3EE82 /* Substack+Publication.swift in Sources */,
 				78DCF43E2663D9FB00D16719 /* SavedViewController.swift in Sources */,
 				78EF0FD62663F5B60059DE99 /* PostDetailViewController.swift in Sources */,
 				78DCF4162663C26800D16719 /* AppDelegate.swift in Sources */,
@@ -256,6 +263,7 @@
 				78EF0FD02663F4950059DE99 /* Extension+UIViewController.swift in Sources */,
 				78D1BFA32668461800A3EE82 /* UserData.swift in Sources */,
 				78DCF43B2663D9F300D16719 /* DiscoverViewController.swift in Sources */,
+				78D1BFA926684E8800A3EE82 /* Substack+Post.swift in Sources */,
 				78DCF4342663C31100D16719 /* Substack.swift in Sources */,
 				78DCF4512663E00C00D16719 /* ImageManager.swift in Sources */,
 				78DCF4182663C26800D16719 /* SceneDelegate.swift in Sources */,
