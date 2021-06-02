@@ -100,7 +100,7 @@ extension PublicationDetailViewController: UICollectionViewDelegate {
             },
             actionProvider: { _ -> UIMenu? in
                 return UIMenu(title: "Quick Actions", children: [
-                    UIAction(title: "Save story", image: UIImage(systemName: "plus")) { _ in
+                    UIAction(title: "Save Story", image: UIImage(systemName: "bookmark")) { _ in
                         print("User wants to save post: \(post.title)")
                     }
                 ])
