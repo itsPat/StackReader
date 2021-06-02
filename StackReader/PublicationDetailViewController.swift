@@ -64,7 +64,7 @@ extension PublicationDetailViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostCell.reuseId, for: indexPath) as! PostCell
         let post = posts[indexPath.item]
         cell.configure(with: post, didTapSave: {
-            print("User did tap save for post: \(post.title) ✅")
+            UserData.add(post: post)
         })
         return cell
     }
@@ -101,7 +101,7 @@ extension PublicationDetailViewController: UICollectionViewDelegate {
             actionProvider: { _ -> UIMenu? in
                 return UIMenu(title: "Quick Actions", children: [
                     UIAction(title: "Save Story", image: UIImage(systemName: "bookmark")) { _ in
-                        print("User wants to save post: \(post.title)")
+                        UserData.add(post: post)
                     }
                 ])
             }

@@ -67,5 +67,40 @@ extension MyStacksViewController: UICollectionViewDelegateFlowLayout {
 
 extension MyStacksViewController: UICollectionViewDelegate {
     
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let publication = publications[indexPath.item]
+        navigationController?.pushViewController(.vc(.publicationDetail(publication: publication)), animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        contextMenuConfigurationForItemAt indexPath: IndexPath,
+                        point: CGPoint) -> UIContextMenuConfiguration? {
+        let publication = publications[indexPath.item]
+        return UIContextMenuConfiguration(
+            identifier: "\(indexPath.section),\(indexPath.item)" as NSString,
+            previewProvider: { () -> UIViewController? in
+                return .vc(.publicationDetail(publication: publication))
+            },
+            actionProvider: { _ -> UIMenu? in
+                return UIMenu(title: "Quick Actions", children: [
+                    UIAction(title: "Add Publication", image: UIImage(systemName: "plus.circle")) { _ in
+                        UserData.add(publication: publication)
+                    }
+                ])
+            }
+        )
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        guard let components = (configuration.identifier as? String)?.components(separatedBy: ","),
+              let _ = Int(components.first ?? ""),
+              let item = Int(components.last ?? "") else { return }
+        let publication = publications[item]
+        animator.addCompletion { [weak self] in
+            self?.navigationController?.pushViewController(.vc(.publicationDetail(publication: publication)), animated: true)
+        }
+    }
+    
 }
 
