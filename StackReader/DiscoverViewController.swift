@@ -46,6 +46,13 @@ class DiscoverViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate { [weak self] _ in
+            self?.collectionView.collectionViewLayout.invalidateLayout()
+        }
+    }
+    
     func reloadCollectionView() {
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
@@ -72,7 +79,7 @@ extension DiscoverViewController: UICollectionViewDataSource {
             cell.configure(
                 with: publication,
                 didTapAdd: {
-                    print("User tapped add publication for: \(publication.name) ✅")
+                    UserData.add(publication: publication)
                 }
             )
         }
@@ -94,7 +101,8 @@ extension DiscoverViewController: UICollectionViewDataSource {
 extension DiscoverViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let w = collectionView.bounds.inset(by: collectionView.contentInset).width
+        let regularWidth = collectionView.bounds.inset(by: collectionView.contentInset).width
+        let w = UIDevice.current.userInterfaceIdiom == .pad ? (regularWidth - 10) / 2.0 : regularWidth
         return CGSize(width: w, height: w)
     }
     
@@ -114,6 +122,37 @@ extension DiscoverViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let publication = publicationsByCategory[categories[indexPath.section]]?[indexPath.item] {
             navigationController?.pushViewController(.vc(.publicationDetail(publication: publication)), animated: true)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        contextMenuConfigurationForItemAt indexPath: IndexPath,
+                        point: CGPoint) -> UIContextMenuConfiguration? {
+        guard let publication = publicationsByCategory[categories[indexPath.section]]?[indexPath.item] else {
+            return nil
+        }
+        return UIContextMenuConfiguration(
+            identifier: "\(indexPath.section),\(indexPath.item)" as NSString,
+            previewProvider: { () -> UIViewController? in
+                return .vc(.publicationDetail(publication: publication))
+            },
+            actionProvider: { _ -> UIMenu? in
+                return UIMenu(title: "Quick Actions", children: [
+                    UIAction(title: "Add Publication", image: UIImage(systemName: "plus.circle")) { _ in
+                        UserData.add(publication: publication)
+                    }
+                ])
+            }
+        )
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        guard let components = (configuration.identifier as? String)?.components(separatedBy: ","),
+              let section = Int(components.first ?? ""),
+              let item = Int(components.last ?? ""),
+              let publication = publicationsByCategory[categories[section]]?[item] else { return }
+        animator.addCompletion { [weak self] in
+            self?.navigationController?.pushViewController(.vc(.publicationDetail(publication: publication)), animated: true)
         }
     }
     

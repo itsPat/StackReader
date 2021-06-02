@@ -43,7 +43,7 @@ class PostCell: UICollectionViewCell {
     
     func configure(with post: Substack.Post, didTapSave: @escaping () -> ()) {
         self.didTapSave = didTapSave
-        imageView.setImageWith(url: post.coverImageUrl ?? post.publication?.logoUrl ?? post.publication?.authorPhotoUrl)
+        imageView.setImageWith(url: post.coverImageUrl ?? post.publication?.logoUrl ?? post.publication?.authorPhotoUrl, cellId: cellId)
         titleLabel.text = post.title
         descriptionLabel.text = post.subtitle
         paidMembersOnlyLabel.isHidden = !post.isPaidOnly
