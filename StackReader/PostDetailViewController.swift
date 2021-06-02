@@ -71,6 +71,17 @@ class PostDetailViewController: UIViewController {
             "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust='\(multiplier * 100)%'",
             completionHandler: nil
         )
+        disableHeader()
+    }
+    
+    func disableHeader() {
+        // TODO: - Observe onload events from the webview in javascript
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.webview.evaluateJavaScript(
+                "document.getElementsByClassName(\"main-menu  animated   \")[0].style.display = \"none\";",
+                completionHandler: nil
+            )
+        }
     }
 
 }
@@ -78,6 +89,7 @@ extension PostDetailViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         navigationItem.title = webview.title
+        disableHeader()
         decisionHandler(.allow)
     }
     
