@@ -8,7 +8,7 @@
 import UIKit
 
 class PublicationDetailViewController: UIViewController {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     var publication: Substack.Publication?
@@ -87,6 +87,34 @@ extension PublicationDetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let post = posts[indexPath.item]
         navigationController?.pushViewController(.vc(.postDetail(post: post)), animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        contextMenuConfigurationForItemAt indexPath: IndexPath,
+                        point: CGPoint) -> UIContextMenuConfiguration? {
+        let post = posts[indexPath.item]
+        return UIContextMenuConfiguration(
+            identifier: "\(indexPath.item)" as NSString,
+            previewProvider: { () -> UIViewController? in
+                return .vc(.postDetail(post: post))
+            },
+            actionProvider: { _ -> UIMenu? in
+                return UIMenu(title: "Quick Actions", children: [
+                    UIAction(title: "Save story", image: UIImage(systemName: "plus")) { _ in
+                        print("User wants to save post: \(post.title)")
+                    }
+                ])
+            }
+        )
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        guard let item = Int(configuration.identifier as? String ?? ""),
+              item < posts.count else { return }
+        let post = posts[item]
+        animator.addCompletion { [weak self] in
+            self?.navigationController?.pushViewController(.vc(.postDetail(post: post)), animated: true)
+        }
     }
     
 }

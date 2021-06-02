@@ -18,14 +18,27 @@ class PostDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         webview.navigationDelegate = self
+        setupNavigationItem()
+        reloadWebview()
+    }
+    
+    func setupNavigationItem() {
         navigationItem.title = post?.title
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "textformat"),
-            style: .plain,
-            target: self,
-            action: #selector(didTapFormatText)
+            menu: UIMenu(title: "", identifier: .textSize, options: .displayInline, children: [
+                UIAction(title: "Smaller", image: UIImage(systemName: "minus")) { [weak self] _ in
+                    self?.fontMultiplier -= 0.1
+                    self?.fontMultiplier = max(self?.fontMultiplier ?? 1.0, 1.0)
+                    self?.adjustFontForMultipler()
+                },
+                UIAction(title: "Bigger", image: UIImage(systemName: "plus")) { [weak self] _ in
+                    self?.fontMultiplier += 0.1
+                    self?.fontMultiplier = min(self?.fontMultiplier ?? 2.0, 2.0)
+                    self?.adjustFontForMultipler()
+                }
+            ])
         )
-        reloadWebview()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,9 +52,9 @@ class PostDetailViewController: UIViewController {
     }
     
     @objc
-    func didTapFormatText() {
+    func didTapFormatText(sender: UIBarButtonItem) {
         fontMultiplier = fontMultiplier == 1.0 ? 1.25 : 1.0
-        adjustFont(to: fontMultiplier)
+        adjustFontForMultipler()
     }
     
     func fetchPostDetails() {
@@ -66,9 +79,9 @@ class PostDetailViewController: UIViewController {
     }
     
     
-    func adjustFont(to multiplier: CGFloat) {
+    func adjustFontForMultipler() {
         webview.evaluateJavaScript(
-            "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust='\(multiplier * 100)%'",
+            "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust='\(fontMultiplier * 100)%'",
             completionHandler: nil
         )
         disableHeader()
