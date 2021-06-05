@@ -16,10 +16,7 @@ class PublicationDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = publication?.name
-        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        collectionView.register(PostCell.nib, forCellWithReuseIdentifier: PostCell.reuseId)
-        fetchPosts()
+        setup()
     }
     
     func fetchPosts(offset: Int = 0) {
@@ -36,6 +33,13 @@ class PublicationDetailViewController: UIViewController {
                 print("\(#function) failed with error: \(err)")
             }
         }
+    }
+    
+    func setup() {
+        navigationItem.title = publication?.name
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        collectionView.register(PostCell.nib, forCellWithReuseIdentifier: PostCell.reuseId)
+        fetchPosts()
     }
     
     func reloadCollectionView() {

@@ -18,16 +18,20 @@ class SavedViewController: UIViewController, TabBarControllerItem {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        collectionView.register(
-            PostCell.nib,
-            forCellWithReuseIdentifier: PostCell.reuseId
-        )
+        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         collectionView.reloadData()
+    }
+    
+    func setup() {
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        collectionView.register(
+            PostCell.nib,
+            forCellWithReuseIdentifier: PostCell.reuseId
+        )
     }
     
     func scrollToTop() {

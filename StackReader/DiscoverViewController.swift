@@ -9,7 +9,6 @@ import UIKit
 
 class DiscoverViewController: UIViewController, TabBarControllerItem {
 
-    @IBOutlet var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var publicationsByCategory = [Substack.Category: [Substack.Publication]]() {
@@ -20,18 +19,31 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
     var categories = [Substack.Category]()
     
     lazy var searchController: UISearchController = {
-        UISearchController(
-            searchResultsController: SearchResultsViewController(
-                collectionViewLayout: UICollectionViewFlowLayout()
-            )
-        )
+        let resultsVC = SearchResultsViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let searchVC = UISearchController(searchResultsController: resultsVC)
+        searchVC.searchBar.delegate = resultsVC
+        return searchVC
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadCollectionView()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate { [weak self] _ in
+            self?.collectionView.collectionViewLayout.invalidateLayout()
+        }
+    }
+    
+    func setup() {
         navigationItem.searchController = searchController
-        searchController.searchResultsUpdater = searchController.searchResultsController as? UISearchResultsUpdating
-        
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
         collectionView.register(
             PublicationSectionHeader.nib,
@@ -50,18 +62,6 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
             case .failure(let err):
                 print("Failed with err: \(err)")
             }
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        reloadCollectionView()
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate { [weak self] _ in
-            self?.collectionView.collectionViewLayout.invalidateLayout()
         }
     }
     

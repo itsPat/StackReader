@@ -13,12 +13,7 @@ class SearchResultsViewController: UICollectionViewController, TabBarControllerI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .systemBackground
-        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        collectionView.register(
-            PublicationCell.nib,
-            forCellWithReuseIdentifier: PublicationCell.reuseId
-        )
+        setup()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -26,6 +21,15 @@ class SearchResultsViewController: UICollectionViewController, TabBarControllerI
         coordinator.animate { [weak self] _ in
             self?.collectionView.collectionViewLayout.invalidateLayout()
         }
+    }
+    
+    func setup() {
+        collectionView.backgroundColor = .systemBackground
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        collectionView.register(
+            PublicationCell.nib,
+            forCellWithReuseIdentifier: PublicationCell.reuseId
+        )
     }
     
     func reloadCollectionView() {
@@ -106,20 +110,24 @@ extension SearchResultsViewController {
     
 }
 
-extension SearchResultsViewController: UISearchResultsUpdating {
+extension SearchResultsViewController: UISearchBarDelegate {
     
-    func updateSearchResults(for searchController: UISearchController) {
-        if let query = searchController.searchBar.text {
-            NetworkManager.shared.searchPublications(query: query) { [weak self] res in
-                switch res {
-                case .success(let publications):
-                    self?.publications = publications
-                case .failure(let err):
-                    self?.publications = []
-                    print("\(#function) failed with err: \(err), query was: \(query)")
-                }
-                self?.reloadCollectionView()
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let query = searchBar.text {
+            search(for: query)
+        }
+    }
+    
+    func search(for query: String) {
+        NetworkManager.shared.searchPublications(query: query) { [weak self] res in
+            switch res {
+            case .success(let publications):
+                self?.publications = publications
+            case .failure(let err):
+                self?.publications = []
+                print("\(#function) failed with err: \(err), query was: \(query)")
             }
+            self?.reloadCollectionView()
         }
     }
     

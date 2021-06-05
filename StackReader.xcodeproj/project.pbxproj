@@ -36,7 +36,6 @@
 		78E99BA1266BCB0000152ACD /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E99BA0266BCB0000152ACD /* Extension+UIColor.swift */; };
 		78EF0FD02663F4950059DE99 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF0FCF2663F4950059DE99 /* Extension+UIViewController.swift */; };
 		78EF0FD32663F5AF0059DE99 /* PublicationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF0FD22663F5AF0059DE99 /* PublicationDetailViewController.swift */; };
-		78EF0FD62663F5B60059DE99 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF0FD52663F5B60059DE99 /* PostDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,7 +70,6 @@
 		78E99BA0266BCB0000152ACD /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
 		78EF0FCF2663F4950059DE99 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		78EF0FD22663F5AF0059DE99 /* PublicationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationDetailViewController.swift; sourceTree = "<group>"; };
-		78EF0FD52663F5B60059DE99 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,7 +155,6 @@
 				78D1BF9E266844F200A3EE82 /* StacksViewController.swift */,
 				78DCF43D2663D9FB00D16719 /* SavedViewController.swift */,
 				78EF0FD22663F5AF0059DE99 /* PublicationDetailViewController.swift */,
-				78EF0FD52663F5B60059DE99 /* PostDetailViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -272,7 +269,6 @@
 				78D1BFA626684E8200A3EE82 /* Substack+Publication.swift in Sources */,
 				78058154266C227600A38A51 /* HapticManager.swift in Sources */,
 				78DCF43E2663D9FB00D16719 /* SavedViewController.swift in Sources */,
-				78EF0FD62663F5B60059DE99 /* PostDetailViewController.swift in Sources */,
 				78DCF4162663C26800D16719 /* AppDelegate.swift in Sources */,
 				78EF0FD32663F5AF0059DE99 /* PublicationDetailViewController.swift in Sources */,
 				78EF0FD02663F4950059DE99 /* Extension+UIViewController.swift in Sources */,

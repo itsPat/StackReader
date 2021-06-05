@@ -86,18 +86,9 @@
                     <navigationItem key="navigationItem" title="Discover" id="YJ6-zb-8Aq"/>
                     <connections>
                         <outlet property="collectionView" destination="hMa-9O-PwK" id="McB-fE-nUP"/>
-                        <outlet property="searchBar" destination="FKM-gF-r5E" id="SPJ-Rx-KlZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g3M-b5-AW0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <searchBar contentMode="redraw" id="FKM-gF-r5E">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <textInputTraits key="textInputTraits"/>
-                    <connections>
-                        <outlet property="delegate" destination="P2m-64-89R" id="Oqk-g6-1e7"/>
-                    </connections>
-                </searchBar>
             </objects>
             <point key="canvasLocation" x="1819" y="-740"/>
         </scene>
