@@ -58,7 +58,8 @@ extension StacksViewController: UICollectionViewDataSource {
 extension StacksViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let w = collectionView.bounds.inset(by: collectionView.contentInset).width
+        let regularWidth = collectionView.bounds.inset(by: collectionView.contentInset).width
+        let w = UIDevice.current.userInterfaceIdiom == .pad ? (regularWidth - 10) / 2.0 : regularWidth
         return CGSize(width: w, height: w)
     }
     
