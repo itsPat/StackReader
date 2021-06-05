@@ -9,6 +9,7 @@ import UIKit
 
 class DiscoverViewController: UIViewController, TabBarControllerItem {
 
+    @IBOutlet var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var publicationsByCategory = [Substack.Category: [Substack.Publication]]() {
@@ -18,9 +19,20 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
     }
     var categories = [Substack.Category]()
     
+    lazy var searchController: UISearchController = {
+        UISearchController(
+            searchResultsController: SearchResultsViewController(
+                collectionViewLayout: UICollectionViewFlowLayout()
+            )
+        )
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        navigationItem.searchController = searchController
+        searchController.searchResultsUpdater = searchController.searchResultsController as? UISearchResultsUpdating
+        
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
         collectionView.register(
             PublicationSectionHeader.nib,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -39,11 +51,6 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
                 print("Failed with err: \(err)")
             }
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

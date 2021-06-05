@@ -38,11 +38,15 @@ extension Substack {
         }
         
         var isPaidOnly: Bool {
-            return audience == "only_paid"
+            audience == "only_paid"
         }
         
         var isSupportedType: Bool {
-            return type == "podcast" || type == "newsletter"
+            type == "podcast" || type == "newsletter"
+        }
+        
+        var isNewsletter: Bool {
+            type == "newsletter"
         }
         
         private enum CodingKeys: String, CodingKey {

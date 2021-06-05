@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Saved View Controller-->
+        <!--Saved-->
         <scene sceneID="Vjz-6H-r8L">
             <objects>
                 <viewController storyboardIdentifier="SavedViewController" id="u5o-4d-3cD" customClass="SavedViewController" customModule="StackReader" customModuleProvider="target" sceneMemberID="viewController">
@@ -41,7 +41,7 @@
                             <constraint firstItem="dgB-kW-zH1" firstAttribute="top" secondItem="HLa-td-eGe" secondAttribute="top" id="rdU-P6-kXK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="fKB-L3-nHw"/>
+                    <navigationItem key="navigationItem" title="Saved" id="fKB-L3-nHw"/>
                     <connections>
                         <outlet property="collectionView" destination="dgB-kW-zH1" id="xbe-Rj-odM"/>
                     </connections>
@@ -50,7 +50,7 @@
             </objects>
             <point key="canvasLocation" x="1819" y="605"/>
         </scene>
-        <!--Discover View Controller-->
+        <!--Discover-->
         <scene sceneID="iiN-Bi-HRi">
             <objects>
                 <viewController storyboardIdentifier="DiscoverViewController" id="P2m-64-89R" customClass="DiscoverViewController" customModule="StackReader" customModuleProvider="target" sceneMemberID="viewController">
@@ -83,12 +83,21 @@
                             <constraint firstItem="hMa-9O-PwK" firstAttribute="top" secondItem="J6T-pq-I7O" secondAttribute="top" id="yeK-yA-SwZ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="YJ6-zb-8Aq"/>
+                    <navigationItem key="navigationItem" title="Discover" id="YJ6-zb-8Aq"/>
                     <connections>
                         <outlet property="collectionView" destination="hMa-9O-PwK" id="McB-fE-nUP"/>
+                        <outlet property="searchBar" destination="FKM-gF-r5E" id="SPJ-Rx-KlZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g3M-b5-AW0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <searchBar contentMode="redraw" id="FKM-gF-r5E">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="P2m-64-89R" id="Oqk-g6-1e7"/>
+                    </connections>
+                </searchBar>
             </objects>
             <point key="canvasLocation" x="1819" y="-740"/>
         </scene>
@@ -111,7 +120,7 @@
             </objects>
             <point key="canvasLocation" x="19" y="-81"/>
         </scene>
-        <!--Stacks View Controller-->
+        <!--Stacks-->
         <scene sceneID="6ZX-Td-KWz">
             <objects>
                 <viewController storyboardIdentifier="StacksViewController" id="h7n-0V-Pwz" customClass="StacksViewController" customModule="StackReader" customModuleProvider="target" sceneMemberID="viewController">
@@ -144,7 +153,7 @@
                             <constraint firstItem="0iQ-9v-Lmi" firstAttribute="top" secondItem="Wl0-JH-6ug" secondAttribute="top" id="mhF-bG-h7l"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="erO-Bk-4y1"/>
+                    <navigationItem key="navigationItem" title="Stacks" id="erO-Bk-4y1"/>
                     <connections>
                         <outlet property="collectionView" destination="0iQ-9v-Lmi" id="pKZ-LN-OjF"/>
                     </connections>
@@ -234,8 +243,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Tnc-az-B8T" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Discover" image="wand.and.stars" catalog="system" id="yUC-L8-6rx"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" id="cwH-ia-1w1">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="cwH-ia-1w1">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -253,8 +262,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9fN-Tk-s2s" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Saved" image="bookmark" catalog="system" id="Sgf-zK-f07"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" id="xf4-s1-cyM">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="xf4-s1-cyM">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -272,8 +281,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Btp-S9-H5h" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Stacks" image="rectangle.stack" catalog="system" id="bfB-Hg-ROx"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" id="rZk-0e-ZPo">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="rZk-0e-ZPo">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

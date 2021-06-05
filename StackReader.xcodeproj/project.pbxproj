@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7805814D266C14DB00A38A51 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7805814C266C14DB00A38A51 /* SearchResultsViewController.swift */; };
 		78089BD72663F8E800EDDD8B /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78089BD52663F8E800EDDD8B /* PostCell.swift */; };
 		78089BD82663F8E800EDDD8B /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78089BD62663F8E800EDDD8B /* PostCell.xib */; };
 		78D1BF9F266844F200A3EE82 /* StacksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1BF9E266844F200A3EE82 /* StacksViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7805814C266C14DB00A38A51 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		78089BD52663F8E800EDDD8B /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		78089BD62663F8E800EDDD8B /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		78D1BF9E266844F200A3EE82 /* StacksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StacksViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			children = (
 				78DCF4192663C26800D16719 /* TabBarController.swift */,
 				78DCF43A2663D9F300D16719 /* DiscoverViewController.swift */,
+				7805814C266C14DB00A38A51 /* SearchResultsViewController.swift */,
 				78D1BF9E266844F200A3EE82 /* StacksViewController.swift */,
 				78DCF43D2663D9FB00D16719 /* SavedViewController.swift */,
 				78EF0FD22663F5AF0059DE99 /* PublicationDetailViewController.swift */,
@@ -254,6 +257,7 @@
 				78DCF44D2663DFEB00D16719 /* Extension+String.swift in Sources */,
 				78DCF42F2663C2AC00D16719 /* NetworkManager.swift in Sources */,
 				78DCF4472663DFCE00D16719 /* Extension+UIImageView.swift in Sources */,
+				7805814D266C14DB00A38A51 /* SearchResultsViewController.swift in Sources */,
 				78DCF41A2663C26800D16719 /* TabBarController.swift in Sources */,
 				78DCF4432663DE4100D16719 /* PublicationCell.swift in Sources */,
 				78DCF4552663E6EE00D16719 /* PublicationSectionHeader.swift in Sources */,
@@ -419,7 +423,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = DTTK359L6E;
 				INFOPLIST_FILE = StackReader/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -440,7 +444,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = DTTK359L6E;
 				INFOPLIST_FILE = StackReader/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;

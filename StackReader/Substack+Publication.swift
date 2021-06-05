@@ -18,6 +18,15 @@ extension Substack {
         /// True if there are more pages for this category.
         let more: Bool
     }
+    
+    // MARK: - Publication Search Response
+    
+    struct PublicationSearchResponse: Codable {
+        let results: [Publication]
+        
+        /// True if there are more pages for this category.
+        let more: Bool
+    }
 
     struct Publication: Codable, Equatable {
         

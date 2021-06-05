@@ -40,6 +40,35 @@ class NetworkManager {
         tasks[cellId] = task
     }
     
+    
+    // MARK: - Search Publications
+    
+    func searchPublications(query: String, completion: @escaping (Result<[Substack.Publication], Error>) -> ()) {
+        guard let encodedQuery = query
+                .lowercased()
+                .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+              let url = URL(string: "https://substack.com/api/v1/publication/search?query=\(encodedQuery)&page=0") else {
+            return completion(.failure(NetworkError.invalidUrl))
+        }
+        URLSession.shared.dataTask(with: url) { (data, res, err) in
+            if let err = err {
+                return completion(.failure(err))
+            }
+            
+            if let data = data {
+                do {
+                    let response = try JSONDecoder().decode(Substack.PublicationSearchResponse.self, from: data)
+                    return completion(.success(response.results))
+                } catch {
+                    return completion(.failure(error))
+                }
+            } else {
+                print("❌ Failed to parse response: \(url)")
+                return completion(.failure(NetworkError.failedToParseResponse))
+            }
+        }.resume()
+    }
+    
     // MARK: - Fetch Discover Page Data
     
     func fetchDiscoverPageData(completion: @escaping (Result<[Substack.Category: [Substack.Publication]], Error>) -> ()) {

@@ -31,7 +31,7 @@ enum ViewController {
                 return .vc(.alert(title: "Oops", subtitle: "Unable to load a webview for this post."))
             }
             let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable = true
+            config.entersReaderIfAvailable = post.new
             config.barCollapsingEnabled = true
             let vc = SFSafariViewController(url: url, configuration: config)
             vc.dismissButtonStyle = .close

@@ -22,11 +22,6 @@ class PublicationDetailViewController: UIViewController {
         fetchPosts()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-    
     func fetchPosts(offset: Int = 0) {
         guard let pub = publication else { return }
         if offset == 0 {
