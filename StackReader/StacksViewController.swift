@@ -1,5 +1,5 @@
 //
-//  MyStacksViewController.swift
+//  StacksViewController.swift
 //  StackReader
 //
 //  Created by Patrick Trudel on 2021-06-02.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyStacksViewController: UIViewController {
+class StacksViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -34,7 +34,7 @@ class MyStacksViewController: UIViewController {
 
 // MARK: - UICollectionViewDataSource
 
-extension MyStacksViewController: UICollectionViewDataSource {
+extension StacksViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         publications.count
@@ -43,12 +43,7 @@ extension MyStacksViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PublicationCell.reuseId, for: indexPath) as! PublicationCell
         let publication = publications[indexPath.item]
-        cell.configure(
-            with: publication,
-            didTapAdd: {
-                UserData.add(publication: publication)
-            }
-        )
+        cell.configure(with: publication, didTapAdd: { collectionView.reloadData() })
         return cell
     }
     
@@ -56,7 +51,7 @@ extension MyStacksViewController: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension MyStacksViewController: UICollectionViewDelegateFlowLayout {
+extension StacksViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let w = collectionView.bounds.inset(by: collectionView.contentInset).width
@@ -65,7 +60,7 @@ extension MyStacksViewController: UICollectionViewDelegateFlowLayout {
     
 }
 
-extension MyStacksViewController: UICollectionViewDelegate {
+extension StacksViewController: UICollectionViewDelegate {
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -83,11 +78,9 @@ extension MyStacksViewController: UICollectionViewDelegate {
                 return .vc(.publicationDetail(publication: publication))
             },
             actionProvider: { _ -> UIMenu? in
-                return UIMenu(title: "Quick Actions", children: [
-                    UIAction(title: "Add Publication", image: UIImage(systemName: "plus.circle")) { _ in
-                        UserData.add(publication: publication)
-                    }
-                ])
+                return UIMenu(title: "Quick Actions", children: [publication.saveAction {
+                    collectionView.reloadData()
+                }])
             }
         )
     }

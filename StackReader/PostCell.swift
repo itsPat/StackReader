@@ -16,12 +16,15 @@ class PostCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var paidMembersOnlyLabel: UILabel!
+    @IBOutlet weak var savePostButton: UIButton!
     
     private let cellId: String = .uuid
     private var didTapSave: (() -> ())?
+    private var post: Substack.Post?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        savePostButton.setImage(UIImage(systemName: "bookmark.fill"), for: .disabled)
         contentView.backgroundColor = .systemBackground
         contentView.layer.borderWidth = 1
         contentView.layer.borderColor = UIColor.separator.cgColor
@@ -39,18 +42,28 @@ class PostCell: UICollectionViewCell {
         descriptionLabel.text = nil
         NetworkManager.shared.tasks[cellId]?.cancel()
         NetworkManager.shared.tasks[cellId] = nil
+        post = nil
     }
     
     func configure(with post: Substack.Post, didTapSave: @escaping () -> ()) {
+        self.post = post
         self.didTapSave = didTapSave
         imageView.setImageWith(url: post.coverImageUrl ?? post.publication?.logoUrl ?? post.publication?.authorPhotoUrl, cellId: cellId)
         titleLabel.text = post.title
         descriptionLabel.text = post.subtitle
         paidMembersOnlyLabel.isHidden = !post.isPaidOnly
+        updateSavePostButton()
     }
 
     @IBAction func didTapSave(_ sender: Any) {
+        post?.toggleIsSaved()
         didTapSave?()
+        updateSavePostButton()
+    }
+    
+    func updateSavePostButton() {
+        guard let post = self.post else { return }
+        savePostButton.setImage(post.saveActionImage, for: .normal)
     }
 
 }

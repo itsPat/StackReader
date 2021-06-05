@@ -89,6 +89,7 @@
                 <outlet property="descriptionLabel" destination="xRT-dV-UsD" id="lrq-uB-84p"/>
                 <outlet property="imageView" destination="xNE-WP-aSK" id="fNO-Bv-aVr"/>
                 <outlet property="paidMembersOnlyLabel" destination="fSz-oy-92B" id="g94-dp-bdn"/>
+                <outlet property="savePostButton" destination="yeS-4b-3WY" id="cuZ-gb-DH3"/>
                 <outlet property="titleLabel" destination="r7z-pX-3ia" id="XKg-al-T1e"/>
             </connections>
             <point key="canvasLocation" x="-263.04347826086956" y="61.607142857142854"/>

@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -112,10 +111,10 @@
             </objects>
             <point key="canvasLocation" x="19" y="-81"/>
         </scene>
-        <!--My Stacks View Controller-->
+        <!--Stacks View Controller-->
         <scene sceneID="6ZX-Td-KWz">
             <objects>
-                <viewController id="h7n-0V-Pwz" customClass="MyStacksViewController" customModule="StackReader" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="h7n-0V-Pwz" customClass="StacksViewController" customModule="StackReader" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wl0-JH-6ug">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -171,16 +170,7 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="m27-z6-C5h">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="9pd-oJ-aUe">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                                 <connections>
                                     <outlet property="dataSource" destination="QSY-Gv-5Pp" id="9rs-Bu-KPa"/>
                                     <outlet property="delegate" destination="QSY-Gv-5Pp" id="Waa-Mn-KmI"/>
@@ -276,11 +266,11 @@
             </objects>
             <point key="canvasLocation" x="909" y="605"/>
         </scene>
-        <!--My Stacks-->
+        <!--Stacks-->
         <scene sceneID="44Z-7y-nmd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Btp-S9-H5h" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Stacks" image="rectangle.stack" catalog="system" id="bfB-Hg-ROx"/>
+                    <tabBarItem key="tabBarItem" title="Stacks" image="rectangle.stack" catalog="system" id="bfB-Hg-ROx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" id="rZk-0e-ZPo">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

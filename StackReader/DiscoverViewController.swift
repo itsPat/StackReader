@@ -76,12 +76,7 @@ extension DiscoverViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PublicationCell.reuseId, for: indexPath) as! PublicationCell
         if let publication = publicationsByCategory[categories[indexPath.section]]?[indexPath.item] {
-            cell.configure(
-                with: publication,
-                didTapAdd: {
-                    UserData.add(publication: publication)
-                }
-            )
+            cell.configure(with: publication, didTapAdd: { collectionView.reloadData() })
         }
         return cell
     }
@@ -137,11 +132,7 @@ extension DiscoverViewController: UICollectionViewDelegate {
                 return .vc(.publicationDetail(publication: publication))
             },
             actionProvider: { _ -> UIMenu? in
-                return UIMenu(title: "Quick Actions", children: [
-                    UIAction(title: "Add Publication", image: UIImage(systemName: "plus.circle")) { _ in
-                        UserData.add(publication: publication)
-                    }
-                ])
+                return UIMenu(title: "Quick Actions", children: [publication.saveAction()])
             }
         )
     }

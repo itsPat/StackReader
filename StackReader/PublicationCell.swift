@@ -15,9 +15,11 @@ class PublicationCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var addToStacksButton: UIButton!
     
     private let cellId: String = .uuid
     private var didTapAdd: (() -> ())?
+    private var publication: Substack.Publication?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -46,18 +48,28 @@ class PublicationCell: UICollectionViewCell {
         descriptionLabel.text = nil
         NetworkManager.shared.tasks[cellId]?.cancel()
         NetworkManager.shared.tasks[cellId] = nil
+        publication = nil
     }
     
     func configure(with publication: Substack.Publication, didTapAdd: @escaping () -> ()) {
+        self.publication = publication
+        self.didTapAdd = didTapAdd
         imageView.setImageWith(url: publication.logoUrl ?? publication.authorPhotoUrl, cellId: cellId)
         titleLabel.text = publication.name
         descriptionLabel.text = publication.description
         descriptionLabel.isHidden = publication.description == nil
-        self.didTapAdd = didTapAdd
+        updateAddToStacksButton()
     }
 
     @IBAction func didTapAdd(_ sender: Any) {
+        publication?.toggleIsSaved()
         didTapAdd?()
+        updateAddToStacksButton()
+    }
+    
+    func updateAddToStacksButton() {
+        guard let pub = publication else { return }
+        addToStacksButton.setImage(pub.saveActionImage, for: .normal)
     }
     
 }

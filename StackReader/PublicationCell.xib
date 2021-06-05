@@ -93,6 +93,7 @@
             </constraints>
             <size key="customSize" width="317" height="347"/>
             <connections>
+                <outlet property="addToStacksButton" destination="MFC-BC-3ve" id="xmO-q3-enY"/>
                 <outlet property="descriptionLabel" destination="gNe-yr-bZS" id="bKo-je-e82"/>
                 <outlet property="imageView" destination="Te3-DQ-U1c" id="dI2-Xt-E2V"/>
                 <outlet property="titleLabel" destination="mo9-xi-KMV" id="g3J-Gb-mqJ"/>

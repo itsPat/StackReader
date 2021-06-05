@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Substack {
     
@@ -18,7 +19,7 @@ extension Substack {
         let more: Bool
     }
 
-    struct Publication: Codable {
+    struct Publication: Codable, Equatable {
         
         let id: Int
         let subdomain: String
@@ -43,6 +44,37 @@ extension Substack {
             case authorPhotoUrl = "author_photo_url"
             case authorBio = "author_bio"
             case baseUrl = "base_url"
+        }
+        
+        var isSaved: Bool {
+            UserData.savedPublications.contains(self)
+        }
+        
+        var saveActionTitle: String {
+            isSaved ? "Remove from Stacks" : "Add to Stacks"
+        }
+        
+        var saveActionImage: UIImage? {
+            UIImage(systemName: isSaved ? "minus.circle" : "plus.circle")
+        }
+        
+        func saveAction(completion: @escaping (() -> ()) = {}) -> UIAction {
+            UIAction(title: saveActionTitle, image: saveActionImage) { _ in
+                toggleIsSaved()
+                completion()
+            }
+        }
+        
+        func toggleIsSaved() {
+            if isSaved {
+                UserData.remove(publication: self)
+            } else {
+                UserData.add(publication: self)
+            }
+        }
+        
+        static func == (lhs: Substack.Publication, rhs: Substack.Publication) -> Bool {
+            return lhs.id == rhs.id
         }
         
     }

@@ -63,9 +63,7 @@ extension PublicationDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostCell.reuseId, for: indexPath) as! PostCell
         let post = posts[indexPath.item]
-        cell.configure(with: post, didTapSave: {
-            UserData.add(post: post)
-        })
+        cell.configure(with: post, didTapSave: { collectionView.reloadData() })
         return cell
     }
     
@@ -99,11 +97,7 @@ extension PublicationDetailViewController: UICollectionViewDelegate {
                 return .vc(.postDetail(post: post))
             },
             actionProvider: { _ -> UIMenu? in
-                return UIMenu(title: "Quick Actions", children: [
-                    UIAction(title: "Save Story", image: UIImage(systemName: "bookmark")) { _ in
-                        UserData.add(post: post)
-                    }
-                ])
+                return UIMenu(title: "Quick Actions", children: [post.saveAction()])
             }
         )
     }

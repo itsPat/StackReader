@@ -14,15 +14,22 @@ class UserData {
     static var savedPublications: [Substack.Publication] {
         guard let data = UserDefaults.standard.data(forKey: "savedPublications"),
            let publications = try? JSONDecoder().decode([Substack.Publication].self, from: data) else { return [] }
+        savedPublicationById = [:]
+        for p in publications { savedPublicationById[p.id] = p }
         return publications
     }
     
+    static var savedPublicationById: [Int: Substack.Publication] = [:]
+    
     static func add(publication: Substack.Publication) {
         do {
-            let data = try JSONEncoder().encode(savedPublications + [publication])
+            let data = try JSONEncoder().encode(
+                savedPublications.contains(publication) ? savedPublications : savedPublications + [publication]
+            )
+            savedPublicationById[publication.id] = publication
             UserDefaults.standard.set(data, forKey: "savedPublications")
         } catch {
-            print("Failed to add publication to saved: \(publication)")
+            print("Failed to add publication to stacks: \(publication)")
         }
     }
     
@@ -31,6 +38,7 @@ class UserData {
             var publications = savedPublications
             publications.removeAll(where: { $0.id == publication.id })
             let data = try JSONEncoder().encode(publications)
+            savedPublicationById[publication.id] = nil
             UserDefaults.standard.set(data, forKey: "savedPublications")
         } catch {
             print("Failed to remove publication from saved: \(publication)")
@@ -47,10 +55,12 @@ class UserData {
     
     static func add(post: Substack.Post) {
         do {
-            let data = try JSONEncoder().encode(savedPosts + [post])
+            let data = try JSONEncoder().encode(
+                savedPosts.contains(post) ? savedPosts : savedPosts + [post]
+            )
             UserDefaults.standard.set(data, forKey: "savedPosts")
         } catch {
-            print("Failed to add publication to saved: \(post)")
+            print("Failed to add publication to stacks: \(post)")
         }
     }
     
