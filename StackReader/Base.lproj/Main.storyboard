@@ -11,7 +11,7 @@
         <!--Saved View Controller-->
         <scene sceneID="Vjz-6H-r8L">
             <objects>
-                <viewController id="u5o-4d-3cD" customClass="SavedViewController" customModule="StackReader" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SavedViewController" id="u5o-4d-3cD" customClass="SavedViewController" customModule="StackReader" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HLa-td-eGe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -53,7 +53,7 @@
         <!--Discover View Controller-->
         <scene sceneID="iiN-Bi-HRi">
             <objects>
-                <viewController id="P2m-64-89R" customClass="DiscoverViewController" customModule="StackReader" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DiscoverViewController" id="P2m-64-89R" customClass="DiscoverViewController" customModule="StackReader" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J6T-pq-I7O">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,7 +114,7 @@
         <!--Stacks View Controller-->
         <scene sceneID="6ZX-Td-KWz">
             <objects>
-                <viewController id="h7n-0V-Pwz" customClass="StacksViewController" customModule="StackReader" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StacksViewController" id="h7n-0V-Pwz" customClass="StacksViewController" customModule="StackReader" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wl0-JH-6ug">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -146,7 +146,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="erO-Bk-4y1"/>
                     <connections>
-                        <outlet property="collectionView" destination="0iQ-9v-Lmi" id="B3g-Ha-i5A"/>
+                        <outlet property="collectionView" destination="0iQ-9v-Lmi" id="pKZ-LN-OjF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZYe-lS-mEY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

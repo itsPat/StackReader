@@ -32,6 +32,7 @@ class SavedViewController: UIViewController, TabBarControllerItem {
     }
     
     func scrollToTop() {
+        guard collectionView != nil else { return }
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredVertically, animated: true)
     }
 
