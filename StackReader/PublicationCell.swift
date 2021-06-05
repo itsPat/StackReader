@@ -62,6 +62,7 @@ class PublicationCell: UICollectionViewCell {
         titleLabel.text = publication.name
         descriptionLabel.text = publication.description
         descriptionLabel.isHidden = publication.description == nil
+        layoutIfNeeded()
         updateAddToStacksButton()
     }
 

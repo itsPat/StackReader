@@ -10,13 +10,13 @@ import UIKit
 extension UIView {
     
     func pulse(completion: @escaping () -> () = {}) {
-        UIView.animate(withDuration: 0.15) { [weak self] in
+        HapticManager.shared.fire(impactStyle: .light)
+        UIView.animate(withDuration: 0.1) { [weak self] in
             self?.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
         } completion: { [weak self] _ in
-            UIView.animate(withDuration: 0.25) {
+            UIView.animate(withDuration: 0.2) {
                 self?.transform = .identity
             } completion: { (_) in
-                HapticManager.shared.fire(impactStyle: .light, intensity: 0.5)
                 completion()
             }
         }

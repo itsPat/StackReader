@@ -25,17 +25,10 @@ class PostCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         contentView.backgroundColor = .systemBackground
-        contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.separator.cgColor
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        layer.shadowPath = UIBezierPath(
-            roundedRect: bounds,
-            byRoundingCorners: .allCorners,
-            cornerRadii: CGSize(width: 8.0, height: 8.0)
-        ).cgPath
+        imageView.layer.cornerRadius = 8.0
+        imageView.layer.masksToBounds = true
+        imageView.layer.borderWidth = 0.5
+        imageView.layer.borderColor = UIColor.opaqueSeparator.cgColor
     }
     
     override func prepareForReuse() {
@@ -54,6 +47,7 @@ class PostCell: UICollectionViewCell {
         imageView.setImageWith(url: post.coverImageUrl ?? post.publication?.logoUrl ?? post.publication?.authorPhotoUrl, cellId: cellId)
         titleLabel.text = post.title
         descriptionLabel.text = post.subtitle
+        descriptionLabel.isHidden = post.subtitle.isEmpty
         paidMembersOnlyLabel.isHidden = !post.isPaidOnly
         updateSavePostButton()
     }

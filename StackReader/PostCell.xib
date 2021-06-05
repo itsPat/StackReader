@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -29,11 +30,11 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="vv8-aJ-cpz">
                                 <rect key="frame" x="0.0" y="0.0" width="231" height="90"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribers only" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fSz-oy-92B">
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.66000000000000003" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribers only" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fSz-oy-92B">
                                         <rect key="frame" x="0.0" y="0.0" width="231" height="14.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <color key="textColor" systemColor="systemGreenColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7z-pX-3ia">
@@ -57,7 +58,7 @@
                                     <constraint firstAttribute="width" constant="44" id="63j-rz-b4W"/>
                                     <constraint firstAttribute="height" constant="44" id="ESR-WT-PQh"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                <color key="tintColor" name="AccentColor"/>
                                 <state key="normal" image="bookmark" catalog="system"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -71,18 +72,28 @@
                             </button>
                         </subviews>
                     </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Djv-Am-QWu">
+                        <rect key="frame" x="166" y="145.5" width="293" height="0.5"/>
+                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="c9i-Gr-UHb"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="Xn0-Cf-99t" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="AOF-wB-Dbe"/>
+                <constraint firstAttribute="trailing" secondItem="Djv-Am-QWu" secondAttribute="trailing" id="Q9F-sH-NFV"/>
                 <constraint firstItem="Xn0-Cf-99t" firstAttribute="leading" secondItem="xNE-WP-aSK" secondAttribute="trailing" constant="20" id="UfV-X9-Jjp"/>
                 <constraint firstItem="xNE-WP-aSK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="VAu-x3-c1e"/>
                 <constraint firstAttribute="trailing" secondItem="Xn0-Cf-99t" secondAttribute="trailing" constant="8" id="Ywc-KE-mGS"/>
                 <constraint firstItem="xNE-WP-aSK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="blk-sJ-EfT"/>
                 <constraint firstAttribute="bottom" secondItem="xNE-WP-aSK" secondAttribute="bottom" id="eNc-Hr-CNg"/>
+                <constraint firstAttribute="bottom" secondItem="Djv-Am-QWu" secondAttribute="bottom" id="hXT-j2-uC4"/>
                 <constraint firstItem="Xn0-Cf-99t" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="m9S-Lt-6VQ"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Xn0-Cf-99t" secondAttribute="bottom" constant="8" id="mHY-sN-dVr"/>
+                <constraint firstItem="Djv-Am-QWu" firstAttribute="leading" secondItem="Xn0-Cf-99t" secondAttribute="leading" id="pgc-L9-bUO"/>
             </constraints>
             <size key="customSize" width="459" height="146"/>
             <connections>
@@ -97,8 +108,17 @@
     </objects>
     <resources>
         <image name="bookmark" catalog="system" width="112" height="128"/>
+        <namedColor name="AccentColor">
+            <color red="0.097999997437000275" green="0.6940000057220459" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
