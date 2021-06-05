@@ -24,7 +24,6 @@ class PostCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        savePostButton.setImage(UIImage(systemName: "bookmark.fill"), for: .disabled)
         contentView.backgroundColor = .systemBackground
         contentView.layer.borderWidth = 1
         contentView.layer.borderColor = UIColor.separator.cgColor
@@ -32,7 +31,11 @@ class PostCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        layer.shadowPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 8.0, height: 8.0)).cgPath
+        layer.shadowPath = UIBezierPath(
+            roundedRect: bounds,
+            byRoundingCorners: .allCorners,
+            cornerRadii: CGSize(width: 8.0, height: 8.0)
+        ).cgPath
     }
     
     override func prepareForReuse() {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StacksViewController: UIViewController {
+class StacksViewController: UIViewController, TabBarControllerItem {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -28,6 +28,10 @@ class StacksViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
         collectionView.reloadData()
+    }
+    
+    func scrollToTop() {
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredVertically, animated: true)
     }
 
 }

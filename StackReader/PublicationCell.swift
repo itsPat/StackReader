@@ -38,7 +38,11 @@ class PublicationCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        layer.shadowPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 8.0, height: 8.0)).cgPath
+        layer.shadowPath = UIBezierPath(
+            roundedRect: bounds,
+            byRoundingCorners: .allCorners,
+            cornerRadii: CGSize(width: 8.0, height: 8.0)
+        ).cgPath
     }
     
     override func prepareForReuse() {

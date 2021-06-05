@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DiscoverViewController: UIViewController {
+class DiscoverViewController: UIViewController, TabBarControllerItem {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -57,6 +57,10 @@ class DiscoverViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
         }
+    }
+    
+    func scrollToTop() {
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredVertically, animated: true)
     }
 
 }

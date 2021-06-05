@@ -84,7 +84,7 @@ extension PublicationDetailViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let post = posts[indexPath.item]
-        navigationController?.pushViewController(.vc(.postDetail(post: post)), animated: true)
+        present(.vc(.postDetail(post: post)), animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -107,7 +107,7 @@ extension PublicationDetailViewController: UICollectionViewDelegate {
               item < posts.count else { return }
         let post = posts[item]
         animator.addCompletion { [weak self] in
-            self?.navigationController?.pushViewController(.vc(.postDetail(post: post)), animated: true)
+            self?.present(.vc(.postDetail(post: post)), animated: true, completion: nil)
         }
     }
     

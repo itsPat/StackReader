@@ -7,7 +7,8 @@
 
 import UIKit
 
-class SavedViewController: UIViewController {
+class SavedViewController: UIViewController, TabBarControllerItem {
+    
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -28,6 +29,10 @@ class SavedViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
         collectionView.reloadData()
+    }
+    
+    func scrollToTop() {
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredVertically, animated: true)
     }
 
 }
@@ -64,7 +69,7 @@ extension SavedViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let post = posts[indexPath.item]
-        navigationController?.pushViewController(.vc(.postDetail(post: post)), animated: true)
+        present(.vc(.postDetail(post: post)), animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -89,7 +94,7 @@ extension SavedViewController: UICollectionViewDelegate {
               item < posts.count else { return }
         let post = posts[item]
         animator.addCompletion { [weak self] in
-            self?.navigationController?.pushViewController(.vc(.postDetail(post: post)), animated: true)
+            self?.present(.vc(.postDetail(post: post)), animated: true, completion: nil)
         }
     }
     

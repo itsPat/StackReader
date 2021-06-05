@@ -30,6 +30,7 @@
 		78DCF4512663E00C00D16719 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF4502663E00C00D16719 /* ImageManager.swift */; };
 		78DCF4552663E6EE00D16719 /* PublicationSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF4532663E6EE00D16719 /* PublicationSectionHeader.swift */; };
 		78DCF4562663E6EE00D16719 /* PublicationSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DCF4542663E6EE00D16719 /* PublicationSectionHeader.xib */; };
+		78E99BA1266BCB0000152ACD /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E99BA0266BCB0000152ACD /* Extension+UIColor.swift */; };
 		78EF0FD02663F4950059DE99 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF0FCF2663F4950059DE99 /* Extension+UIViewController.swift */; };
 		78EF0FD32663F5AF0059DE99 /* PublicationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF0FD22663F5AF0059DE99 /* PublicationDetailViewController.swift */; };
 		78EF0FD62663F5B60059DE99 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF0FD52663F5B60059DE99 /* PostDetailViewController.swift */; };
@@ -61,6 +62,7 @@
 		78DCF4502663E00C00D16719 /* ImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		78DCF4532663E6EE00D16719 /* PublicationSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationSectionHeader.swift; sourceTree = "<group>"; };
 		78DCF4542663E6EE00D16719 /* PublicationSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PublicationSectionHeader.xib; sourceTree = "<group>"; };
+		78E99BA0266BCB0000152ACD /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
 		78EF0FCF2663F4950059DE99 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		78EF0FD22663F5AF0059DE99 /* PublicationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationDetailViewController.swift; sourceTree = "<group>"; };
 		78EF0FD52663F5B60059DE99 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				78DCF4462663DFCE00D16719 /* Extension+UIImageView.swift */,
 				78DCF44C2663DFEB00D16719 /* Extension+String.swift */,
 				78EF0FCF2663F4950059DE99 /* Extension+UIViewController.swift */,
+				78E99BA0266BCB0000152ACD /* Extension+UIColor.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				78DCF4512663E00C00D16719 /* ImageManager.swift in Sources */,
 				78DCF4182663C26800D16719 /* SceneDelegate.swift in Sources */,
 				78089BD72663F8E800EDDD8B /* PostCell.swift in Sources */,
+				78E99BA1266BCB0000152ACD /* Extension+UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +419,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = DTTK359L6E;
 				INFOPLIST_FILE = StackReader/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -435,6 +440,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = DTTK359L6E;
 				INFOPLIST_FILE = StackReader/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;

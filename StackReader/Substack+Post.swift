@@ -46,7 +46,7 @@ extension Substack {
         }
         
         private enum CodingKeys: String, CodingKey {
-            case id, slug, audience, title, subtitle, description, type
+            case id, slug, audience, title, subtitle, description, type, publication
             case postDateString = "post_date"
             case canonicalUrl = "canonical_url"
             case coverImageUrl = "cover_image"
