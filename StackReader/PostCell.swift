@@ -58,10 +58,12 @@ class PostCell: UICollectionViewCell {
         updateSavePostButton()
     }
 
-    @IBAction func didTapSave(_ sender: Any) {
-        post?.toggleIsSaved()
-        didTapSave?()
-        updateSavePostButton()
+    @IBAction func didTapSave(_ sender: UIButton) {
+        sender.pulse { [weak self] in
+            self?.post?.toggleIsSaved()
+            self?.didTapSave?()
+            self?.updateSavePostButton()
+        }
     }
     
     func updateSavePostButton() {

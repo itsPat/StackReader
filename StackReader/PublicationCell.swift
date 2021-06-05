@@ -65,10 +65,12 @@ class PublicationCell: UICollectionViewCell {
         updateAddToStacksButton()
     }
 
-    @IBAction func didTapAdd(_ sender: Any) {
-        publication?.toggleIsSaved()
-        didTapAdd?()
-        updateAddToStacksButton()
+    @IBAction func didTapAdd(_ sender: UIButton) {
+        sender.pulse { [weak self] in
+            self?.publication?.toggleIsSaved()
+            self?.didTapAdd?()
+            self?.updateAddToStacksButton()
+        }
     }
     
     func updateAddToStacksButton() {

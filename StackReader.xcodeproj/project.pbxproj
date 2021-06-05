@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7805814D266C14DB00A38A51 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7805814C266C14DB00A38A51 /* SearchResultsViewController.swift */; };
+		78058151266C20BC00A38A51 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78058150266C20BC00A38A51 /* Extension+UIView.swift */; };
+		78058154266C227600A38A51 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78058153266C227600A38A51 /* HapticManager.swift */; };
 		78089BD72663F8E800EDDD8B /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78089BD52663F8E800EDDD8B /* PostCell.swift */; };
 		78089BD82663F8E800EDDD8B /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78089BD62663F8E800EDDD8B /* PostCell.xib */; };
 		78D1BF9F266844F200A3EE82 /* StacksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1BF9E266844F200A3EE82 /* StacksViewController.swift */; };
@@ -39,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		7805814C266C14DB00A38A51 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		78058150266C20BC00A38A51 /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
+		78058153266C227600A38A51 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		78089BD52663F8E800EDDD8B /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		78089BD62663F8E800EDDD8B /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		78D1BF9E266844F200A3EE82 /* StacksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StacksViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 				78DCF4502663E00C00D16719 /* ImageManager.swift */,
 				78DCF42E2663C2AC00D16719 /* NetworkManager.swift */,
 				78D1BFA22668461800A3EE82 /* UserData.swift */,
+				78058153266C227600A38A51 /* HapticManager.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -177,6 +182,7 @@
 				78DCF44C2663DFEB00D16719 /* Extension+String.swift */,
 				78EF0FCF2663F4950059DE99 /* Extension+UIViewController.swift */,
 				78E99BA0266BCB0000152ACD /* Extension+UIColor.swift */,
+				78058150266C20BC00A38A51 /* Extension+UIView.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -256,6 +262,7 @@
 			files = (
 				78DCF44D2663DFEB00D16719 /* Extension+String.swift in Sources */,
 				78DCF42F2663C2AC00D16719 /* NetworkManager.swift in Sources */,
+				78058151266C20BC00A38A51 /* Extension+UIView.swift in Sources */,
 				78DCF4472663DFCE00D16719 /* Extension+UIImageView.swift in Sources */,
 				7805814D266C14DB00A38A51 /* SearchResultsViewController.swift in Sources */,
 				78DCF41A2663C26800D16719 /* TabBarController.swift in Sources */,
@@ -263,6 +270,7 @@
 				78DCF4552663E6EE00D16719 /* PublicationSectionHeader.swift in Sources */,
 				78D1BF9F266844F200A3EE82 /* StacksViewController.swift in Sources */,
 				78D1BFA626684E8200A3EE82 /* Substack+Publication.swift in Sources */,
+				78058154266C227600A38A51 /* HapticManager.swift in Sources */,
 				78DCF43E2663D9FB00D16719 /* SavedViewController.swift in Sources */,
 				78EF0FD62663F5B60059DE99 /* PostDetailViewController.swift in Sources */,
 				78DCF4162663C26800D16719 /* AppDelegate.swift in Sources */,
