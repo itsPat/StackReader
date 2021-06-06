@@ -28,6 +28,7 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        NetworkManager.shared.testUrl()
     }
     
     override func viewWillAppear(_ animated: Bool) {

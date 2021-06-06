@@ -9,6 +9,15 @@ import Foundation
 import UIKit
 
 extension Substack {
+    
+    // MARK: - Fetch Feed Response
+    
+    struct PostsFeedResponse: Codable {
+        let posts: [Post]
+        
+        /// True if there are more pages for this category.
+        let more: Bool
+    }
 
     struct Post: Codable, Equatable {
         

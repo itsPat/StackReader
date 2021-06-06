@@ -11,14 +11,13 @@ import UIKit
 class NetworkManager {
     
     enum NetworkError: Error {
-        case invalidUrl, failedToParseResponse, noData
+        case invalidUrl, failedToParseResponse, noData, requiresLogin
     }
-    
-    // MARK: - Singleton declaration
     
     static let shared = NetworkManager()
     private init() {}
     var tasks = [String: URLSessionDataTask]()
+    
     
     // MARK: - Fetch Image for URL
     
@@ -162,6 +161,46 @@ class NetworkManager {
             if let data = data,
                let post = try? JSONDecoder().decode(Substack.Post.self, from: data) {
                 return completion(.success(post))
+            } else {
+                return completion(.failure(NetworkError.failedToParseResponse))
+            }
+        }.resume()
+    }
+    
+    // MARK: - Login to Substack
+    
+    func login(email: String, password: String, completion: @escaping (Result<Void, Error>) -> ()) {
+        let values = ["email": email, "password": password]
+        guard let url = URL(string: "https://substack.com/api/v1/login"),
+              let body = try? JSONSerialization.data(withJSONObject: values, options: []) else {
+            return completion(.failure(NetworkError.invalidUrl))
+        }
+        var req = URLRequest(url: url)
+        req.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.httpMethod = "POST"
+        req.httpBody = body
+        URLSession.shared.dataTask(with: url) { (data, res, err) in
+            if let err = err {
+                completion(.failure(err))
+            } else if let res = res as? HTTPURLResponse,
+                      res.statusCode == 200 {
+                completion(.success(()))
+            }
+        }.resume()
+    }
+    
+    
+    // MARK: - Fetch Feed for logged in user
+    
+    func fetchFeed(page: Int = 0, completion: @escaping (Result<[Substack.Post], Error>) -> ()) {
+        guard let url = URL(string: "https://reader.substack.com/api/v1/reader/posts?page=\(page)&type=post") else { return }
+        URLSession.shared.dataTask(with: url) { (data, res, err) in
+            if let err = err {
+                return completion(.failure(err))
+            }
+            if let data = data,
+               let response = try? JSONDecoder().decode(Substack.PostsFeedResponse.self, from: data) {
+                return completion(.success(response.posts))
             } else {
                 return completion(.failure(NetworkError.failedToParseResponse))
             }
