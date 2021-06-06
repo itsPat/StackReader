@@ -3,7 +3,7 @@
 
 ###### App Store Link
 
-📲 [Download now](https://google.com) 👈
+📲 [Download now](https://apps.apple.com/app/reader-for-substack/id1570635777) 👈
 
 
 ###### Screenshots
