@@ -1,5 +1,12 @@
-# StackReader
-## A reader for Substack
+# Reader for Substack
+
+
+###### App Store Link
+
+📲 [Download now](https://google.com) 👈
+
+
+###### Screenshots
 
 ![GitHub Logo](/screenshots/1.png)
 
