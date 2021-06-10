@@ -34,6 +34,7 @@
 		78DCF4552663E6EE00D16719 /* PublicationSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF4532663E6EE00D16719 /* PublicationSectionHeader.swift */; };
 		78DCF4562663E6EE00D16719 /* PublicationSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DCF4542663E6EE00D16719 /* PublicationSectionHeader.xib */; };
 		78E99BA1266BCB0000152ACD /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E99BA0266BCB0000152ACD /* Extension+UIColor.swift */; };
+		78EEA9C626726C13001627FA /* Extension+UICollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEA9C526726C13001627FA /* Extension+UICollectionViewLayout.swift */; };
 		78EF0FD02663F4950059DE99 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF0FCF2663F4950059DE99 /* Extension+UIViewController.swift */; };
 		78EF0FD32663F5AF0059DE99 /* PublicationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF0FD22663F5AF0059DE99 /* PublicationDetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -68,6 +69,7 @@
 		78DCF4532663E6EE00D16719 /* PublicationSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationSectionHeader.swift; sourceTree = "<group>"; };
 		78DCF4542663E6EE00D16719 /* PublicationSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PublicationSectionHeader.xib; sourceTree = "<group>"; };
 		78E99BA0266BCB0000152ACD /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
+		78EEA9C526726C13001627FA /* Extension+UICollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UICollectionViewLayout.swift"; sourceTree = "<group>"; };
 		78EF0FCF2663F4950059DE99 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		78EF0FD22663F5AF0059DE99 /* PublicationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,6 +182,7 @@
 				78EF0FCF2663F4950059DE99 /* Extension+UIViewController.swift */,
 				78E99BA0266BCB0000152ACD /* Extension+UIColor.swift */,
 				78058150266C20BC00A38A51 /* Extension+UIView.swift */,
+				78EEA9C526726C13001627FA /* Extension+UICollectionViewLayout.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				78D1BFA626684E8200A3EE82 /* Substack+Publication.swift in Sources */,
 				78058154266C227600A38A51 /* HapticManager.swift in Sources */,
 				78DCF43E2663D9FB00D16719 /* SavedViewController.swift in Sources */,
+				78EEA9C626726C13001627FA /* Extension+UICollectionViewLayout.swift in Sources */,
 				78DCF4162663C26800D16719 /* AppDelegate.swift in Sources */,
 				78EF0FD32663F5AF0059DE99 /* PublicationDetailViewController.swift in Sources */,
 				78EF0FD02663F4950059DE99 /* Extension+UIViewController.swift in Sources */,

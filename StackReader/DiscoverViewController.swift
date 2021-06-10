@@ -28,7 +28,6 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        NetworkManager.shared.testUrl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,7 +44,13 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
     
     func setup() {
         navigationItem.searchController = searchController
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
+        collectionView.setCollectionViewLayout(
+            .orthogonalLayout(
+                itemInset: .init(top: 2.0, leading: 2.0, bottom: 2.0, trailing: 2.0),
+                sectionInset: .init(top: 8.0, leading: 16.0, bottom: 16.0, trailing: 16.0)
+            ),
+            animated: true
+        )
         collectionView.register(
             PublicationSectionHeader.nib,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -105,27 +110,6 @@ extension DiscoverViewController: UICollectionViewDataSource {
             withReuseIdentifier: PublicationSectionHeader.reuseId, for: indexPath) as! PublicationSectionHeader
         header.configure(with: categories[indexPath.section])
         return header
-    }
-    
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-
-extension DiscoverViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let regularWidth = collectionView.bounds.inset(by: collectionView.contentInset).width
-        let w = UIDevice.current.userInterfaceIdiom == .pad ? (regularWidth - 10) / 2.0 : regularWidth
-        return CGSize(width: w, height: w)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let w = collectionView.bounds.inset(by: collectionView.contentInset).width
-        return CGSize(width: w, height: 70)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        .zero
     }
     
 }
