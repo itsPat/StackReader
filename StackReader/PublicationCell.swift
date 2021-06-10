@@ -14,7 +14,6 @@ class PublicationCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var addToStacksButton: UIButton!
     
     private let cellId: String = .uuid
@@ -49,7 +48,6 @@ class PublicationCell: UICollectionViewCell {
         super.prepareForReuse()
         imageView.image = nil
         titleLabel.text = nil
-        descriptionLabel.text = nil
         NetworkManager.shared.tasks[cellId]?.cancel()
         NetworkManager.shared.tasks[cellId] = nil
         publication = nil
@@ -60,8 +58,6 @@ class PublicationCell: UICollectionViewCell {
         self.didTapAdd = didTapAdd
         imageView.setImageWith(url: publication.logoUrl ?? publication.authorPhotoUrl, cellId: cellId)
         titleLabel.text = publication.name
-        descriptionLabel.text = publication.description
-        descriptionLabel.isHidden = publication.description == nil
         layoutIfNeeded()
         updateAddToStacksButton()
     }

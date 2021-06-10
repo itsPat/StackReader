@@ -14,31 +14,25 @@ extension UICollectionViewLayout {
         sectionInset: NSDirectionalEdgeInsets = NSDirectionalEdgeInsets(top: 4.0, leading: 4.0, bottom: 4.0, trailing: 4.0)
     ) -> UICollectionViewCompositionalLayout {
         // Large Item
-        let largeItem = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
-        )
-        largeItem.contentInsets = itemInset
-        
-        // Small item
-        let smallItem = NSCollectionLayoutItem(
+        let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.5))
         )
-        smallItem.contentInsets = itemInset
+        item.contentInsets = itemInset
         
-        // Nested Group
-        let nestedGroup = NSCollectionLayoutGroup.vertical(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.25), heightDimension: .fractionalHeight(1.0)),
-            subitems: [smallItem]
+        // V Group
+        let vGroup = NSCollectionLayoutGroup.vertical(
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0)),
+            subitems: [item, item]
         )
         
-        // Outer Group
-        let outerGroup = NSCollectionLayoutGroup.horizontal(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.5)),
-            subitems: [largeItem] //, nestedGroup, nestedGroup]
+        // H Group
+        let hGroup = NSCollectionLayoutGroup.horizontal(
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.5), heightDimension: .fractionalWidth(1.5)),
+            subitems: [vGroup, vGroup]
         )
         
         // Section
-        let section = NSCollectionLayoutSection(group: outerGroup)
+        let section = NSCollectionLayoutSection(group: hGroup)
         section.contentInsets = sectionInset
         section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
         
