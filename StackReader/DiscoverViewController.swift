@@ -17,6 +17,7 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
         }
     }
     var categories = [Substack.Category]()
+    var taskByPublicationId = [Int: String]()
     
     lazy var searchController: UISearchController = {
         let resultsVC = SearchResultsViewController(collectionViewLayout: UICollectionViewFlowLayout())
@@ -96,6 +97,8 @@ extension DiscoverViewController: UICollectionViewDataSource {
         publicationsByCategory[categories[section]]?.count ?? 0
     }
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PublicationCell.reuseId, for: indexPath) as! PublicationCell
         if let publication = publicationsByCategory[categories[indexPath.section]]?[indexPath.item] {
@@ -113,6 +116,32 @@ extension DiscoverViewController: UICollectionViewDataSource {
     }
     
 }
+
+// MARK: - UICollectionViewDataSourcePrefetching
+
+extension DiscoverViewController: UICollectionViewDataSourcePrefetching {
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for index in indexPaths {
+            if let publication = publicationsByCategory[categories[index.section]]?[index.item] {
+                ImageManager.shared.getImage(with: publication.logoUrl ?? "", taskId: "\(publication.id)")
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        for index in indexPaths {
+            if let publication = publicationsByCategory[categories[index.section]]?[index.item] {
+                NetworkManager.shared.tasks["\(publication.id)"]?.cancel()
+                NetworkManager.shared.tasks["\(publication.id)"] = nil
+            }
+        }
+    }
+    
+}
+
+
+// MARK: - UICollectionViewDelegate
 
 extension DiscoverViewController: UICollectionViewDelegate {
     

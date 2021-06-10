@@ -14,31 +14,25 @@ extension UICollectionViewLayout {
         sectionInset: NSDirectionalEdgeInsets = NSDirectionalEdgeInsets(top: 4.0, leading: 4.0, bottom: 4.0, trailing: 4.0)
     ) -> UICollectionViewCompositionalLayout {
         // Large Item
-        let item = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.5))
+        let largeItem = NSCollectionLayoutItem(
+            layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         )
-        item.contentInsets = itemInset
+        largeItem.contentInsets = itemInset
         
-        // V Group
-        let vGroup = NSCollectionLayoutGroup.vertical(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0)),
-            subitems: [item, item]
-        )
-        
-        // H Group
+        // Horizontal Group
         let hGroup = NSCollectionLayoutGroup.horizontal(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.5), heightDimension: .fractionalWidth(1.5)),
-            subitems: [vGroup, vGroup]
+            layoutSize: .init(widthDimension: .fractionalWidth(0.75), heightDimension: .fractionalWidth(0.75)),
+            subitems: [largeItem]
         )
         
         // Section
         let section = NSCollectionLayoutSection(group: hGroup)
         section.contentInsets = sectionInset
-        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        section.orthogonalScrollingBehavior = .groupPaging
         
         // Supplementary Item
         let headerItem = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100)),
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(64)),
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top
         )

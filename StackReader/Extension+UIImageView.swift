@@ -25,7 +25,7 @@ extension UIImageView {
     
     func setImageWith(url: String?, cellId: String = .uuid) {
         if let url = url {
-            ImageManager.shared.getImage(with: url, cellId: cellId) { [weak self] (res) in
+            ImageManager.shared.getImage(with: url, taskId: cellId) { [weak self] (res) in
                 switch res {
                 case .success(let tuple):
                     if tuple.isLocalFetch {

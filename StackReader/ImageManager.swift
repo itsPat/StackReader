@@ -13,18 +13,18 @@ class ImageManager: NSObject {
     private var imageCache = NSCache<NSString, UIImage>()
     
     func getImage(with url: String,
-                  cellId: String = .uuid,
-                  completion: @escaping (Result<(image: UIImage, isLocalFetch: Bool), Error>) -> ()) {
+                  taskId: String = .uuid,
+                  completion: ((Result<(image: UIImage, isLocalFetch: Bool), Error>) -> ())? = nil) {
         if let localImage = imageCache.object(forKey: url as NSString) {
-            return completion(.success((image: localImage, isLocalFetch: true)))
+            completion?(.success((image: localImage, isLocalFetch: true)))
         } else {
-            NetworkManager.shared.fetchImage(with: url, cellId: cellId) { [weak self] (result) in
+            NetworkManager.shared.fetchImage(with: url, taskId: taskId) { [weak self] (result) in
                 switch result {
                 case .success(let image):
                     self?.imageCache.setObject(image, forKey: url as NSString)
-                    completion(.success((image: image, isLocalFetch: false)))
+                    completion?(.success((image: image, isLocalFetch: false)))
                 case .failure(let error):
-                    completion(.failure(error))
+                    completion?(.failure(error))
                 }
             }
         }

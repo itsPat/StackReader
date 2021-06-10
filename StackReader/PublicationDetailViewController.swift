@@ -37,9 +37,21 @@ class PublicationDetailViewController: UIViewController {
     
     func setup() {
         navigationItem.title = publication?.name
+        setupSavePublicationButton()
         collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         collectionView.register(PostCell.nib, forCellWithReuseIdentifier: PostCell.reuseId)
         fetchPosts()
+    }
+    
+    func setupSavePublicationButton() {
+        navigationItem.setRightBarButton(UIBarButtonItem(
+            title: publication?.saveActionTitle,
+            image: publication?.saveActionImage,
+            primaryAction: publication?.saveAction { [weak self] in
+                self?.setupSavePublicationButton()
+            },
+            menu: nil
+        ), animated: true)
     }
     
     func reloadCollectionView() {

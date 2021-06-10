@@ -22,7 +22,7 @@ class NetworkManager {
     // MARK: - Fetch Image for URL
     
     func fetchImage(with url: String,
-                    cellId: String = .uuid,
+                    taskId: String = .uuid,
                     completion: @escaping (Result<UIImage, Error>) -> ()) {
         guard let url = URL(string: url) else {
             return completion(.failure(NetworkError.invalidUrl))
@@ -36,7 +36,7 @@ class NetworkManager {
             }
         }
         task.resume()
-        tasks[cellId] = task
+        tasks[taskId] = task
     }
     
     
