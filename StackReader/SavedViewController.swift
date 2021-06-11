@@ -16,6 +16,8 @@ class SavedViewController: UIViewController, TabBarControllerItem {
         UserData.savedPosts
     }
     
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -30,6 +32,8 @@ class SavedViewController: UIViewController, TabBarControllerItem {
         super.viewDidAppear(animated)
         requestReviewIfNeeded()
     }
+    
+    // MARK: - Methods
     
     private func setup() {
         collectionView?.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)

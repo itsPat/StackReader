@@ -16,10 +16,14 @@ class PublicationDetailViewController: UIViewController {
     var isFetching = false
     var hasMorePosts = true
     
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
+    
+    // MARK: - Methods
     
     func fetchPosts(offset: Int = 0) {
         guard let pub = publication else { return }

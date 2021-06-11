@@ -28,7 +28,7 @@ extension Substack {
         let more: Bool
     }
 
-    struct Publication: Codable, Equatable {
+    struct Publication: Codable, Equatable, Hashable {
         
         let id: Int
         let subdomain: String
@@ -86,6 +86,9 @@ extension Substack {
             return lhs.id == rhs.id
         }
         
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
     }
     
 }

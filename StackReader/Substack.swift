@@ -13,27 +13,25 @@ class Substack {
     
     enum Category: String, CaseIterable {
         
-        case culture = "Culture"
-        case politics = "Politics"
-        case technology = "Technology"
+        case art = "Art"
         case business = "Business"
+        case climate = "Climate"
+        case culture = "Culture"
+        case education = "Education"
+        case faith = "Faith"
         case finance = "Finance"
         case food = "Food & Drink"
-        case sports = "Sports"
-        case faith = "Faith"
-        case news = "News"
-        case music = "Music"
-        case literature = "Literature"
-        case art = "Art"
-        case climate = "Climate"
-        case science = "Science"
         case health = "Health"
-        case philosophy = "Philosophy"
         case history = "History"
+        case literature = "Literature"
+        case music = "Music"
+        case news = "News"
+        case philosophy = "Philosophy"
+        case politics = "Politics"
+        case science = "Science"
+        case sports = "Sports"
+        case technology = "Technology"
         case travel = "Travel"
-        case education = "Education"
-        
-        
         
         var id: Int {
             switch self {
@@ -62,12 +60,12 @@ class Substack {
         var icon: UIImage? {
             switch self {
             case .culture: return UIImage(systemName: "person")
-            case .politics: return UIImage(systemName: "megaphone")
+            case .politics: return UIImage(systemName: "building.columns")
             case .technology: return UIImage(systemName: "iphone")
-            case .business: return UIImage(systemName: "cart")
+            case .business: return UIImage(systemName: "briefcase")
             case .finance: return UIImage(systemName: "banknote")
-            case .food: return nil
-            case .sports: return nil
+            case .food: return UIImage(systemName: "cart")
+            case .sports: return UIImage(systemName: "megaphone")
             case .faith: return UIImage(systemName: "lightbulb")
             case .news: return UIImage(systemName: "newspaper")
             case .music: return UIImage(systemName: "music.mic")

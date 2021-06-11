@@ -19,7 +19,7 @@ extension Substack {
         let more: Bool
     }
 
-    struct Post: Codable, Equatable {
+    struct Post: Codable, Equatable, Hashable {
         
         let id: Int
         let slug: String
@@ -99,6 +99,9 @@ extension Substack {
             return lhs.id == rhs.id
         }
         
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
     }
     
 }

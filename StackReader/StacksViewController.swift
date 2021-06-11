@@ -16,6 +16,8 @@ class StacksViewController: UIViewController, TabBarControllerItem {
         UserData.savedPublications
     }
     
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -31,6 +33,8 @@ class StacksViewController: UIViewController, TabBarControllerItem {
             self?.collectionView?.collectionViewLayout.invalidateLayout()
         }
     }
+    
+    // MARK: - Methods
     
     private func setup() {
         collectionView?.clipsToBounds = false

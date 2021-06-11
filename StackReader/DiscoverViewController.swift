@@ -8,8 +8,12 @@
 import UIKit
 
 class DiscoverViewController: UIViewController, TabBarControllerItem {
-
+    
+    // MARK: - Outlets
+    
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    // MARK: - Properties
     
     private var publicationsByCategory = [Substack.Category: [Substack.Publication]]() {
         didSet {
@@ -19,12 +23,35 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
     private var categories = [Substack.Category]()
     private var taskByPublicationId = [Int: String]()
     
+    // MARK: - Computed Properties
+    
     lazy private var searchController: UISearchController = {
         let resultsVC = SearchResultsViewController(collectionViewLayout: UICollectionViewFlowLayout())
         let searchVC = UISearchController(searchResultsController: resultsVC)
         searchVC.searchBar.delegate = resultsVC
         return searchVC
     }()
+    
+    lazy var dataSource: UICollectionViewDiffableDataSource<Substack.Category, Substack.Publication> = {
+        let dataSource = UICollectionViewDiffableDataSource<Substack.Category, Substack.Publication>(
+            collectionView: collectionView,
+            cellProvider: { collectionView, indexPath, publication in
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PublicationCell.reuseId, for: indexPath) as! PublicationCell
+                cell.configure(with: publication, didTapAdd: { collectionView.reloadData() })
+                return cell
+            }
+        )
+        dataSource.supplementaryViewProvider = { [weak self] collectionView, kind, index in
+            let header = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: PublicationSectionHeader.reuseId, for: index) as! PublicationSectionHeader
+            header.configure(with: Substack.Category.allCases[index.section])
+            return header
+        }
+        return dataSource
+    }()
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +60,6 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        reloadCollectionView()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -42,6 +68,8 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
             self?.setupCollectionViewLayout()
         }
     }
+    
+    // MARK: - Methods
     
     private func setup() {
         navigationItem.searchController = searchController
@@ -55,6 +83,7 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
             PublicationCell.nib,
             forCellWithReuseIdentifier: PublicationCell.reuseId
         )
+        collectionView.dataSource = dataSource
         refresh()
         collectionView.refreshControl = UIRefreshControl(
             frame: .zero,
@@ -76,21 +105,28 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
     @objc
     private func refresh() {
         collectionView.refreshControl?.beginRefreshing()
-        NetworkManager.shared.fetchDiscoverPageData { [weak self] res in
-            switch res {
-            case .success(let data):
-                self?.publicationsByCategory = data
-                self?.reloadCollectionView()
-            case .failure(let err):
-                print("Failed with err: \(err)")
+        dataSource.apply(NSDiffableDataSourceSnapshot<Substack.Category, Substack.Publication>(), animatingDifferences: false)
+        Substack.Category.allCases.forEach { category in
+            NetworkManager.shared.fetchPublications(by: category) { [weak self] res in
+                switch res {
+                case .success(let publications):
+                    self?.publicationsByCategory[category] = publications
+                    self?.updateSnapshot(for: category, with: publications, animated: true)
+                case .failure(let err):
+                    print("\(#function) failed to fetch data for category: \(category) with err: \(err)")
+                }
             }
         }
     }
     
-    private func reloadCollectionView() {
+    private func updateSnapshot(for category: Substack.Category, with publications: [Substack.Publication], animated: Bool = true) {
         DispatchQueue.main.async { [weak self] in
-            self?.collectionView.refreshControl?.endRefreshing()
-            self?.collectionView.reloadData()
+            guard let self = self else { return }
+            var snapshot = self.dataSource.snapshot()
+            snapshot.appendSections([category])
+            snapshot.appendItems(publications, toSection: category)
+            self.dataSource.apply(snapshot, animatingDifferences: animated)
+            self.collectionView.refreshControl?.endRefreshing()
         }
     }
     
@@ -99,36 +135,6 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredVertically, animated: true)
     }
 
-}
-
-// MARK: - UICollectionViewDataSource
-
-extension DiscoverViewController: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        categories.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        publicationsByCategory[categories[section]]?.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PublicationCell.reuseId, for: indexPath) as! PublicationCell
-        if let publication = publicationsByCategory[categories[indexPath.section]]?[indexPath.item] {
-            cell.configure(with: publication, didTapAdd: { collectionView.reloadData() })
-        }
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(
-            ofKind: kind,
-            withReuseIdentifier: PublicationSectionHeader.reuseId, for: indexPath) as! PublicationSectionHeader
-        header.configure(with: categories[indexPath.section])
-        return header
-    }
-    
 }
 
 // MARK: - UICollectionViewDataSourcePrefetching

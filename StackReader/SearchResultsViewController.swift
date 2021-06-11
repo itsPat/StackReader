@@ -9,10 +9,14 @@ import UIKit
 
 class SearchResultsViewController: UICollectionViewController, TabBarControllerItem {
     
+    // MARK: - Properties
+    
     private var publications = [Substack.Publication]()
     private var query: String?
     private var page = 0
     private var isSearching = false
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +29,8 @@ class SearchResultsViewController: UICollectionViewController, TabBarControllerI
             self?.collectionView?.collectionViewLayout.invalidateLayout()
         }
     }
+    
+    // MARK: - Methods
     
     private func setup() {
         collectionView?.backgroundColor = .systemBackground
@@ -85,6 +91,8 @@ extension SearchResultsViewController: UICollectionViewDelegateFlowLayout {
     
 }
 
+// MARK: - UICollectionViewDelegate
+
 extension SearchResultsViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -120,6 +128,8 @@ extension SearchResultsViewController {
     }
     
 }
+
+// MARK: - UISearchBarDelegate
 
 extension SearchResultsViewController: UISearchBarDelegate {
     

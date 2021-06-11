@@ -18,7 +18,6 @@ class PublicationSectionHeader: UICollectionReusableView {
     func configure(with category: Substack.Category) {
         label.text = category.rawValue
         imageView.image = category.icon
-        imageView.isHidden = category.icon == nil
     }
     
 }

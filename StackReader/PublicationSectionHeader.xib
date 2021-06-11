@@ -14,19 +14,23 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wO8-eZ-AaV">
-                    <rect key="frame" x="2" y="8" width="316" height="49"/>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wO8-eZ-AaV">
+                    <rect key="frame" x="2" y="16.5" width="316" height="32"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hourglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="h7r-0I-kxy">
-                            <rect key="frame" x="0.0" y="3" width="49" height="43"/>
+                            <rect key="frame" x="0.0" y="3" width="32" height="26"/>
                             <color key="tintColor" systemColor="labelColor"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="h7r-0I-kxy" secondAttribute="height" multiplier="1:1" id="3vp-AL-8mf"/>
+                                <constraint firstAttribute="width" constant="32" id="0LE-xS-1Xg"/>
+                                <constraint firstAttribute="height" constant="32" id="nkC-0r-cvC"/>
                             </constraints>
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="light"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Art" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQu-NS-TKn">
-                            <rect key="frame" x="59" y="0.0" width="257" height="49"/>
+                            <rect key="frame" x="40" y="0.0" width="276" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="hEK-Om-l68"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -36,9 +40,8 @@
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
             <constraints>
                 <constraint firstItem="wO8-eZ-AaV" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="2" id="4Am-34-3fi"/>
-                <constraint firstItem="wO8-eZ-AaV" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="8" id="Vu9-ql-7i8"/>
-                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="wO8-eZ-AaV" secondAttribute="bottom" constant="8" id="Zy2-Pa-JvD"/>
                 <constraint firstAttribute="trailing" secondItem="wO8-eZ-AaV" secondAttribute="trailing" constant="2" id="dmb-PB-nhn"/>
+                <constraint firstItem="wO8-eZ-AaV" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="qVh-2I-u51"/>
             </constraints>
             <connections>
                 <outlet property="imageView" destination="h7r-0I-kxy" id="uPG-sc-r4c"/>

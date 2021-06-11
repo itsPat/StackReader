@@ -76,28 +76,6 @@ class NetworkManager {
         }.resume()
     }
     
-    // MARK: - Fetch Discover Page Data
-    
-    func fetchDiscoverPageData(completion: @escaping (Result<[Substack.Category: [Substack.Publication]], Error>) -> ()) {
-        let group = DispatchGroup()
-        var discoverPageData = [Substack.Category: [Substack.Publication]]()
-        Substack.Category.allCases.forEach { category in
-            group.enter()
-            NetworkManager.shared.fetchPublications(by: category) { (res) in
-                switch res {
-                case .success(let publications):
-                    discoverPageData[category] = publications
-                case .failure(let err):
-                    print("\(#function) failed to get data for category: \(category) with error: \(err)")
-                }
-                group.leave()
-            }
-        }
-        group.notify(queue: .main) {
-            completion(discoverPageData.isEmpty ? .failure(NetworkError.noData) : .success(discoverPageData))
-        }
-    }
-    
     // MARK: - Fetch Publications for Category
     
     func fetchPublications(by category: Substack.Category,
