@@ -58,4 +58,9 @@ extension UIViewController {
         return type.viewController
     }
     
+    func requestReviewIfNeeded() {
+        guard UserData.postsConsumed > 10 else { return }
+        StoreKitManager.requestReview(from: self)
+    }
+    
 }

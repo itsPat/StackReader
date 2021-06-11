@@ -26,6 +26,7 @@ class PostCell: UICollectionViewCell {
         super.awakeFromNib()
         contentView.backgroundColor = .systemBackground
         imageView.layer.cornerRadius = 8.0
+        imageView.layer.cornerCurve = .continuous
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 0.5
         imageView.layer.borderColor = UIColor.opaqueSeparator.cgColor
@@ -36,8 +37,7 @@ class PostCell: UICollectionViewCell {
         imageView.image = nil
         titleLabel.text = nil
         descriptionLabel.text = nil
-        NetworkManager.shared.tasks[cellId]?.cancel()
-        NetworkManager.shared.tasks[cellId] = nil
+        NetworkManager.shared.cancel(taskWithId: cellId)
         post = nil
     }
     
@@ -52,7 +52,7 @@ class PostCell: UICollectionViewCell {
         updateSavePostButton()
     }
 
-    @IBAction func didTapSave(_ sender: UIButton) {
+    @IBAction private func didTapSave(_ sender: UIButton) {
         sender.pulse { [weak self] in
             self?.post?.toggleIsSaved()
             self?.didTapSave?()
@@ -60,7 +60,7 @@ class PostCell: UICollectionViewCell {
         }
     }
     
-    func updateSavePostButton() {
+    private func updateSavePostButton() {
         guard let post = self.post else { return }
         savePostButton.setImage(post.saveActionImage, for: .normal)
     }

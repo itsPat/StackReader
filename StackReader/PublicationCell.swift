@@ -48,8 +48,7 @@ class PublicationCell: UICollectionViewCell {
         super.prepareForReuse()
         imageView.image = nil
         titleLabel.text = nil
-        NetworkManager.shared.tasks[cellId]?.cancel()
-        NetworkManager.shared.tasks[cellId] = nil
+        NetworkManager.shared.cancel(taskWithId: cellId)
         publication = nil
     }
     
@@ -62,7 +61,7 @@ class PublicationCell: UICollectionViewCell {
         updateAddToStacksButton()
     }
 
-    @IBAction func didTapAdd(_ sender: UIButton) {
+    @IBAction private func didTapAdd(_ sender: UIButton) {
         sender.pulse { [weak self] in
             self?.publication?.toggleIsSaved()
             self?.didTapAdd?()
@@ -70,7 +69,7 @@ class PublicationCell: UICollectionViewCell {
         }
     }
     
-    func updateAddToStacksButton() {
+    private func updateAddToStacksButton() {
         guard let pub = publication else { return }
         addToStacksButton.setImage(pub.saveActionImage, for: .normal)
     }

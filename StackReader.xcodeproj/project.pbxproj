@@ -12,6 +12,7 @@
 		78058154266C227600A38A51 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78058153266C227600A38A51 /* HapticManager.swift */; };
 		78089BD72663F8E800EDDD8B /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78089BD52663F8E800EDDD8B /* PostCell.swift */; };
 		78089BD82663F8E800EDDD8B /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78089BD62663F8E800EDDD8B /* PostCell.xib */; };
+		78224C892672E25C00FA4B36 /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78224C882672E25C00FA4B36 /* StoreKitManager.swift */; };
 		78D1BF9F266844F200A3EE82 /* StacksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1BF9E266844F200A3EE82 /* StacksViewController.swift */; };
 		78D1BFA32668461800A3EE82 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1BFA22668461800A3EE82 /* UserData.swift */; };
 		78D1BFA626684E8200A3EE82 /* Substack+Publication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1BFA526684E8200A3EE82 /* Substack+Publication.swift */; };
@@ -45,6 +46,7 @@
 		78058153266C227600A38A51 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		78089BD52663F8E800EDDD8B /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		78089BD62663F8E800EDDD8B /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
+		78224C882672E25C00FA4B36 /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
 		78D1BF9E266844F200A3EE82 /* StacksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StacksViewController.swift; sourceTree = "<group>"; };
 		78D1BFA22668461800A3EE82 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		78D1BFA526684E8200A3EE82 /* Substack+Publication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Substack+Publication.swift"; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				78DCF42E2663C2AC00D16719 /* NetworkManager.swift */,
 				78D1BFA22668461800A3EE82 /* UserData.swift */,
 				78058153266C227600A38A51 /* HapticManager.swift */,
+				78224C882672E25C00FA4B36 /* StoreKitManager.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				78DCF43E2663D9FB00D16719 /* SavedViewController.swift in Sources */,
 				78EEA9C626726C13001627FA /* Extension+UICollectionViewLayout.swift in Sources */,
 				78DCF4162663C26800D16719 /* AppDelegate.swift in Sources */,
+				78224C892672E25C00FA4B36 /* StoreKitManager.swift in Sources */,
 				78EF0FD32663F5AF0059DE99 /* PublicationDetailViewController.swift in Sources */,
 				78EF0FD02663F4950059DE99 /* Extension+UIViewController.swift in Sources */,
 				78D1BFA32668461800A3EE82 /* UserData.swift in Sources */,
@@ -439,7 +443,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.trudev.StackReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -461,7 +465,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.trudev.StackReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

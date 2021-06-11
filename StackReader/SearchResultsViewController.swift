@@ -9,7 +9,10 @@ import UIKit
 
 class SearchResultsViewController: UICollectionViewController, TabBarControllerItem {
     
-    var publications = [Substack.Publication]()
+    private var publications = [Substack.Publication]()
+    private var query: String?
+    private var page = 0
+    private var isSearching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,28 +22,28 @@ class SearchResultsViewController: UICollectionViewController, TabBarControllerI
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate { [weak self] _ in
-            self?.collectionView.collectionViewLayout.invalidateLayout()
+            self?.collectionView?.collectionViewLayout.invalidateLayout()
         }
     }
     
-    func setup() {
-        collectionView.backgroundColor = .systemBackground
-        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        collectionView.register(
+    private func setup() {
+        collectionView?.backgroundColor = .systemBackground
+        collectionView?.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        collectionView?.register(
             PublicationCell.nib,
             forCellWithReuseIdentifier: PublicationCell.reuseId
         )
     }
     
-    func reloadCollectionView() {
+    private func reloadCollectionView() {
         DispatchQueue.main.async { [weak self] in
-            self?.collectionView.reloadData()
+            self?.collectionView?.reloadData()
         }
     }
     
     func scrollToTop() {
         guard collectionView != nil else { return }
-        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredVertically, animated: true)
+        collectionView?.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredVertically, animated: true)
     }
 
 }
@@ -58,6 +61,14 @@ extension SearchResultsViewController {
         let publication = publications[indexPath.item]
         cell.configure(with: publication, didTapAdd: { collectionView.reloadData() })
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.item == publications.count - 1,
+           let query = query,
+           !isSearching {
+            search(for: query, page: page + 1)
+        }
     }
     
 }
@@ -113,16 +124,22 @@ extension SearchResultsViewController {
 extension SearchResultsViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        query = searchBar.text
         if let query = searchBar.text {
             search(for: query)
         }
     }
     
-    func search(for query: String) {
-        NetworkManager.shared.searchPublications(query: query) { [weak self] res in
+    private func search(for query: String, page: Int = 0) {
+        self.isSearching = true
+        self.page = page
+        NetworkManager.shared.searchPublications(query: query, page: page) { [weak self] res in
+            self?.isSearching = false
             switch res {
-            case .success(let publications):
+            case .success(let publications) where page == 0:
                 self?.publications = publications
+            case .success(let publications):
+                self?.publications = (self?.publications ?? []) + publications
             case .failure(let err):
                 self?.publications = []
                 print("\(#function) failed with err: \(err), query was: \(query)")

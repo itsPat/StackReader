@@ -10,8 +10,9 @@ import UIKit
 class StacksViewController: UIViewController, TabBarControllerItem {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var emptyStateView: UIStackView!
     
-    var publications: [Substack.Publication] {
+    private var publications: [Substack.Publication] {
         UserData.savedPublications
     }
     
@@ -22,12 +23,19 @@ class StacksViewController: UIViewController, TabBarControllerItem {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        collectionView.reloadData()
+        collectionView?.reloadData()
+    }
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate { [weak self] _ in
+            self?.collectionView?.collectionViewLayout.invalidateLayout()
+        }
     }
     
-    func setup() {
-        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        collectionView.register(
+    private func setup() {
+        collectionView?.clipsToBounds = false
+        collectionView?.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        collectionView?.register(
             PublicationCell.nib,
             forCellWithReuseIdentifier: PublicationCell.reuseId
         )
@@ -35,7 +43,7 @@ class StacksViewController: UIViewController, TabBarControllerItem {
     
     func scrollToTop() {
         guard collectionView != nil else { return }
-        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredVertically, animated: true)
+        collectionView?.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredVertically, animated: true)
     }
 
 }
@@ -45,7 +53,9 @@ class StacksViewController: UIViewController, TabBarControllerItem {
 extension StacksViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        publications.count
+        let count = publications.count
+        emptyStateView.isHidden = count > 0
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

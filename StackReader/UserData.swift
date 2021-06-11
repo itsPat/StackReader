@@ -75,4 +75,14 @@ class UserData {
         }
     }
     
+    // MARK: - Posts Consumed
+    
+    static var postsConsumed: Int {
+        UserDefaults.standard.integer(forKey: "postsConsumed")
+    }
+    
+    static func incrementPostsConsumed() {
+        UserDefaults.standard.set(postsConsumed + 1, forKey: "postsConsumed")
+    }
+    
 }

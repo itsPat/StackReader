@@ -16,7 +16,15 @@ class NetworkManager {
     
     static let shared = NetworkManager()
     private init() {}
-    var tasks = [String: URLSessionDataTask]()
+    
+    private var tasks = [String: URLSessionDataTask]()
+    
+    // MARK: - Cancel Network Tasks
+    
+    func cancel(taskWithId taskId: String) {
+        tasks[taskId]?.cancel()
+        tasks[taskId] = nil
+    }
     
     
     // MARK: - Fetch Image for URL
@@ -42,11 +50,11 @@ class NetworkManager {
     
     // MARK: - Search Publications
     
-    func searchPublications(query: String, completion: @escaping (Result<[Substack.Publication], Error>) -> ()) {
+    func searchPublications(query: String, page: Int = 0, completion: @escaping (Result<[Substack.Publication], Error>) -> ()) {
         guard let encodedQuery = query
                 .lowercased()
                 .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-              let url = URL(string: "https://substack.com/api/v1/publication/search?query=\(encodedQuery)&page=0") else {
+              let url = URL(string: "https://substack.com/api/v1/publication/search?query=\(encodedQuery)&page=\(page)") else {
             return completion(.failure(NetworkError.invalidUrl))
         }
         URLSession.shared.dataTask(with: url) { (data, res, err) in

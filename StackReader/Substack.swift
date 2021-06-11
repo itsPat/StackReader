@@ -5,7 +5,7 @@
 //  Created by Patrick Trudel on 2021-05-30.
 //
 
-import Foundation
+import UIKit
 
 class Substack {
     
@@ -56,6 +56,30 @@ class Substack {
             case .history: return 18
             case .travel: return 109
             case .education: return 34
+            }
+        }
+        
+        var icon: UIImage? {
+            switch self {
+            case .culture: return UIImage(systemName: "person")
+            case .politics: return UIImage(systemName: "megaphone")
+            case .technology: return UIImage(systemName: "iphone")
+            case .business: return UIImage(systemName: "cart")
+            case .finance: return UIImage(systemName: "banknote")
+            case .food: return nil
+            case .sports: return nil
+            case .faith: return UIImage(systemName: "lightbulb")
+            case .news: return UIImage(systemName: "newspaper")
+            case .music: return UIImage(systemName: "music.mic")
+            case .literature: return UIImage(systemName: "book")
+            case .art: return UIImage(systemName: "paintbrush.pointed")
+            case .climate: return UIImage(systemName: "thermometer.sun")
+            case .science: return UIImage(systemName: "eyedropper")
+            case .health: return UIImage(systemName: "cross")
+            case .philosophy: return UIImage(systemName: "questionmark")
+            case .history: return UIImage(systemName: "hourglass")
+            case .travel: return UIImage(systemName: "airplane")
+            case .education: return UIImage(systemName: "graduationcap")
             }
         }
         

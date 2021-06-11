@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KwL-65-KIK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KwL-65-KIK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -31,12 +31,36 @@
                                     <outlet property="delegate" destination="u5o-4d-3cD" id="8tT-ix-Bag"/>
                                 </connections>
                             </collectionView>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="u9e-nO-c17">
+                                <rect key="frame" x="20" y="338" width="374" height="137"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="18v-wR-fOu">
+                                        <rect key="frame" x="147" y="0.0" width="80" height="80"/>
+                                        <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="39O-1F-25k"/>
+                                            <constraint firstAttribute="height" constant="80" id="qQv-xd-fE2"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqJ-wK-feV">
+                                        <rect key="frame" x="0.0" y="96" width="374" height="41"/>
+                                        <string key="text">Tap the bookmark icon on
+any post to save it for later!</string>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="n26-hc-sHT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="u9e-nO-c17" firstAttribute="centerX" secondItem="dgB-kW-zH1" secondAttribute="centerX" id="2lA-DM-nuu"/>
+                            <constraint firstItem="uqJ-wK-feV" firstAttribute="width" secondItem="dgB-kW-zH1" secondAttribute="width" constant="-40" id="922-Zv-clR"/>
                             <constraint firstItem="dgB-kW-zH1" firstAttribute="leading" secondItem="n26-hc-sHT" secondAttribute="leading" id="G81-Jx-vPi"/>
                             <constraint firstItem="dgB-kW-zH1" firstAttribute="bottom" secondItem="n26-hc-sHT" secondAttribute="bottom" id="K9z-zR-Lgt"/>
+                            <constraint firstItem="u9e-nO-c17" firstAttribute="centerY" secondItem="dgB-kW-zH1" secondAttribute="centerY" id="Ske-B9-6Xu"/>
                             <constraint firstItem="dgB-kW-zH1" firstAttribute="trailing" secondItem="n26-hc-sHT" secondAttribute="trailing" id="VhY-HA-lAa"/>
                             <constraint firstItem="dgB-kW-zH1" firstAttribute="top" secondItem="HLa-td-eGe" secondAttribute="top" id="rdU-P6-kXK"/>
                         </constraints>
@@ -44,6 +68,7 @@
                     <navigationItem key="navigationItem" title="Saved" id="fKB-L3-nHw"/>
                     <connections>
                         <outlet property="collectionView" destination="dgB-kW-zH1" id="xbe-Rj-odM"/>
+                        <outlet property="emptyStateView" destination="u9e-nO-c17" id="vuQ-MI-6va"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bXD-Pm-SVc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -71,6 +96,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="P2m-64-89R" id="DnD-h7-prx"/>
                                     <outlet property="delegate" destination="P2m-64-89R" id="bEs-As-zrp"/>
+                                    <outlet property="prefetchDataSource" destination="P2m-64-89R" id="5nl-0u-iSt"/>
                                 </connections>
                             </collectionView>
                         </subviews>
@@ -134,19 +160,44 @@
                                     <outlet property="delegate" destination="h7n-0V-Pwz" id="iTg-QS-ePY"/>
                                 </connections>
                             </collectionView>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="WfH-b8-hLh">
+                                <rect key="frame" x="20" y="338" width="374" height="137"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.stack" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Lnd-L7-B4t">
+                                        <rect key="frame" x="147" y="-1" width="80" height="81.5"/>
+                                        <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="XnN-o0-gTz"/>
+                                            <constraint firstAttribute="width" constant="80" id="rBp-iB-R0j"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPI-0C-4aV">
+                                        <rect key="frame" x="0.0" y="96" width="374" height="41"/>
+                                        <string key="text">Check out the Discover tab to 
+find interesting publications!</string>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jIP-67-2DR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="yPI-0C-4aV" firstAttribute="width" secondItem="0iQ-9v-Lmi" secondAttribute="width" constant="-40" id="CZ8-Me-T1n"/>
                             <constraint firstItem="0iQ-9v-Lmi" firstAttribute="trailing" secondItem="jIP-67-2DR" secondAttribute="trailing" id="Sqf-EH-IBv"/>
+                            <constraint firstItem="WfH-b8-hLh" firstAttribute="centerX" secondItem="0iQ-9v-Lmi" secondAttribute="centerX" id="UlW-nq-2ED"/>
                             <constraint firstItem="0iQ-9v-Lmi" firstAttribute="leading" secondItem="jIP-67-2DR" secondAttribute="leading" id="ZGf-Fa-FA8"/>
                             <constraint firstItem="0iQ-9v-Lmi" firstAttribute="bottom" secondItem="jIP-67-2DR" secondAttribute="bottom" id="b4E-jc-eds"/>
+                            <constraint firstItem="WfH-b8-hLh" firstAttribute="centerY" secondItem="0iQ-9v-Lmi" secondAttribute="centerY" id="jMy-Hq-Djc"/>
                             <constraint firstItem="0iQ-9v-Lmi" firstAttribute="top" secondItem="Wl0-JH-6ug" secondAttribute="top" id="mhF-bG-h7l"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Stacks" id="erO-Bk-4y1"/>
                     <connections>
                         <outlet property="collectionView" destination="0iQ-9v-Lmi" id="pKZ-LN-OjF"/>
+                        <outlet property="emptyStateView" destination="WfH-b8-hLh" id="QP5-Yx-YJr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZYe-lS-mEY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -289,7 +340,11 @@
     <resources>
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="rectangle.stack" catalog="system" width="128" height="122"/>
+        <image name="square.stack" catalog="system" width="113" height="128"/>
         <image name="wand.and.stars" catalog="system" width="128" height="113"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -9,10 +9,10 @@ import UIKit
 
 class SavedViewController: UIViewController, TabBarControllerItem {
     
-
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var emptyStateView: UIStackView!
     
-    var posts: [Substack.Post] {
+    private var posts: [Substack.Post] {
         UserData.savedPosts
     }
     
@@ -23,12 +23,17 @@ class SavedViewController: UIViewController, TabBarControllerItem {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        collectionView.reloadData()
+        collectionView?.reloadData()
     }
     
-    func setup() {
-        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        collectionView.register(
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        requestReviewIfNeeded()
+    }
+    
+    private func setup() {
+        collectionView?.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        collectionView?.register(
             PostCell.nib,
             forCellWithReuseIdentifier: PostCell.reuseId
         )
@@ -36,7 +41,7 @@ class SavedViewController: UIViewController, TabBarControllerItem {
     
     func scrollToTop() {
         guard collectionView != nil else { return }
-        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredVertically, animated: true)
+        collectionView?.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredVertically, animated: true)
     }
 
 }
@@ -46,7 +51,9 @@ class SavedViewController: UIViewController, TabBarControllerItem {
 extension SavedViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        posts.count
+        let count = posts.count
+        emptyStateView.isHidden = count > 0
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

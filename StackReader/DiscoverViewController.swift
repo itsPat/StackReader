@@ -11,15 +11,15 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var publicationsByCategory = [Substack.Category: [Substack.Publication]]() {
+    private var publicationsByCategory = [Substack.Category: [Substack.Publication]]() {
         didSet {
             self.categories = publicationsByCategory.keys.sorted(by: { $0.rawValue < $1.rawValue })
         }
     }
-    var categories = [Substack.Category]()
-    var taskByPublicationId = [Int: String]()
+    private var categories = [Substack.Category]()
+    private var taskByPublicationId = [Int: String]()
     
-    lazy var searchController: UISearchController = {
+    lazy private var searchController: UISearchController = {
         let resultsVC = SearchResultsViewController(collectionViewLayout: UICollectionViewFlowLayout())
         let searchVC = UISearchController(searchResultsController: resultsVC)
         searchVC.searchBar.delegate = resultsVC
@@ -39,19 +39,13 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate { [weak self] _ in
-            self?.collectionView.collectionViewLayout.invalidateLayout()
+            self?.setupCollectionViewLayout()
         }
     }
     
-    func setup() {
+    private func setup() {
         navigationItem.searchController = searchController
-        collectionView.setCollectionViewLayout(
-            .orthogonalLayout(
-                itemInset: .init(top: 2.0, leading: 2.0, bottom: 2.0, trailing: 2.0),
-                sectionInset: .init(top: 8.0, leading: 16.0, bottom: 16.0, trailing: 16.0)
-            ),
-            animated: true
-        )
+        setupCollectionViewLayout()
         collectionView.register(
             PublicationSectionHeader.nib,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -61,6 +55,27 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
             PublicationCell.nib,
             forCellWithReuseIdentifier: PublicationCell.reuseId
         )
+        refresh()
+        collectionView.refreshControl = UIRefreshControl(
+            frame: .zero,
+            primaryAction: UIAction { [weak self] _ in
+                self?.refresh()
+        })
+    }
+    
+    func setupCollectionViewLayout() {
+        collectionView.setCollectionViewLayout(
+            .orthogonalLayout(
+                itemInset: .init(top: 2.0, leading: 2.0, bottom: 2.0, trailing: 2.0),
+                sectionInset: .init(top: 8.0, leading: 16.0, bottom: 16.0, trailing: 32.0)
+            ),
+            animated: true
+        )
+    }
+    
+    @objc
+    private func refresh() {
+        collectionView.refreshControl?.beginRefreshing()
         NetworkManager.shared.fetchDiscoverPageData { [weak self] res in
             switch res {
             case .success(let data):
@@ -72,8 +87,9 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
         }
     }
     
-    func reloadCollectionView() {
+    private func reloadCollectionView() {
         DispatchQueue.main.async { [weak self] in
+            self?.collectionView.refreshControl?.endRefreshing()
             self?.collectionView.reloadData()
         }
     }
@@ -96,8 +112,6 @@ extension DiscoverViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         publicationsByCategory[categories[section]]?.count ?? 0
     }
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PublicationCell.reuseId, for: indexPath) as! PublicationCell
@@ -132,8 +146,7 @@ extension DiscoverViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
         for index in indexPaths {
             if let publication = publicationsByCategory[categories[index.section]]?[index.item] {
-                NetworkManager.shared.tasks["\(publication.id)"]?.cancel()
-                NetworkManager.shared.tasks["\(publication.id)"] = nil
+                NetworkManager.shared.cancel(taskWithId: "\(publication.id)")
             }
         }
     }

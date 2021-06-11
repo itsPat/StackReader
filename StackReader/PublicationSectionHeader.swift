@@ -12,10 +12,13 @@ class PublicationSectionHeader: UICollectionReusableView {
     static let reuseId = "PublicationSectionHeader"
     static let nib = UINib(nibName: reuseId, bundle: .main)
 
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var label: UILabel!
     
     func configure(with category: Substack.Category) {
         label.text = category.rawValue
+        imageView.image = category.icon
+        imageView.isHidden = category.icon == nil
     }
     
 }

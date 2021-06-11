@@ -13,6 +13,9 @@ extension UICollectionViewLayout {
         itemInset: NSDirectionalEdgeInsets = NSDirectionalEdgeInsets(top: 4.0, leading: 4.0, bottom: 4.0, trailing: 4.0),
         sectionInset: NSDirectionalEdgeInsets = NSDirectionalEdgeInsets(top: 4.0, leading: 4.0, bottom: 4.0, trailing: 4.0)
     ) -> UICollectionViewCompositionalLayout {
+        let isIpad = UIDevice.current.userInterfaceIdiom == .pad
+        let isHorizontal = UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight
+        
         // Large Item
         let largeItem = NSCollectionLayoutItem(
             layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
@@ -20,8 +23,9 @@ extension UICollectionViewLayout {
         largeItem.contentInsets = itemInset
         
         // Horizontal Group
+        let dimension: CGFloat = 0.75 * ((isIpad || isHorizontal) ? 0.5 : 1.0)
         let hGroup = NSCollectionLayoutGroup.horizontal(
-            layoutSize: .init(widthDimension: .fractionalWidth(0.75), heightDimension: .fractionalWidth(0.75)),
+            layoutSize: .init(widthDimension: .fractionalWidth(dimension), heightDimension: .fractionalWidth(dimension)),
             subitems: [largeItem]
         )
         

@@ -13,6 +13,7 @@ class PublicationDetailViewController: UIViewController {
     
     var publication: Substack.Publication?
     var posts = [Substack.Post]()
+    var isFetching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,9 @@ class PublicationDetailViewController: UIViewController {
         if offset == 0 {
             posts.removeAll()
         }
+        isFetching = true
         NetworkManager.shared.fetchPosts(for: pub, offset: offset) { [weak self] res in
+            self?.isFetching = false
             switch res {
             case .success(let posts):
                 self?.posts.append(contentsOf: posts)
@@ -38,8 +41,8 @@ class PublicationDetailViewController: UIViewController {
     func setup() {
         navigationItem.title = publication?.name
         setupSavePublicationButton()
-        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        collectionView.register(PostCell.nib, forCellWithReuseIdentifier: PostCell.reuseId)
+        collectionView?.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        collectionView?.register(PostCell.nib, forCellWithReuseIdentifier: PostCell.reuseId)
         fetchPosts()
     }
     
@@ -56,7 +59,7 @@ class PublicationDetailViewController: UIViewController {
     
     func reloadCollectionView() {
         DispatchQueue.main.async { [weak self] in
-            self?.collectionView.reloadData()
+            self?.collectionView?.reloadData()
         }
     }
     
@@ -76,6 +79,13 @@ extension PublicationDetailViewController: UICollectionViewDataSource {
         let post = posts[indexPath.item]
         cell.configure(with: post, didTapSave: { collectionView.reloadData() })
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.item == posts.count - 1,
+           !isFetching {
+            fetchPosts(offset: posts.count)
+        }
     }
     
 }
