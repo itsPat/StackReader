@@ -14,6 +14,7 @@ class PublicationDetailViewController: UIViewController {
     var publication: Substack.Publication?
     var posts = [Substack.Post]()
     var isFetching = false
+    var hasMorePosts = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,7 @@ class PublicationDetailViewController: UIViewController {
             self?.isFetching = false
             switch res {
             case .success(let posts):
+                self?.hasMorePosts = !posts.isEmpty
                 self?.posts.append(contentsOf: posts)
                 self?.reloadCollectionView()
             case .failure(let err):
@@ -83,7 +85,8 @@ extension PublicationDetailViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.item == posts.count - 1,
-           !isFetching {
+           !isFetching,
+           hasMorePosts {
             fetchPosts(offset: posts.count)
         }
     }
