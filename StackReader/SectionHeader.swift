@@ -26,6 +26,7 @@ class SectionHeader: UICollectionReusableView {
     override func prepareForReuse() {
         super.prepareForReuse()
         NetworkManager.shared.cancel(taskWithId: cellId)
+        imageView.image = nil
     }
     
     func setupBorder() {
@@ -54,7 +55,7 @@ class SectionHeader: UICollectionReusableView {
     func configure(with publication: Substack.Publication, didTapActionButton: (() -> Void)? = nil) {
         self.didTapActionButton = didTapActionButton
         label.text = publication.name
-        imageView.setImageWith(url: publication.logoUrl, cellId: cellId)
+        imageView.setImageWith(url: publication.logoUrl ?? publication.authorPhotoUrl, cellId: cellId)
         actionButton.isHidden = false
         setupBorder()
         layoutIfNeeded()

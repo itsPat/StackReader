@@ -20,10 +20,7 @@ class StacksViewController: UIViewController, TabBarControllerItem {
             cellProvider: { collectionView, indexPath, post in
                 // Cell Configuration
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostCell.reuseId, for: indexPath) as! PostCell
-                cell.configure(with: post, didTapSave: {
-                    // Remove the item from the data source
-                    // Apply the new snapshot.
-                })
+                cell.configure(with: post, didTapSave: { post.toggleIsSaved() })
                 return cell
             }
         )
@@ -33,9 +30,8 @@ class StacksViewController: UIViewController, TabBarControllerItem {
                 ofKind: kind,
                 withReuseIdentifier: SectionHeader.reuseId, for: index) as! SectionHeader
             if let publication = self?.dataSource.snapshot().sectionIdentifiers[index.section] {
-                header.configure(with: publication) {
-                    // Remove the publication
-                    // Apply the new snapshot.
+                header.configure(with: publication) { [weak self] in
+                    self?.remove(publication: publication)
                 }
             }
             return header
@@ -121,6 +117,16 @@ class StacksViewController: UIViewController, TabBarControllerItem {
         }
     }
     
+    func remove(publication: Substack.Publication) {
+        UserData.remove(publication: publication)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            var snapshot = self.dataSource.snapshot()
+            snapshot.deleteSections([publication])
+            self.dataSource.apply(snapshot)
+        }
+    }
+    
     func scrollToTop() {
         guard collectionView != nil else { return }
         collectionView?.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredVertically, animated: true)
@@ -134,7 +140,7 @@ extension StacksViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let publication = dataSource.snapshot().sectionIdentifiers[indexPath.section]
         let post = dataSource.snapshot().itemIdentifiers(inSection: publication)[indexPath.item]
-        navigationController?.pushViewController(.vc(.postDetail(post: post)), animated: true)
+        present(.vc(.postDetail(post: post)), animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView,
