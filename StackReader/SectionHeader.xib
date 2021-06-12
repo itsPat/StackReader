@@ -16,20 +16,19 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h7r-0I-kxy">
-                    <rect key="frame" x="0.0" y="12.5" width="40" height="40"/>
+                    <rect key="frame" x="0.0" y="14.5" width="36" height="36"/>
                     <color key="tintColor" systemColor="labelColor"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="40" id="0LE-xS-1Xg"/>
-                        <constraint firstAttribute="width" secondItem="h7r-0I-kxy" secondAttribute="height" multiplier="1:1" id="D5w-S4-5dh"/>
-                        <constraint firstAttribute="height" constant="40" id="nkC-0r-cvC"/>
+                        <constraint firstAttribute="width" constant="36" id="0LE-xS-1Xg"/>
+                        <constraint firstAttribute="height" constant="36" id="nkC-0r-cvC"/>
                     </constraints>
                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="light"/>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wO8-eZ-AaV">
-                    <rect key="frame" x="48" y="7.5" width="272" height="50"/>
+                    <rect key="frame" x="44" y="7.5" width="276" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQu-NS-TKn">
-                            <rect key="frame" x="0.0" y="9" width="214" height="32"/>
+                            <rect key="frame" x="0.0" y="9" width="218" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="32" id="hEK-Om-l68"/>
                             </constraints>
@@ -37,7 +36,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0s-Ve-eRM">
-                            <rect key="frame" x="222" y="0.0" width="50" height="50"/>
+                            <rect key="frame" x="226" y="0.0" width="50" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="TG3-8F-QYd"/>
                                 <constraint firstAttribute="height" constant="50" id="ztQ-BB-PCj"/>

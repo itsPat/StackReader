@@ -20,7 +20,7 @@ class StacksViewController: UIViewController, TabBarControllerItem {
             cellProvider: { collectionView, indexPath, post in
                 // Cell Configuration
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostCell.reuseId, for: indexPath) as! PostCell
-                cell.configure(with: post, didTapSave: { post.toggleIsSaved() })
+                cell.configure(with: post)
                 return cell
             }
         )
