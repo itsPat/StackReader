@@ -97,6 +97,26 @@ extension PublicationDetailViewController: UICollectionViewDataSource {
     
 }
 
+// MARK: - UICollectionViewDataSourcePrefetching
+
+extension PublicationDetailViewController: UICollectionViewDataSourcePrefetching {
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for index in indexPaths {
+            let post = posts[index.item]
+            ImageManager.shared.getImage(with: post.coverImageUrl ?? "", taskId: "\(post.id)")
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        for index in indexPaths {
+            let post = posts[index.item]
+            NetworkManager.shared.cancel(taskWithId: "\(post.id)")
+        }
+    }
+    
+}
+
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension PublicationDetailViewController: UICollectionViewDelegateFlowLayout {

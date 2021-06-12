@@ -16,7 +16,7 @@ class PublicationSectionHeader: UICollectionReusableView {
     @IBOutlet weak var label: UILabel!
     
     func configure(with category: Substack.Category) {
-        label.text = category.rawValue
+        label.text = category.title
         imageView.image = category.icon
     }
     

@@ -17,7 +17,7 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
     
     private var publicationsByCategory = [Substack.Category: [Substack.Publication]]() {
         didSet {
-            self.categories = publicationsByCategory.keys.sorted(by: { $0.rawValue < $1.rawValue })
+            self.categories = publicationsByCategory.keys.sorted(by: { $0.title < $1.title })
         }
     }
     private var categories = [Substack.Category]()
@@ -36,16 +36,20 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
         let dataSource = UICollectionViewDiffableDataSource<Substack.Category, Substack.Publication>(
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, publication in
+                // Cell Configuration
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PublicationCell.reuseId, for: indexPath) as! PublicationCell
-                cell.configure(with: publication, didTapAdd: { collectionView.reloadData() })
+                cell.configure(with: publication)
                 return cell
             }
         )
         dataSource.supplementaryViewProvider = { [weak self] collectionView, kind, index in
+            // Header Configuration
             let header = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
                 withReuseIdentifier: PublicationSectionHeader.reuseId, for: index) as! PublicationSectionHeader
-            header.configure(with: Substack.Category.allCases[index.section])
+            if let category = self?.dataSource.snapshot().sectionIdentifiers[index.section] {
+                header.configure(with: category)
+            }
             return header
         }
         return dataSource
@@ -102,10 +106,16 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
         )
     }
     
+    func resetSnapshot(animated: Bool = false) {
+        var snapshot = NSDiffableDataSourceSnapshot<Substack.Category, Substack.Publication>()
+        snapshot.appendSections(Substack.Category.allCases)
+        dataSource.apply(snapshot, animatingDifferences: animated)
+    }
+    
     @objc
     private func refresh() {
         collectionView.refreshControl?.beginRefreshing()
-        dataSource.apply(NSDiffableDataSourceSnapshot<Substack.Category, Substack.Publication>(), animatingDifferences: false)
+        resetSnapshot()
         Substack.Category.allCases.forEach { category in
             NetworkManager.shared.fetchPublications(by: category) { [weak self] res in
                 switch res {
@@ -123,7 +133,6 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             var snapshot = self.dataSource.snapshot()
-            snapshot.appendSections([category])
             snapshot.appendItems(publications, toSection: category)
             self.dataSource.apply(snapshot, animatingDifferences: animated)
             self.collectionView.refreshControl?.endRefreshing()
@@ -135,28 +144,6 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredVertically, animated: true)
     }
 
-}
-
-// MARK: - UICollectionViewDataSourcePrefetching
-
-extension DiscoverViewController: UICollectionViewDataSourcePrefetching {
-    
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        for index in indexPaths {
-            if let publication = publicationsByCategory[categories[index.section]]?[index.item] {
-                ImageManager.shared.getImage(with: publication.logoUrl ?? "", taskId: "\(publication.id)")
-            }
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
-        for index in indexPaths {
-            if let publication = publicationsByCategory[categories[index.section]]?[index.item] {
-                NetworkManager.shared.cancel(taskWithId: "\(publication.id)")
-            }
-        }
-    }
-    
 }
 
 

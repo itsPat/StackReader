@@ -39,6 +39,7 @@ class SearchResultsViewController: UICollectionViewController, TabBarControllerI
             PublicationCell.nib,
             forCellWithReuseIdentifier: PublicationCell.reuseId
         )
+        collectionView.prefetchDataSource = self
     }
     
     private func reloadCollectionView() {
@@ -74,6 +75,27 @@ extension SearchResultsViewController {
            let query = query,
            !isSearching {
             search(for: query, page: page + 1)
+        }
+    }
+    
+    
+}
+
+// MARK: - UICollectionViewDataSourcePrefetching
+  
+extension SearchResultsViewController: UICollectionViewDataSourcePrefetching {
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for index in indexPaths {
+            let publication = publications[index.item]
+            ImageManager.shared.getImage(with: publication.logoUrl ?? "", taskId: "\(publication.id)")
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        for index in indexPaths {
+            let publication = publications[index.item]
+            NetworkManager.shared.cancel(taskWithId: "\(publication.id)")
         }
     }
     

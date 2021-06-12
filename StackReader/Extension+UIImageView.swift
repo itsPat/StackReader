@@ -37,8 +37,10 @@ extension UIImageView {
                     } else {
                         self?.setImageWithAnimation(image: tuple.image)
                     }
-                case .failure(let err):
+                case .failure(let err) where (err as NSError).code != -999:
                     print("\(#function) failed with err: \(err)")
+                default:
+                    break
                 }
             }
         }

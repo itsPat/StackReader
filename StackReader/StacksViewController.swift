@@ -27,6 +27,7 @@ class StacksViewController: UIViewController, TabBarControllerItem {
         super.viewWillAppear(animated)
         collectionView?.reloadData()
     }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate { [weak self] _ in
@@ -67,6 +68,26 @@ extension StacksViewController: UICollectionViewDataSource {
         let publication = publications[indexPath.item]
         cell.configure(with: publication, didTapAdd: { collectionView.reloadData() })
         return cell
+    }
+    
+}
+
+// MARK: - UICollectionViewDataSourcePrefetching
+
+extension StacksViewController: UICollectionViewDataSourcePrefetching {
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for index in indexPaths {
+            let publication = publications[index.item]
+            ImageManager.shared.getImage(with: publication.logoUrl ?? "", taskId: "\(publication.id)")
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        for index in indexPaths {
+            let publication = publications[index.item]
+            NetworkManager.shared.cancel(taskWithId: "\(publication.id)")
+        }
     }
     
 }

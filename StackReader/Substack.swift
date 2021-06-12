@@ -11,27 +11,34 @@ class Substack {
     
     // MARK: - Substack Categories
     
-    enum Category: String, CaseIterable {
+    enum Category: CaseIterable {
         
-        case art = "Art"
-        case business = "Business"
-        case climate = "Climate"
-        case culture = "Culture"
-        case education = "Education"
-        case faith = "Faith"
-        case finance = "Finance"
-        case food = "Food & Drink"
-        case health = "Health"
-        case history = "History"
-        case literature = "Literature"
-        case music = "Music"
-        case news = "News"
-        case philosophy = "Philosophy"
-        case politics = "Politics"
-        case science = "Science"
-        case sports = "Sports"
-        case technology = "Technology"
-        case travel = "Travel"
+        case art, business, climate, culture, education, faith, finance, food, health, history,
+             literature, music, news, philosophy, politics, science, sports, technology, travel
+        
+        var title: String {
+            switch self {
+            case .art: return "Art"
+            case .business: return "Business"
+            case .climate: return "Climate"
+            case .culture: return "Culture"
+            case .education: return "Education"
+            case .faith: return "Faith"
+            case .finance: return "Finance"
+            case .food: return "Food & Drink"
+            case .health: return "Health"
+            case .history: return "History"
+            case .literature: return "Literature"
+            case .music: return "Music"
+            case .news: return "News"
+            case .philosophy: return "Philosophy"
+            case .politics: return "Politics"
+            case .science: return "Science"
+            case .sports: return "Sports"
+            case .technology: return "Technology"
+            case .travel: return "Travel"
+            }
+        }
         
         var id: Int {
             switch self {
@@ -80,7 +87,6 @@ class Substack {
             case .education: return UIImage(systemName: "graduationcap")
             }
         }
-        
     }
     
 }

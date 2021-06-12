@@ -29,6 +29,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="u5o-4d-3cD" id="Njo-XJ-Pi8"/>
                                     <outlet property="delegate" destination="u5o-4d-3cD" id="8tT-ix-Bag"/>
+                                    <outlet property="prefetchDataSource" destination="u5o-4d-3cD" id="g4B-NT-Znl"/>
                                 </connections>
                             </collectionView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="u9e-nO-c17">
@@ -94,9 +95,7 @@ any post to save it for later!</string>
                                 </collectionViewFlowLayout>
                                 <cells/>
                                 <connections>
-                                    <outlet property="dataSource" destination="P2m-64-89R" id="DnD-h7-prx"/>
                                     <outlet property="delegate" destination="P2m-64-89R" id="bEs-As-zrp"/>
-                                    <outlet property="prefetchDataSource" destination="P2m-64-89R" id="5nl-0u-iSt"/>
                                 </connections>
                             </collectionView>
                         </subviews>
@@ -158,6 +157,7 @@ any post to save it for later!</string>
                                 <connections>
                                     <outlet property="dataSource" destination="h7n-0V-Pwz" id="BqR-Nf-yIK"/>
                                     <outlet property="delegate" destination="h7n-0V-Pwz" id="iTg-QS-ePY"/>
+                                    <outlet property="prefetchDataSource" destination="h7n-0V-Pwz" id="Ks6-zq-aby"/>
                                 </connections>
                             </collectionView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="WfH-b8-hLh">
@@ -225,6 +225,7 @@ find interesting publications!</string>
                                 <connections>
                                     <outlet property="dataSource" destination="QSY-Gv-5Pp" id="9rs-Bu-KPa"/>
                                     <outlet property="delegate" destination="QSY-Gv-5Pp" id="Waa-Mn-KmI"/>
+                                    <outlet property="prefetchDataSource" destination="QSY-Gv-5Pp" id="xdh-7N-8kM"/>
                                 </connections>
                             </collectionView>
                         </subviews>
@@ -243,41 +244,7 @@ find interesting publications!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dlj-IP-WtO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2767" y="-500"/>
-        </scene>
-        <!--Post Detail View Controller-->
-        <scene sceneID="2f0-6d-e2M">
-            <objects>
-                <viewController storyboardIdentifier="PostDetailViewController" id="4Xa-Zm-1Vb" customClass="PostDetailViewController" customModule="StackReader" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ddB-EA-Zav">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vCk-kt-0vh">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="3Pc-tZ-q54"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="vCk-kt-0vh" secondAttribute="bottom" id="9c1-SI-wmB"/>
-                            <constraint firstItem="vCk-kt-0vh" firstAttribute="trailing" secondItem="3Pc-tZ-q54" secondAttribute="trailing" id="gvc-6p-sjf"/>
-                            <constraint firstItem="vCk-kt-0vh" firstAttribute="top" secondItem="ddB-EA-Zav" secondAttribute="top" id="i98-2x-57I"/>
-                            <constraint firstItem="vCk-kt-0vh" firstAttribute="leading" secondItem="3Pc-tZ-q54" secondAttribute="leading" id="ldC-ee-cP8"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="webview" destination="vCk-kt-0vh" id="wBF-VP-Usi"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9Jh-Ij-4ED" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2767" y="247"/>
+            <point key="canvasLocation" x="2728" y="-81"/>
         </scene>
         <!--Discover-->
         <scene sceneID="aWP-Ej-8qn">
