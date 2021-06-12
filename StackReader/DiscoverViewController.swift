@@ -67,6 +67,7 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
     
     private func setup() {
         navigationItem.searchController = searchController
+        collectionView.dataSource = dataSource
         setupCollectionViewLayout()
         collectionView.register(
             SectionHeader.nib,
@@ -77,7 +78,6 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
             PublicationCell.nib,
             forCellWithReuseIdentifier: PublicationCell.reuseId
         )
-        collectionView.dataSource = dataSource
         refresh()
         collectionView.refreshControl = UIRefreshControl(
             frame: .zero,
@@ -87,13 +87,7 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
     }
     
     func setupCollectionViewLayout() {
-        collectionView.setCollectionViewLayout(
-            .orthogonalLayout(
-                itemInset: .init(top: 2.0, leading: 2.0, bottom: 2.0, trailing: 2.0),
-                sectionInset: .init(top: 8.0, leading: 16.0, bottom: 16.0, trailing: 32.0)
-            ),
-            animated: true
-        )
+        collectionView.setCollectionViewLayout(.discoverLayout, animated: true)
     }
     
     func resetSnapshot(animated: Bool = false) {

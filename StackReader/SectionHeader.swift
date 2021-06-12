@@ -17,11 +17,47 @@ class SectionHeader: UICollectionReusableView {
     @IBOutlet weak var actionButton: UIButton!
     
     var didTapActionButton: (() -> Void)?
+    var cellId: String = .uuid
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        NetworkManager.shared.cancel(taskWithId: cellId)
+    }
+    
+    func setupBorder() {
+        backgroundColor = .systemBackground
+        imageView.layer.cornerRadius = 8.0
+        imageView.layer.cornerCurve = .continuous
+        imageView.layer.masksToBounds = true
+        imageView.layer.borderWidth = 0.5
+        imageView.layer.borderColor = UIColor.opaqueSeparator.cgColor
+    }
+    
+    func removeBorder() {
+        backgroundColor = .clear
+        imageView.layer.borderWidth = 0.0
+    }
     
     func configure(with category: Substack.Category, didTapActionButton: (() -> Void)? = nil) {
         self.didTapActionButton = didTapActionButton
         label.text = category.title
         imageView.image = category.icon
+        actionButton.isHidden = true
+        removeBorder()
+        layoutIfNeeded()
+    }
+    
+    func configure(with publication: Substack.Publication, didTapActionButton: (() -> Void)? = nil) {
+        self.didTapActionButton = didTapActionButton
+        label.text = publication.name
+        imageView.setImageWith(url: publication.logoUrl, cellId: cellId)
+        actionButton.isHidden = false
+        setupBorder()
+        layoutIfNeeded()
     }
     
     @IBAction func didTapActionButton(_ sender: Any) {
