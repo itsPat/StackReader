@@ -32,8 +32,8 @@
 		78DCF4472663DFCE00D16719 /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF4462663DFCE00D16719 /* Extension+UIImageView.swift */; };
 		78DCF44D2663DFEB00D16719 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF44C2663DFEB00D16719 /* Extension+String.swift */; };
 		78DCF4512663E00C00D16719 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF4502663E00C00D16719 /* ImageManager.swift */; };
-		78DCF4552663E6EE00D16719 /* PublicationSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF4532663E6EE00D16719 /* PublicationSectionHeader.swift */; };
-		78DCF4562663E6EE00D16719 /* PublicationSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DCF4542663E6EE00D16719 /* PublicationSectionHeader.xib */; };
+		78DCF4552663E6EE00D16719 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF4532663E6EE00D16719 /* SectionHeader.swift */; };
+		78DCF4562663E6EE00D16719 /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DCF4542663E6EE00D16719 /* SectionHeader.xib */; };
 		78E99BA1266BCB0000152ACD /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E99BA0266BCB0000152ACD /* Extension+UIColor.swift */; };
 		78EEA9C626726C13001627FA /* Extension+UICollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEA9C526726C13001627FA /* Extension+UICollectionViewLayout.swift */; };
 		78EF0FD02663F4950059DE99 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF0FCF2663F4950059DE99 /* Extension+UIViewController.swift */; };
@@ -68,8 +68,8 @@
 		78DCF4462663DFCE00D16719 /* Extension+UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
 		78DCF44C2663DFEB00D16719 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		78DCF4502663E00C00D16719 /* ImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
-		78DCF4532663E6EE00D16719 /* PublicationSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationSectionHeader.swift; sourceTree = "<group>"; };
-		78DCF4542663E6EE00D16719 /* PublicationSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PublicationSectionHeader.xib; sourceTree = "<group>"; };
+		78DCF4532663E6EE00D16719 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
+		78DCF4542663E6EE00D16719 /* SectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
 		78E99BA0266BCB0000152ACD /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
 		78EEA9C526726C13001627FA /* Extension+UICollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UICollectionViewLayout.swift"; sourceTree = "<group>"; };
 		78EF0FCF2663F4950059DE99 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
@@ -167,8 +167,8 @@
 		78DCF4402663DE2400D16719 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				78DCF4532663E6EE00D16719 /* PublicationSectionHeader.swift */,
-				78DCF4542663E6EE00D16719 /* PublicationSectionHeader.xib */,
+				78DCF4532663E6EE00D16719 /* SectionHeader.swift */,
+				78DCF4542663E6EE00D16719 /* SectionHeader.xib */,
 				78DCF4412663DE4100D16719 /* PublicationCell.swift */,
 				78DCF4422663DE4100D16719 /* PublicationCell.xib */,
 				78089BD52663F8E800EDDD8B /* PostCell.swift */,
@@ -247,7 +247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78DCF4562663E6EE00D16719 /* PublicationSectionHeader.xib in Resources */,
+				78DCF4562663E6EE00D16719 /* SectionHeader.xib in Resources */,
 				78089BD82663F8E800EDDD8B /* PostCell.xib in Resources */,
 				78DCF4222663C26900D16719 /* LaunchScreen.storyboard in Resources */,
 				78DCF41F2663C26900D16719 /* Assets.xcassets in Resources */,
@@ -270,7 +270,7 @@
 				7805814D266C14DB00A38A51 /* SearchResultsViewController.swift in Sources */,
 				78DCF41A2663C26800D16719 /* TabBarController.swift in Sources */,
 				78DCF4432663DE4100D16719 /* PublicationCell.swift in Sources */,
-				78DCF4552663E6EE00D16719 /* PublicationSectionHeader.swift in Sources */,
+				78DCF4552663E6EE00D16719 /* SectionHeader.swift in Sources */,
 				78D1BF9F266844F200A3EE82 /* StacksViewController.swift in Sources */,
 				78D1BFA626684E8200A3EE82 /* Substack+Publication.swift in Sources */,
 				78058154266C227600A38A51 /* HapticManager.swift in Sources */,

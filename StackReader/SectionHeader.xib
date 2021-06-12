@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="PublicationSectionHeader" customModule="StackReader" customModuleProvider="target">
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="SectionHeader" customModule="StackReader" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
@@ -34,6 +34,18 @@
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0s-Ve-eRM">
+                            <rect key="frame" x="316" y="-6" width="44" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="44" id="TG3-8F-QYd"/>
+                                <constraint firstAttribute="width" secondItem="C0s-Ve-eRM" secondAttribute="height" multiplier="1:1" id="jam-bx-XUD"/>
+                                <constraint firstAttribute="height" constant="44" id="ztQ-BB-PCj"/>
+                            </constraints>
+                            <state key="normal" image="minus.circle" catalog="system"/>
+                            <connections>
+                                <action selector="didTapActionButton:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="QO1-uv-fuz"/>
+                            </connections>
+                        </button>
                     </subviews>
                 </stackView>
             </subviews>
@@ -44,6 +56,7 @@
                 <constraint firstItem="wO8-eZ-AaV" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="qVh-2I-u51"/>
             </constraints>
             <connections>
+                <outlet property="actionButton" destination="C0s-Ve-eRM" id="xKR-SE-Xei"/>
                 <outlet property="imageView" destination="h7r-0I-kxy" id="uPG-sc-r4c"/>
                 <outlet property="label" destination="TQu-NS-TKn" id="yZ8-rh-BvL"/>
             </connections>
@@ -52,6 +65,7 @@
     </objects>
     <resources>
         <image name="hourglass" catalog="system" width="109" height="128"/>
+        <image name="minus.circle" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
