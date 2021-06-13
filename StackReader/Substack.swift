@@ -87,6 +87,15 @@ class Substack {
             case .education: return UIImage(systemName: "graduationcap")
             }
         }
+        
+        func seeAllAction(presenter nav: UINavigationController?) -> UIAction {
+            UIAction(title: "See All", image: UIImage(systemName: "chevron.right.circle")) { _ in
+                nav?.pushViewController(
+                    .vc(.categoryDetail(category: self)),
+                    animated: true
+                )
+            }
+        }
     }
     
 }

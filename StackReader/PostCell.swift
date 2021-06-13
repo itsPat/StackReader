@@ -29,7 +29,7 @@ class PostCell: UICollectionViewCell {
         imageView.layer.cornerCurve = .continuous
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 0.5
-        imageView.layer.borderColor = UIColor.opaqueSeparator.cgColor
+        imageView.layer.borderColor = UIColor.systemGray6.cgColor
     }
     
     override func prepareForReuse() {
@@ -63,6 +63,7 @@ class PostCell: UICollectionViewCell {
     private func updateSavePostButton() {
         guard let post = self.post else { return }
         savePostButton.setImage(post.saveActionImage, for: .normal)
+        savePostButton.tintColor = post.isSaved ? .stackBlue : .opaqueSeparator
     }
 
 }

@@ -38,7 +38,15 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
                 ofKind: kind,
                 withReuseIdentifier: SectionHeader.reuseId, for: index) as! SectionHeader
             if let category = self?.dataSource.snapshot().sectionIdentifiers[index.section] {
-                header.configure(with: category)
+                header.configure(
+                    with: category,
+                    menu: UIMenu(
+                        title: category.title,
+                        children: [
+                            category.seeAllAction(presenter: self?.navigationController)
+                        ]
+                    )
+                )
             }
             return header
         }

@@ -11,7 +11,7 @@ extension UICollectionViewLayout {
     
     static var discoverLayout: UICollectionViewCompositionalLayout {
         let itemInset = NSDirectionalEdgeInsets(top: 0.0, leading: 4.0, bottom: 0.0, trailing: 4.0)
-        let sectionInset = NSDirectionalEdgeInsets(top: 8.0, leading: 16.0, bottom: 16.0, trailing: 8.0)
+        let sectionInset = NSDirectionalEdgeInsets(top: 4.0, leading: 16.0, bottom: 20.0, trailing: 8.0)
         let isIpad = UIDevice.current.userInterfaceIdiom == .pad
         let isHorizontal = UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight
         
@@ -22,7 +22,7 @@ extension UICollectionViewLayout {
         largeItem.contentInsets = itemInset
         
         // Horizontal Group
-        let dimension: CGFloat = 0.9 * ((isIpad || isHorizontal) ? 0.5 : 1.0)
+        let dimension: CGFloat = 0.75 * ((isIpad || isHorizontal) ? 0.5 : 1.0)
         let hGroup = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(widthDimension: .fractionalWidth(dimension), heightDimension: .fractionalWidth(dimension)),
             subitems: [largeItem]
@@ -35,7 +35,7 @@ extension UICollectionViewLayout {
         
         // Supplementary Item
         let headerItem = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(64)),
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(64)),
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top
         )
@@ -45,7 +45,7 @@ extension UICollectionViewLayout {
     
     static var stacksLayout: UICollectionViewCompositionalLayout {
         let itemInset = NSDirectionalEdgeInsets(top: 2.0, leading: 0.0, bottom: 2.0, trailing: 16.0)
-        let sectionInset = NSDirectionalEdgeInsets(top: 16.0, leading: 16.0, bottom: 16.0, trailing: 8.0)
+        let sectionInset = NSDirectionalEdgeInsets(top: 4.0, leading: 16.0, bottom: 20.0, trailing: 8.0)
         
         // Item
         let item = NSCollectionLayoutItem(
@@ -67,7 +67,7 @@ extension UICollectionViewLayout {
         
         // Supplementary Item
         let headerItem = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(64)),
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(64)),
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top
         )

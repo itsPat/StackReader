@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -25,27 +25,30 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Xn0-Cf-99t">
-                        <rect key="frame" x="166" y="28" width="285" height="90"/>
+                        <rect key="frame" x="166" y="31.5" width="285" height="83"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="vv8-aJ-cpz">
-                                <rect key="frame" x="0.0" y="0.0" width="231" height="90"/>
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="83"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.66000000000000003" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribers only" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fSz-oy-92B">
-                                        <rect key="frame" x="0.0" y="0.0" width="231" height="14.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="14.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" systemColor="systemGreenColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7z-pX-3ia">
-                                        <rect key="frame" x="0.0" y="18.5" width="231" height="26.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                        <rect key="frame" x="0.0" y="18.5" width="250" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="y0u-tc-UKz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRT-dV-UsD">
-                                        <rect key="frame" x="0.0" y="49" width="231" height="41"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="250" height="38.5"/>
                                         <string key="text">Ray Dalio is widely considered one of the best investors in the world. He started his asset management firm, Bridgewater Associates, in 1975 from his apartment bedroom.</string>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -53,7 +56,7 @@
                                 <viewLayoutGuide key="safeArea" id="Afg-6r-dQf"/>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeS-4b-3WY">
-                                <rect key="frame" x="241" y="23" width="44" height="44"/>
+                                <rect key="frame" x="260" y="19.5" width="25" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="63j-rz-b4W"/>
                                     <constraint firstAttribute="height" constant="44" id="ESR-WT-PQh"/>

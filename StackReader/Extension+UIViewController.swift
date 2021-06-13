@@ -10,6 +10,7 @@ import SafariServices
 
 enum ViewController {
     
+    case categoryDetail(category: Substack.Category)
     case publicationDetail(publication: Substack.Publication)
     case postDetail(post: Substack.Post)
     case alert(title: String?,
@@ -22,6 +23,10 @@ enum ViewController {
     var viewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         switch self {
+        case .categoryDetail(let category):
+            let vc = storyboard.instantiateViewController(identifier: "CategoryDetailViewController") as! CategoryDetailViewController
+            vc.category = category
+            return vc
         case .publicationDetail(let publication):
             let vc = storyboard.instantiateViewController(withIdentifier: "PublicationDetailViewController") as! PublicationDetailViewController
             vc.publication = publication

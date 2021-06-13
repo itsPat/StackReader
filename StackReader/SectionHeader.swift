@@ -16,11 +16,12 @@ class SectionHeader: UICollectionReusableView {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var actionButton: UIButton!
     
-    var didTapActionButton: (() -> Void)?
     var cellId: String = .uuid
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        actionButton.layer.cornerRadius = 16
+        actionButton.layer.masksToBounds = true
     }
     
     override func prepareForReuse() {
@@ -35,7 +36,7 @@ class SectionHeader: UICollectionReusableView {
         imageView.layer.cornerCurve = .continuous
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 0.5
-        imageView.layer.borderColor = UIColor.opaqueSeparator.cgColor
+        imageView.layer.borderColor = UIColor.systemGray6.cgColor
     }
     
     func removeBorder() {
@@ -43,26 +44,24 @@ class SectionHeader: UICollectionReusableView {
         imageView.layer.borderWidth = 0.0
     }
     
-    func configure(with category: Substack.Category, didTapActionButton: (() -> Void)? = nil) {
-        self.didTapActionButton = didTapActionButton
+    func configure(with category: Substack.Category, menu: UIMenu? = nil) {
         label.text = category.title
         imageView.image = category.icon
-        actionButton.isHidden = true
+        actionButton.isHidden = menu == nil
+        actionButton.showsMenuAsPrimaryAction = menu != nil
+        actionButton.menu = menu
         removeBorder()
         layoutIfNeeded()
     }
     
-    func configure(with publication: Substack.Publication, didTapActionButton: (() -> Void)? = nil) {
-        self.didTapActionButton = didTapActionButton
+    func configure(with publication: Substack.Publication, menu: UIMenu? = nil) {
         label.text = publication.name
         imageView.setImageWith(url: publication.logoUrl ?? publication.authorPhotoUrl, cellId: cellId)
         actionButton.isHidden = false
+        actionButton.showsMenuAsPrimaryAction = menu != nil
+        actionButton.menu = menu
         setupBorder()
         layoutIfNeeded()
-    }
-    
-    @IBAction func didTapActionButton(_ sender: Any) {
-        didTapActionButton?()
     }
     
 }

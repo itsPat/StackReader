@@ -68,9 +68,22 @@ extension Substack {
         }
         
         func saveAction(completion: @escaping (() -> ()) = {}) -> UIAction {
-            UIAction(title: saveActionTitle, image: saveActionImage) { _ in
+            UIAction(
+                title: saveActionTitle,
+                image: saveActionImage,
+                attributes: (isSaved ? .destructive : [])
+            ) { _ in
                 toggleIsSaved()
                 completion()
+            }
+        }
+        
+        func seeAllAction(presenter nav: UINavigationController?) -> UIAction {
+            UIAction(title: "See All", image: UIImage(systemName: "chevron.right.circle")) { _ in
+                nav?.pushViewController(
+                    .vc(.publicationDetail(publication: self)),
+                    animated: true
+                )
             }
         }
         

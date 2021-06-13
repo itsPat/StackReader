@@ -27,7 +27,7 @@ class PublicationCell: UICollectionViewCell {
         contentView.layer.cornerCurve = .continuous
         contentView.backgroundColor = .systemBackground
         contentView.layer.borderWidth = 0.5
-        contentView.layer.borderColor = UIColor.separator.cgColor
+        contentView.layer.borderColor = UIColor.systemGray6.cgColor
         layer.shadowColor = UIColor.black.withAlphaComponent(0.5).cgColor
         layer.shadowOpacity = 0.5
         layer.shadowOffset = CGSize(width: 0.0, height: 2.0)

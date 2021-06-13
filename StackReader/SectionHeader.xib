@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,10 +26,10 @@
                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="light"/>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wO8-eZ-AaV">
-                    <rect key="frame" x="44" y="7.5" width="276" height="50"/>
+                    <rect key="frame" x="44" y="16.5" width="276" height="32"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQu-NS-TKn">
-                            <rect key="frame" x="0.0" y="9" width="218" height="32"/>
+                            <rect key="frame" x="0.0" y="0.0" width="236" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="32" id="hEK-Om-l68"/>
                             </constraints>
@@ -36,18 +37,15 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0s-Ve-eRM">
-                            <rect key="frame" x="226" y="0.0" width="50" height="50"/>
+                            <rect key="frame" x="244" y="0.0" width="32" height="32"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="TG3-8F-QYd"/>
-                                <constraint firstAttribute="height" constant="50" id="ztQ-BB-PCj"/>
+                                <constraint firstAttribute="width" constant="32" id="TG3-8F-QYd"/>
+                                <constraint firstAttribute="height" constant="32" id="ztQ-BB-PCj"/>
                             </constraints>
-                            <color key="tintColor" systemColor="systemRedColor"/>
+                            <color key="tintColor" name="AccentColor"/>
                             <state key="normal">
-                                <imageReference key="image" image="minus.circle" catalog="system" symbolScale="medium"/>
+                                <imageReference key="image" image="ellipsis.circle" catalog="system" symbolScale="large"/>
                             </state>
-                            <connections>
-                                <action selector="didTapActionButton:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="QO1-uv-fuz"/>
-                            </connections>
                         </button>
                     </subviews>
                 </stackView>
@@ -69,12 +67,12 @@
         </collectionReusableView>
     </objects>
     <resources>
-        <image name="minus.circle" catalog="system" width="128" height="121"/>
+        <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
+        <namedColor name="AccentColor">
+            <color red="0.097999997437000275" green="0.6940000057220459" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -18,7 +18,7 @@ extension Substack {
         /// True if there are more pages for this category.
         let more: Bool
     }
-
+    
     struct Post: Codable, Hashable {
         
         let id: Int
@@ -81,7 +81,11 @@ extension Substack {
         }
         
         func saveAction(completion: @escaping (() -> ()) = {}) -> UIAction {
-            UIAction(title: saveActionTitle, image: saveActionImage) { _ in
+            UIAction(
+                title: saveActionTitle,
+                image: saveActionImage,
+                attributes: (isSaved ? .destructive : [])
+            ) { _ in
                 toggleIsSaved()
                 completion()
             }

@@ -13,6 +13,7 @@
 		78089BD72663F8E800EDDD8B /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78089BD52663F8E800EDDD8B /* PostCell.swift */; };
 		78089BD82663F8E800EDDD8B /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78089BD62663F8E800EDDD8B /* PostCell.xib */; };
 		78224C892672E25C00FA4B36 /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78224C882672E25C00FA4B36 /* StoreKitManager.swift */; };
+		7889070F267658B50099AF18 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7889070E267658B50099AF18 /* CategoryDetailViewController.swift */; };
 		78D1BF9F266844F200A3EE82 /* StacksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1BF9E266844F200A3EE82 /* StacksViewController.swift */; };
 		78D1BFA32668461800A3EE82 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1BFA22668461800A3EE82 /* UserData.swift */; };
 		78D1BFA626684E8200A3EE82 /* Substack+Publication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1BFA526684E8200A3EE82 /* Substack+Publication.swift */; };
@@ -47,6 +48,7 @@
 		78089BD52663F8E800EDDD8B /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		78089BD62663F8E800EDDD8B /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		78224C882672E25C00FA4B36 /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
+		7889070E267658B50099AF18 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		78D1BF9E266844F200A3EE82 /* StacksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StacksViewController.swift; sourceTree = "<group>"; };
 		78D1BFA22668461800A3EE82 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		78D1BFA526684E8200A3EE82 /* Substack+Publication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Substack+Publication.swift"; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				78D1BF9E266844F200A3EE82 /* StacksViewController.swift */,
 				78DCF43D2663D9FB00D16719 /* SavedViewController.swift */,
 				78EF0FD22663F5AF0059DE99 /* PublicationDetailViewController.swift */,
+				7889070E267658B50099AF18 /* CategoryDetailViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				78DCF44D2663DFEB00D16719 /* Extension+String.swift in Sources */,
 				78DCF42F2663C2AC00D16719 /* NetworkManager.swift in Sources */,
 				78058151266C20BC00A38A51 /* Extension+UIView.swift in Sources */,
+				7889070F267658B50099AF18 /* CategoryDetailViewController.swift in Sources */,
 				78DCF4472663DFCE00D16719 /* Extension+UIImageView.swift in Sources */,
 				7805814D266C14DB00A38A51 /* SearchResultsViewController.swift in Sources */,
 				78DCF41A2663C26800D16719 /* TabBarController.swift in Sources */,
