@@ -33,13 +33,19 @@ extension UICollectionViewLayout {
         section.contentInsets = sectionInset
         section.orthogonalScrollingBehavior = .groupPaging
         
-        // Supplementary Item
+        // Supplementary Items
         let headerItem = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(64)),
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top
         )
-        section.boundarySupplementaryItems = [headerItem]
+        
+        let footerItem = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(355)),
+            elementKind: UICollectionView.elementKindSectionFooter,
+            alignment: .bottom
+        )
+        section.boundarySupplementaryItems = [headerItem, footerItem]
         return UICollectionViewCompositionalLayout(section: section)
     }
     
