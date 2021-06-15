@@ -11,15 +11,15 @@ class UserData {
 
     // MARK: - Publications
     
+    static var savedPublicationById: [Int: Substack.Publication] = [:]
+    
     static var savedPublications: [Substack.Publication] {
         guard let data = UserDefaults.standard.data(forKey: "savedPublications"),
            let publications = try? JSONDecoder().decode([Substack.Publication].self, from: data) else { return [] }
         savedPublicationById = [:]
-        for p in publications { savedPublicationById[p.id] = p }
+        publications.forEach { savedPublicationById[$0.id] = $0 }
         return publications
     }
-    
-    static var savedPublicationById: [Int: Substack.Publication] = [:]
     
     static func add(publication: Substack.Publication) {
         do {
@@ -47,9 +47,12 @@ class UserData {
     
     // MARK: - Posts
     
+    static var savedPostsById: [Int: Substack.Post] = [:]
+    
     static var savedPosts: [Substack.Post] {
         guard let data = UserDefaults.standard.data(forKey: "savedPosts"),
            let posts = try? JSONDecoder().decode([Substack.Post].self, from: data) else { return [] }
+        posts.forEach { savedPostsById[$0.id] = $0 }
         return posts
     }
     
@@ -58,6 +61,7 @@ class UserData {
             let data = try JSONEncoder().encode(
                 savedPosts.contains(post) ? savedPosts : savedPosts + [post]
             )
+            savedPostsById[post.id] = post
             UserDefaults.standard.set(data, forKey: "savedPosts")
         } catch {
             print("Failed to add publication to stacks: \(post)")
@@ -68,6 +72,7 @@ class UserData {
         do {
             var posts = savedPosts
             posts.removeAll(where: { $0.id == post.id })
+            savedPostsById[post.id] = nil
             let data = try JSONEncoder().encode(posts)
             UserDefaults.standard.set(data, forKey: "savedPosts")
         } catch {

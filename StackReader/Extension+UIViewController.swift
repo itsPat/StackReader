@@ -35,6 +35,7 @@ enum ViewController {
             guard let url = URL(string: post.postUrl ?? "") else {
                 return .vc(.alert(title: "Oops", subtitle: "Unable to load a webview for this post."))
             }
+            UserData.incrementPostsConsumed()
             let config = SFSafariViewController.Configuration()
             config.entersReaderIfAvailable = post.isNewsletter
             config.barCollapsingEnabled = true

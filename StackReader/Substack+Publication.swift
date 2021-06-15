@@ -56,7 +56,7 @@ extension Substack {
         }
         
         var isSaved: Bool {
-            UserData.savedPublications.contains(self)
+            UserData.savedPublicationById[id] != nil
         }
         
         var saveActionTitle: String {

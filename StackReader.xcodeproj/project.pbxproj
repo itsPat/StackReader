@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47F72807217F76196B02F08D /* Pods_StackReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5CABD212B4617FA29577AD7 /* Pods_StackReader.framework */; };
 		7805814D266C14DB00A38A51 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7805814C266C14DB00A38A51 /* SearchResultsViewController.swift */; };
 		78058151266C20BC00A38A51 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78058150266C20BC00A38A51 /* Extension+UIView.swift */; };
 		78058154266C227600A38A51 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78058153266C227600A38A51 /* HapticManager.swift */; };
@@ -35,6 +36,7 @@
 		78DCF4512663E00C00D16719 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF4502663E00C00D16719 /* ImageManager.swift */; };
 		78DCF4552663E6EE00D16719 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DCF4532663E6EE00D16719 /* SectionHeader.swift */; };
 		78DCF4562663E6EE00D16719 /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DCF4542663E6EE00D16719 /* SectionHeader.xib */; };
+		78DD28D72678C311006D6ED7 /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DD28D62678C311006D6ED7 /* AdManager.swift */; };
 		78E99BA1266BCB0000152ACD /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E99BA0266BCB0000152ACD /* Extension+UIColor.swift */; };
 		78EEA9C626726C13001627FA /* Extension+UICollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEA9C526726C13001627FA /* Extension+UICollectionViewLayout.swift */; };
 		78EF0FD02663F4950059DE99 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF0FCF2663F4950059DE99 /* Extension+UIViewController.swift */; };
@@ -42,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2CCCA0A7EFBCA1A2F669522A /* Pods-StackReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackReader.debug.xcconfig"; path = "Target Support Files/Pods-StackReader/Pods-StackReader.debug.xcconfig"; sourceTree = "<group>"; };
 		7805814C266C14DB00A38A51 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		78058150266C20BC00A38A51 /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		78058153266C227600A38A51 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
@@ -72,10 +75,13 @@
 		78DCF4502663E00C00D16719 /* ImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		78DCF4532663E6EE00D16719 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		78DCF4542663E6EE00D16719 /* SectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
+		78DD28D62678C311006D6ED7 /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
 		78E99BA0266BCB0000152ACD /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
 		78EEA9C526726C13001627FA /* Extension+UICollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UICollectionViewLayout.swift"; sourceTree = "<group>"; };
 		78EF0FCF2663F4950059DE99 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		78EF0FD22663F5AF0059DE99 /* PublicationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationDetailViewController.swift; sourceTree = "<group>"; };
+		C8A71E5156323E73F6E1767B /* Pods-StackReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackReader.release.xcconfig"; path = "Target Support Files/Pods-StackReader/Pods-StackReader.release.xcconfig"; sourceTree = "<group>"; };
+		D5CABD212B4617FA29577AD7 /* Pods_StackReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StackReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,17 +89,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47F72807217F76196B02F08D /* Pods_StackReader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4DBA3CE23B17F5262A7BCC20 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D5CABD212B4617FA29577AD7 /* Pods_StackReader.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		78DCF4092663C26800D16719 = {
 			isa = PBXGroup;
 			children = (
 				78DCF4142663C26800D16719 /* StackReader */,
 				78DCF4132663C26800D16719 /* Products */,
+				B12FC192546ED6B6385CA381 /* Pods */,
+				4DBA3CE23B17F5262A7BCC20 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -139,6 +156,7 @@
 				78D1BFA22668461800A3EE82 /* UserData.swift */,
 				78058153266C227600A38A51 /* HapticManager.swift */,
 				78224C882672E25C00FA4B36 /* StoreKitManager.swift */,
+				78DD28D62678C311006D6ED7 /* AdManager.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -193,6 +211,16 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		B12FC192546ED6B6385CA381 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2CCCA0A7EFBCA1A2F669522A /* Pods-StackReader.debug.xcconfig */,
+				C8A71E5156323E73F6E1767B /* Pods-StackReader.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -200,9 +228,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 78DCF4262663C26900D16719 /* Build configuration list for PBXNativeTarget "StackReader" */;
 			buildPhases = (
+				B42170BF216CF5F1CF44548D /* [CP] Check Pods Manifest.lock */,
 				78DCF40E2663C26800D16719 /* Sources */,
 				78DCF40F2663C26800D16719 /* Frameworks */,
 				78DCF4102663C26800D16719 /* Resources */,
+				CE0DEFD71E41C76F7514F294 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -261,6 +291,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B42170BF216CF5F1CF44548D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StackReader-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE0DEFD71E41C76F7514F294 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StackReader/Pods-StackReader-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StackReader/Pods-StackReader-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StackReader/Pods-StackReader-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		78DCF40E2663C26800D16719 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -275,6 +347,7 @@
 				78DCF41A2663C26800D16719 /* TabBarController.swift in Sources */,
 				78DCF4432663DE4100D16719 /* PublicationCell.swift in Sources */,
 				78DCF4552663E6EE00D16719 /* SectionHeader.swift in Sources */,
+				78DD28D72678C311006D6ED7 /* AdManager.swift in Sources */,
 				78D1BF9F266844F200A3EE82 /* StacksViewController.swift in Sources */,
 				78D1BFA626684E8200A3EE82 /* Substack+Publication.swift in Sources */,
 				78058154266C227600A38A51 /* HapticManager.swift in Sources */,
@@ -435,6 +508,7 @@
 		};
 		78DCF4272663C26900D16719 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2CCCA0A7EFBCA1A2F669522A /* Pods-StackReader.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -457,6 +531,7 @@
 		};
 		78DCF4282663C26900D16719 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8A71E5156323E73F6E1767B /* Pods-StackReader.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

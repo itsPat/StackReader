@@ -36,9 +36,9 @@ class CategoryDetailViewController: UIViewController {
         }
         
         NetworkManager.shared.fetchPublications(by: category, page: page) { [weak self] res in
+            self?.isFetching = false
             switch res {
             case .success(let publications):
-                self?.isFetching = false
                 self?.hasMorePublications = !publications.isEmpty
                 self?.page += 1
                 self?.publications.append(contentsOf: publications)

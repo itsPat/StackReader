@@ -15,6 +15,7 @@ class SearchResultsViewController: UICollectionViewController, TabBarControllerI
     private var query: String?
     private var page = 0
     private var isSearching = false
+    private var hasMoreResults = true
     
     // MARK: - Life Cycle
     
@@ -73,7 +74,8 @@ extension SearchResultsViewController {
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.item == publications.count - 1,
            let query = query,
-           !isSearching {
+           !isSearching,
+           hasMoreResults {
             search(for: query, page: page + 1)
         }
     }
@@ -171,7 +173,8 @@ extension SearchResultsViewController: UISearchBarDelegate {
             case .success(let publications) where page == 0:
                 self?.publications = publications
             case .success(let publications):
-                self?.publications = (self?.publications ?? []) + publications
+                self?.hasMoreResults = !publications.isEmpty
+                self?.publications.append(contentsOf: publications)
             case .failure(let err):
                 self?.publications = []
                 print("\(#function) failed with err: \(err), query was: \(query)")
