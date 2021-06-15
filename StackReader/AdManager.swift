@@ -51,11 +51,12 @@ class AdManager: NSObject {
         let multipleAdsOption = GADMultipleAdsAdLoaderOptions()
         multipleAdsOption.numberOfAds = 4
         adLoader = GADAdLoader(
-            adUnitID: admobAppId,
+            adUnitID: nativeAdUnitId,
             rootViewController: rootVC,
             adTypes: [.native],
             options: [multipleAdsOption]
         )
+        adLoader?.delegate = self
         adLoader?.load(GADRequest())
     }
     
@@ -63,7 +64,8 @@ class AdManager: NSObject {
         GADAppOpenAd.load(
             withAdUnitID: AdManager.shared.appOpenAdUnitId,
             request: GADRequest(),
-            orientation: .portrait) { [weak self] ad, err in
+            orientation: .portrait
+        ) { [weak self] ad, err in
             if let err = err {
                 print("\(#function) failed with error: \(err)")
             } else {
@@ -93,7 +95,7 @@ extension AdManager: GADNativeAdLoaderDelegate {
     }
     
     func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: Error) {
-        print("❌ Failed to get native ad")
+        print("❌ Failed to get native ad with error: \(error)")
     }
     
 }
