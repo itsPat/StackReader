@@ -33,22 +33,40 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
             }
         )
         dataSource.supplementaryViewProvider = { [weak self] collectionView, kind, index in
-            // Header Configuration
-            let header = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind,
-                withReuseIdentifier: SectionHeader.reuseId, for: index) as! SectionHeader
-            if let category = self?.dataSource.snapshot().sectionIdentifiers[index.section] {
-                header.configure(
-                    with: category,
-                    menu: UIMenu(
-                        title: category.title,
-                        children: [
-                            category.seeAllAction(presenter: self?.navigationController)
-                        ]
+            switch kind {
+            case UICollectionView.elementKindSectionHeader:
+                // Header Configuration
+                let header = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: SectionHeader.reuseId, for: index) as! SectionHeader
+                if let category = self?.dataSource.snapshot().sectionIdentifiers[index.section] {
+                    header.configure(
+                        with: category,
+                        menu: UIMenu(
+                            title: category.title,
+                            children: [
+                                category.seeAllAction(presenter: self?.navigationController)
+                            ]
+                        )
                     )
-                )
+                }
+                return header
+            default:
+                guard let ad = AdManager.shared.nextNativeAd,
+                      let footer = collectionView.dequeueReusableSupplementaryView(
+                        ofKind: kind,
+                        withReuseIdentifier: AdFooterView.reuseId,
+                        for: index
+                      ) as? AdFooterView else {
+                    return collectionView.dequeueReusableSupplementaryView(
+                        ofKind: kind,
+                        withReuseIdentifier: AdFooterView.reuseId,
+                        for: index
+                    )
+                }
+                footer.configure(with: ad)
+                return footer as? UICollectionReusableView
             }
-            return header
         }
         return dataSource
     }()
@@ -81,6 +99,11 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
             SectionHeader.nib,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: SectionHeader.reuseId
+        )
+        collectionView.register(
+            AdFooterView.nib,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+            withReuseIdentifier: AdFooterView.reuseId
         )
         collectionView.register(
             PublicationCell.nib,
@@ -134,7 +157,7 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
         guard collectionView != nil else { return }
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredVertically, animated: true)
     }
-
+    
 }
 
 
