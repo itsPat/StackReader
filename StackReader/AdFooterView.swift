@@ -13,7 +13,7 @@ class AdFooterView: UICollectionReusableView {
     static let reuseId = "AdFooterView"
     static let nib = UINib(nibName: reuseId, bundle: .main)
 
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var nativeAdView: GADNativeAdView!
     @IBOutlet weak var mediaView: GADMediaView!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var headlineLabel: UILabel!
@@ -27,8 +27,8 @@ class AdFooterView: UICollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupAdView()
-        containerView.layer.borderWidth = 0.5
-        containerView.layer.borderColor = UIColor.opaqueSeparator.cgColor
+        nativeAdView.layer.borderWidth = 0.5
+        nativeAdView.layer.borderColor = UIColor.opaqueSeparator.cgColor
         ctaButton.layer.cornerRadius = 4
         ctaButton.layer.cornerCurve = .continuous
         ctaButton.layer.masksToBounds = true
@@ -46,10 +46,17 @@ class AdFooterView: UICollectionReusableView {
             adView.leftAnchor.constraint(equalTo: leftAnchor),
             adView.rightAnchor.constraint(equalTo: rightAnchor),
         ])
+        adView.mediaView = mediaView
+        adView.iconView = iconImageView
+        adView.headlineView = headlineLabel
+        adView.bodyView = bodyLabel
+        adView.callToActionView = ctaButton
     }
     
     func configure(with ad: GADNativeAd) {
         ad.delegate = AdManager.shared
+        
+        mediaView.mediaContent = ad.mediaContent
         
         iconImageView.image = ad.icon?.image
         iconImageView.isHidden = ad.icon?.image == nil
@@ -66,10 +73,8 @@ class AdFooterView: UICollectionReusableView {
 
         ctaButton.setTitle(ad.callToAction, for: .normal)
         ctaButton.isHidden = ad.callToAction == nil
-        // In order for the SDK to process touch events properly, user interaction should be disabled.
         ctaButton.isUserInteractionEnabled = false
-        
-        mediaView.mediaContent = ad.mediaContent
+        nativeAdView.nativeAd = ad
     }
     
 }

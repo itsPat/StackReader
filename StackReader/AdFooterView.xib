@@ -11,7 +11,7 @@
         <view opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2X-7h-r2O" customClass="AdFooterView" customModule="StackReader" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="390" height="396"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qRX-uK-GM3">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qRX-uK-GM3" customClass="GADNativeAdView">
                     <rect key="frame" x="10" y="10" width="370" height="376"/>
                     <subviews>
                         <view clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1ne-Xk-CBH" customClass="GADMediaView">
@@ -170,11 +170,11 @@
                 <outlet property="adBadge" destination="PfZ-cd-zxs" id="TWe-me-dQ5"/>
                 <outlet property="advertiserLabel" destination="ic2-4I-EtF" id="6x8-yF-yZj"/>
                 <outlet property="bodyLabel" destination="41W-IZ-S0S" id="sF9-bC-QzM"/>
-                <outlet property="containerView" destination="qRX-uK-GM3" id="ius-Dh-jVb"/>
                 <outlet property="ctaButton" destination="Ekc-Zs-FHH" id="Cr4-48-MTP"/>
                 <outlet property="headlineLabel" destination="NKU-cb-NgA" id="Gn6-q7-Wgc"/>
                 <outlet property="iconImageView" destination="tcZ-gP-ynt" id="wuT-V7-Nnt"/>
                 <outlet property="mediaView" destination="1ne-Xk-CBH" id="x1c-Ax-eZR"/>
+                <outlet property="nativeAdView" destination="qRX-uK-GM3" id="zFh-ip-L23"/>
             </connections>
             <point key="canvasLocation" x="-47.826086956521742" y="864.13043478260875"/>
         </view>

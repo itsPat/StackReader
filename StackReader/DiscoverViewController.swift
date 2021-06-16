@@ -65,7 +65,7 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
                     )
                 }
                 footer.configure(with: ad)
-                return footer
+                return footer as? UICollectionReusableView
             }
         }
         return dataSource

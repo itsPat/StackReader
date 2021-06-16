@@ -40,11 +40,11 @@ extension UICollectionViewLayout {
                 alignment: .top
             )
             let footerItem = NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(380)),
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(400)),
                 elementKind: UICollectionView.elementKindSectionFooter,
                 alignment: .bottom
             )
-            let showAd = sectionIndex % 6 == 0
+            let showAd = false // sectionIndex % 6 == 0 && sectionIndex != 0
             section.boundarySupplementaryItems = showAd ? [headerItem, footerItem] : [headerItem]
             return section
         }
