@@ -38,7 +38,7 @@ class AdManager: NSObject {
     private var appOpenAd: GADAppOpenAd?
     private var nativeAdQueue = [GADNativeAd]()
     
-    private var nextNativeAd: GADNativeAd? {
+    var nextNativeAd: GADNativeAd? {
         guard !nativeAdQueue.isEmpty else { return nil }
         let first = nativeAdQueue.removeFirst()
         nativeAdQueue.append(first)
@@ -90,8 +90,7 @@ class AdManager: NSObject {
 extension AdManager: GADNativeAdLoaderDelegate {
     
     func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
-        nativeAd.delegate = self
-        print("⭐️ Did get native ad")
+        nativeAdQueue.append(nativeAd)
     }
     
     func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: Error) {
