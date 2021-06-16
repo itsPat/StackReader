@@ -13,6 +13,7 @@ class AdFooterView: UICollectionReusableView {
     static let reuseId = "AdFooterView"
     static let nib = UINib(nibName: reuseId, bundle: .main)
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var mediaView: GADMediaView!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var headlineLabel: UILabel!
@@ -26,6 +27,8 @@ class AdFooterView: UICollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupAdView()
+        containerView.layer.borderWidth = 0.5
+        containerView.layer.borderColor = UIColor.opaqueSeparator.cgColor
         ctaButton.layer.cornerRadius = 4
         ctaButton.layer.cornerCurve = .continuous
         ctaButton.layer.masksToBounds = true

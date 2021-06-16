@@ -14,39 +14,41 @@ extension UICollectionViewLayout {
         let sectionInset = NSDirectionalEdgeInsets(top: 4.0, leading: 16.0, bottom: 20.0, trailing: 8.0)
         let isIpad = UIDevice.current.userInterfaceIdiom == .pad
         let isHorizontal = UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight
-        
-        // Large Item
-        let largeItem = NSCollectionLayoutItem(
-            layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-        )
-        largeItem.contentInsets = itemInset
-        
-        // Horizontal Group
-        let dimension: CGFloat = 0.75 * ((isIpad || isHorizontal) ? 0.5 : 1.0)
-        let hGroup = NSCollectionLayoutGroup.horizontal(
-            layoutSize: .init(widthDimension: .fractionalWidth(dimension), heightDimension: .fractionalWidth(dimension)),
-            subitems: [largeItem]
-        )
-        
-        // Section
-        let section = NSCollectionLayoutSection(group: hGroup)
-        section.contentInsets = sectionInset
-        section.orthogonalScrollingBehavior = .groupPaging
-        
-        // Supplementary Items
-        let headerItem = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(64)),
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .top
-        )
-        
-        let footerItem = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(355)),
-            elementKind: UICollectionView.elementKindSectionFooter,
-            alignment: .bottom
-        )
-        section.boundarySupplementaryItems = [headerItem, footerItem]
-        return UICollectionViewCompositionalLayout(section: section)
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, environment in
+            // Large Item
+            let largeItem = NSCollectionLayoutItem(
+                layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+            )
+            largeItem.contentInsets = itemInset
+            
+            // Horizontal Group
+            let dimension: CGFloat = 0.75 * ((isIpad || isHorizontal) ? 0.5 : 1.0)
+            let hGroup = NSCollectionLayoutGroup.horizontal(
+                layoutSize: .init(widthDimension: .fractionalWidth(dimension), heightDimension: .fractionalWidth(dimension)),
+                subitems: [largeItem]
+            )
+            
+            // Section
+            let section = NSCollectionLayoutSection(group: hGroup)
+            section.contentInsets = sectionInset
+            section.orthogonalScrollingBehavior = .groupPaging
+            
+            // Supplementary Items
+            let headerItem = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(64)),
+                elementKind: UICollectionView.elementKindSectionHeader,
+                alignment: .top
+            )
+            let footerItem = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(380)),
+                elementKind: UICollectionView.elementKindSectionFooter,
+                alignment: .bottom
+            )
+            let showAd = sectionIndex % 6 == 0
+            section.boundarySupplementaryItems = showAd ? [headerItem, footerItem] : [headerItem]
+            return section
+        }
+        return layout
     }
     
     static var stacksLayout: UICollectionViewCompositionalLayout {
