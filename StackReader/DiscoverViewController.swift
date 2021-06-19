@@ -13,6 +13,8 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    private var hasMorePagesForCategory = [Substack.Category: Bool]()
+    
     // MARK: - Computed Properties
     
     lazy private var searchController: UISearchController = {
@@ -52,8 +54,7 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
                 }
                 return header
             default:
-                guard let ad = AdManager.shared.nextNativeAd,
-                      let footer = collectionView.dequeueReusableSupplementaryView(
+                guard let footer = collectionView.dequeueReusableSupplementaryView(
                         ofKind: kind,
                         withReuseIdentifier: AdFooterView.reuseId,
                         for: index
@@ -64,8 +65,8 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
                         for: index
                     )
                 }
-                footer.configure(with: ad)
-                return footer as? UICollectionReusableView
+                footer.configure()
+                return footer
             }
         }
         return dataSource
@@ -80,6 +81,7 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        AdManager.shared.delegate = self
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -134,8 +136,9 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
         Substack.Category.allCases.forEach { category in
             NetworkManager.shared.fetchPublications(by: category) { [weak self] res in
                 switch res {
-                case .success(let publications):
-                    self?.updateSnapshot(for: category, with: publications, animated: true)
+                case .success(let result):
+                    self?.hasMorePagesForCategory[category] = result.more
+                    self?.updateSnapshot(for: category, with: result.publications, animated: true)
                 case .failure(let err):
                     print("\(#function) failed to fetch data for category: \(category) with err: \(err)")
                 }
@@ -196,6 +199,14 @@ extension DiscoverViewController: UICollectionViewDelegate {
         animator.addCompletion { [weak self] in
             self?.navigationController?.pushViewController(.vc(.publicationDetail(publication: publication)), animated: true)
         }
+    }
+    
+}
+
+extension DiscoverViewController: AdManagerDelegate {
+    
+    func didReceiveNativeAds() {
+        collectionView.collectionViewLayout.invalidateLayout()
     }
     
 }

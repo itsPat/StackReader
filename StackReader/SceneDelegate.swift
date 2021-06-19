@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         guard let _ = (scene as? UIWindowScene),
               let vc = window?.rootViewController else { return }
-        AdManager.shared.setupAdLoader(rootVC: vc)
+        AdManager.shared.fetchAds(with: vc)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

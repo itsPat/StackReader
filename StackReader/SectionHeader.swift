@@ -35,7 +35,7 @@ class SectionHeader: UICollectionReusableView {
         imageView.layer.cornerRadius = 8.0
         imageView.layer.cornerCurve = .continuous
         imageView.layer.masksToBounds = true
-        imageView.layer.borderWidth = 0.5
+        imageView.layer.borderWidth = 0.25
         imageView.layer.borderColor = UIColor.systemGray6.cgColor
     }
     
