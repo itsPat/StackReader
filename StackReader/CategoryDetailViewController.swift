@@ -119,7 +119,10 @@ extension CategoryDetailViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let w = collectionView.bounds.inset(by: collectionView.contentInset).width
-        return CGSize(width: w, height: w)
+        let halfW = (w - 10.0) / 2.0
+        let isIpad = UIDevice.current.userInterfaceIdiom == .pad
+        let size = isIpad ? halfW : w
+        return CGSize(width: size, height: size)
     }
     
 }

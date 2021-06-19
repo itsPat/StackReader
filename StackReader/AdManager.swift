@@ -129,10 +129,6 @@ class AdManager: NSObject {
         }
     }
     
-    func userDeniedATTPermission() {
-        GADMobileAds.sharedInstance().disableSDKCrashReporting()
-    }
-    
 }
 
 // MARK: - GADNativeAdLoaderDelegate

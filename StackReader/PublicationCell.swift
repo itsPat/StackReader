@@ -28,10 +28,10 @@ class PublicationCell: UICollectionViewCell {
         contentView.backgroundColor = .systemBackground
         contentView.layer.borderWidth = 0.25
         contentView.layer.borderColor = UIColor.systemGray6.cgColor
-        layer.shadowColor = UIColor.black.withAlphaComponent(0.5).cgColor
-        layer.shadowOpacity = 0.5
-        layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-        layer.shadowRadius = 4
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.25
+        layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
+        layer.shadowRadius = 8.0
         layer.masksToBounds = false
     }
     

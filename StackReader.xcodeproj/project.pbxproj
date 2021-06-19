@@ -14,6 +14,7 @@
 		78089BD72663F8E800EDDD8B /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78089BD52663F8E800EDDD8B /* PostCell.swift */; };
 		78089BD82663F8E800EDDD8B /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78089BD62663F8E800EDDD8B /* PostCell.xib */; };
 		78224C892672E25C00FA4B36 /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78224C882672E25C00FA4B36 /* StoreKitManager.swift */; };
+		786B6283267E52AE00A54BCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 786B6282267E52AE00A54BCD /* GoogleService-Info.plist */; };
 		7888FB9826793AD700308596 /* AdFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7888FB9626793AD700308596 /* AdFooterView.swift */; };
 		7888FB9B26793DC700308596 /* AdFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7888FB9A26793DC700308596 /* AdFooterView.xib */; };
 		7889070F267658B50099AF18 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7889070E267658B50099AF18 /* CategoryDetailViewController.swift */; };
@@ -54,6 +55,7 @@
 		78089BD52663F8E800EDDD8B /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		78089BD62663F8E800EDDD8B /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		78224C882672E25C00FA4B36 /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
+		786B6282267E52AE00A54BCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7888FB9626793AD700308596 /* AdFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdFooterView.swift; sourceTree = "<group>"; };
 		7888FB9A26793DC700308596 /* AdFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdFooterView.xib; sourceTree = "<group>"; };
 		7889070E267658B50099AF18 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				78DCF41E2663C26900D16719 /* Assets.xcassets */,
 				78DCF4202663C26900D16719 /* LaunchScreen.storyboard */,
 				78DCF4232663C26900D16719 /* Info.plist */,
+				786B6282267E52AE00A54BCD /* GoogleService-Info.plist */,
 			);
 			name = Template;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			files = (
 				78D06712267E32AB002EE424 /* NativeAdView.xib in Resources */,
 				78DCF4562663E6EE00D16719 /* SectionHeader.xib in Resources */,
+				786B6283267E52AE00A54BCD /* GoogleService-Info.plist in Resources */,
 				78089BD82663F8E800EDDD8B /* PostCell.xib in Resources */,
 				7888FB9B26793DC700308596 /* AdFooterView.xib in Resources */,
 				78DCF4222663C26900D16719 /* LaunchScreen.storyboard in Resources */,
@@ -524,7 +528,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = DTTK359L6E;
 				INFOPLIST_FILE = StackReader/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -547,7 +551,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = DTTK359L6E;
 				INFOPLIST_FILE = StackReader/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
