@@ -40,7 +40,7 @@ extension UICollectionViewLayout {
                 alignment: .top
             )
             let footerItem = NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(440)),
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(450)),
                 elementKind: UICollectionView.elementKindSectionFooter,
                 alignment: .bottom
             )
