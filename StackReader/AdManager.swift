@@ -9,6 +9,10 @@ import Foundation
 import UIKit
 import GoogleMobileAds
 
+protocol AdManagerDelegate: AnyObject {
+    func didReceiveNativeAds()
+}
+
 class AdManager: NSObject {
     
     static let shared = AdManager()
@@ -19,41 +23,83 @@ class AdManager: NSObject {
     private let admobAppId = "ca-app-pub-5610582410461852~1485004036"
     private var nativeAdUnitId: String {
         #if DEBUG
-        "ca-app-pub-3940256099942544/3986624511"
+            "ca-app-pub-3940256099942544/3986624511"
         #else
-        "ca-app-pub-5610582410461852/5396328881"
+            "ca-app-pub-5610582410461852/5396328881"
         #endif
     }
     private var appOpenAdUnitId: String {
         #if DEBUG
-        "ca-app-pub-3940256099942544/5662855259"
+            "ca-app-pub-3940256099942544/5662855259"
         #else
-        "ca-app-pub-5610582410461852/7639348847"
+            "ca-app-pub-5610582410461852/7639348847"
         #endif
     }
     
     // MARK: - Properties
     
+    static let adFrequency = 6
     private var adLoader: GADAdLoader?
     private var appOpenAd: GADAppOpenAd?
-    private var nativeAdQueue = [GADNativeAd]()
+    private var nativeAdQueue = [GADUnifiedNativeAd]()
     
-    var nextNativeAd: GADNativeAd? {
-        guard !nativeAdQueue.isEmpty else { return nil }
+    weak var delegate: AdManagerDelegate?
+    
+    var adQueueIsEmpty: Bool {
+        nativeAdQueue.isEmpty
+    }
+    
+    var nextNativeAd: GADUnifiedNativeAd? {
+        guard !adQueueIsEmpty else { return nil }
         let first = nativeAdQueue.removeFirst()
         nativeAdQueue.append(first)
         return first
     }
     
+    var nextNativeAdView: GADUnifiedNativeAdView? {
+        guard let adView = UINib(nibName: "NativeAdView", bundle: .main)
+                .instantiate(withOwner: nil, options: [:])[0] as? GADUnifiedNativeAdView,
+              let ad = nextNativeAd else { return nil }
+        ad.delegate = self
+        (adView.headlineView as? UILabel)?.text = ad.headline
+        adView.mediaView?.mediaContent = ad.mediaContent
+        
+        (adView.bodyView as? UILabel)?.text = ad.body
+        adView.bodyView?.isHidden = ad.body == nil
+
+        (adView.callToActionView as? UIButton)?.setTitle(ad.callToAction, for: .normal)
+        adView.callToActionView?.isHidden = ad.callToAction == nil
+
+        (adView.iconView as? UIImageView)?.image = ad.icon?.image
+        adView.iconView?.isHidden = ad.icon == nil
+
+        (adView.starRatingView as? UIImageView)?.image = UIImage()
+        adView.starRatingView?.isHidden = ad.starRating == nil
+
+        (adView.storeView as? UILabel)?.text = ad.store
+        adView.storeView?.isHidden = ad.store == nil
+
+        (adView.priceView as? UILabel)?.text = ad.price
+        adView.priceView?.isHidden = ad.price == nil
+
+        (adView.advertiserView as? UILabel)?.text = ad.advertiser
+        adView.advertiserView?.isHidden = ad.advertiser == nil
+
+        // In order for the SDK to process touch events properly, user interaction should be disabled.
+        adView.callToActionView?.isUserInteractionEnabled = false
+        adView.nativeAd = ad
+        return adView
+    }
+    
     // MARK: - Methods
     
-    func setupAdLoader(rootVC: UIViewController) {
+    func fetchAds(with rootVC: UIViewController) {
         let multipleAdsOption = GADMultipleAdsAdLoaderOptions()
         multipleAdsOption.numberOfAds = 4
         adLoader = GADAdLoader(
             adUnitID: nativeAdUnitId,
             rootViewController: rootVC,
-            adTypes: [.native],
+            adTypes: [.unifiedNative],
             options: [multipleAdsOption]
         )
         adLoader?.delegate = self
@@ -83,31 +129,37 @@ class AdManager: NSObject {
         }
     }
     
+    func userDeniedATTPermission() {
+        GADMobileAds.sharedInstance().disableSDKCrashReporting()
+    }
+    
 }
 
 // MARK: - GADNativeAdLoaderDelegate
 
-extension AdManager: GADNativeAdLoaderDelegate {
+extension AdManager: GADAdLoaderDelegate, GADUnifiedNativeAdLoaderDelegate {
     
-    func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
+    func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADUnifiedNativeAd) {
         nativeAdQueue.append(nativeAd)
+        guard nativeAdQueue.count == 1 else { return }
+        delegate?.didReceiveNativeAds()
     }
     
-    func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: Error) {
-        print("❌ Failed to get native ad with error: \(error)")
+    func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: GADRequestError) {
+        print("❌ \(#function) failed with error: \(error)")
     }
     
 }
 
 // MARK: - GADNativeAdDelegate
 
-extension AdManager: GADNativeAdDelegate {
+extension AdManager: GADUnifiedNativeAdDelegate {
     
-    func nativeAdDidRecordImpression(_ nativeAd: GADNativeAd) {
+    func nativeAdDidRecordImpression(_ nativeAd: GADUnifiedNativeAd) {
         print("⭐️ \(#function)")
     }
     
-    func nativeAdDidRecordClick(_ nativeAd: GADNativeAd) {
+    func nativeAdDidRecordClick(_ nativeAd: GADUnifiedNativeAd) {
         print("⭐️ \(#function)")
     }
     

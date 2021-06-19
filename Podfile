@@ -6,6 +6,6 @@ target 'StackReader' do
   use_frameworks!
 
   # Pods for StackReader
-  pod 'Google-Mobile-Ads-SDK'
+  pod 'Google-Mobile-Ads-SDK', '7.67.0'
 
 end

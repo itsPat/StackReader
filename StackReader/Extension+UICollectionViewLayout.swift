@@ -11,7 +11,7 @@ extension UICollectionViewLayout {
     
     static var discoverLayout: UICollectionViewCompositionalLayout {
         let itemInset = NSDirectionalEdgeInsets(top: 0.0, leading: 4.0, bottom: 0.0, trailing: 4.0)
-        let sectionInset = NSDirectionalEdgeInsets(top: 4.0, leading: 16.0, bottom: 20.0, trailing: 8.0)
+        let sectionInset = NSDirectionalEdgeInsets(top: 4.0, leading: 16.0, bottom: 20.0, trailing: 16.0)
         let isIpad = UIDevice.current.userInterfaceIdiom == .pad
         let isHorizontal = UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight
         let layout = UICollectionViewCompositionalLayout { sectionIndex, environment in
@@ -40,11 +40,13 @@ extension UICollectionViewLayout {
                 alignment: .top
             )
             let footerItem = NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(400)),
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(440)),
                 elementKind: UICollectionView.elementKindSectionFooter,
                 alignment: .bottom
             )
-            let showAd = false // sectionIndex % 6 == 0 && sectionIndex != 0
+            let showAd = sectionIndex % AdManager.adFrequency == 0 &&
+                sectionIndex != 0 &&
+                !AdManager.shared.adQueueIsEmpty
             section.boundarySupplementaryItems = showAd ? [headerItem, footerItem] : [headerItem]
             return section
         }
