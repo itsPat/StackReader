@@ -38,10 +38,10 @@ class CategoryDetailViewController: UIViewController {
         NetworkManager.shared.fetchPublications(by: category, page: page) { [weak self] res in
             self?.isFetching = false
             switch res {
-            case .success(let publications):
-                self?.hasMorePublications = !publications.isEmpty
+            case .success(let result):
+                self?.hasMorePublications = result.more
                 self?.page += 1
-                self?.publications.append(contentsOf: publications)
+                self?.publications.append(contentsOf: result.publications)
                 self?.reloadCollectionView()
             case .failure(let err):
                 print("\(#function) failed to fetch publications for category: \(category) with err: \(err)")

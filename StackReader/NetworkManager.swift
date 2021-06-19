@@ -80,7 +80,7 @@ class NetworkManager {
     
     func fetchPublications(by category: Substack.Category,
                            page: Int = 0,
-                           completion: @escaping (Result<[Substack.Publication], Error>) -> ()) {
+                           completion: @escaping (Result<Substack.PublicationsByCategoryResponse, Error>) -> ()) {
         guard let url = URL(string: "https://substack.com/api/v1/category/public/\(category.id)/all?page=\(page)") else {
             return completion(.failure(NetworkError.invalidUrl))
         }
@@ -92,7 +92,7 @@ class NetworkManager {
             if let data = data {
                 do {
                     let response = try JSONDecoder().decode(Substack.PublicationsByCategoryResponse.self, from: data)
-                    return completion(.success(response.publications))
+                    return completion(.success(response))
                 } catch {
                     return completion(.failure(error))
                 }

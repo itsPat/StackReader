@@ -17,6 +17,7 @@
 		7888FB9826793AD700308596 /* AdFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7888FB9626793AD700308596 /* AdFooterView.swift */; };
 		7888FB9B26793DC700308596 /* AdFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7888FB9A26793DC700308596 /* AdFooterView.xib */; };
 		7889070F267658B50099AF18 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7889070E267658B50099AF18 /* CategoryDetailViewController.swift */; };
+		78D06712267E32AB002EE424 /* NativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78D06711267E32AB002EE424 /* NativeAdView.xib */; };
 		78D1BF9F266844F200A3EE82 /* StacksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1BF9E266844F200A3EE82 /* StacksViewController.swift */; };
 		78D1BFA32668461800A3EE82 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1BFA22668461800A3EE82 /* UserData.swift */; };
 		78D1BFA626684E8200A3EE82 /* Substack+Publication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1BFA526684E8200A3EE82 /* Substack+Publication.swift */; };
@@ -56,6 +57,7 @@
 		7888FB9626793AD700308596 /* AdFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdFooterView.swift; sourceTree = "<group>"; };
 		7888FB9A26793DC700308596 /* AdFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdFooterView.xib; sourceTree = "<group>"; };
 		7889070E267658B50099AF18 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
+		78D06711267E32AB002EE424 /* NativeAdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NativeAdView.xib; sourceTree = "<group>"; };
 		78D1BF9E266844F200A3EE82 /* StacksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StacksViewController.swift; sourceTree = "<group>"; };
 		78D1BFA22668461800A3EE82 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		78D1BFA526684E8200A3EE82 /* Substack+Publication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Substack+Publication.swift"; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				78089BD62663F8E800EDDD8B /* PostCell.xib */,
 				7888FB9626793AD700308596 /* AdFooterView.swift */,
 				7888FB9A26793DC700308596 /* AdFooterView.xib */,
+				78D06711267E32AB002EE424 /* NativeAdView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78D06712267E32AB002EE424 /* NativeAdView.xib in Resources */,
 				78DCF4562663E6EE00D16719 /* SectionHeader.xib in Resources */,
 				78089BD82663F8E800EDDD8B /* PostCell.xib in Resources */,
 				7888FB9B26793DC700308596 /* AdFooterView.xib in Resources */,
