@@ -126,25 +126,6 @@ __attribute__((no_sanitize("thread"))) BOOL GULIsLoggableLevel(GULLoggerLevel lo
   return (BOOL)(loggerLevel <= sGULLoggerMaximumLevel);
 }
 
-#ifdef DEBUG
-void GULResetLogger() {
-  sGULLoggerOnceToken = 0;
-  sGULLoggerDebugMode = NO;
-}
-
-aslclient getGULLoggerClient() {
-  return sGULLoggerClient;
-}
-
-dispatch_queue_t getGULClientQueue() {
-  return sGULClientQueue;
-}
-
-BOOL getGULLoggerDebugMode() {
-  return sGULLoggerDebugMode;
-}
-#endif
-
 void GULLoggerRegisterVersion(const char *version) {
   sVersion = version;
 }
