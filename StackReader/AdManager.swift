@@ -52,7 +52,9 @@ class AdManager: NSObject {
     var nextNativeAd: GADUnifiedNativeAd? {
         guard !adQueueIsEmpty else { return nil }
         let first = nativeAdQueue.removeFirst()
-        nativeAdQueue.append(first)
+        if nativeAdQueue.count < 2 {
+            fetchMoreNativeAds()
+        }
         return first
     }
     
@@ -103,6 +105,10 @@ class AdManager: NSObject {
             options: [multipleAdsOption]
         )
         adLoader?.delegate = self
+        adLoader?.load(GADRequest())
+    }
+    
+    func fetchMoreNativeAds(count: Int = 4) {
         adLoader?.load(GADRequest())
     }
     
