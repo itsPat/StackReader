@@ -33,10 +33,10 @@ class AdFooterView: UICollectionReusableView {
             adView.translatesAutoresizingMaskIntoConstraints = false
             addSubview(adView)
             NSLayoutConstraint.activate([
-                adView.centerXAnchor.constraint(equalTo: centerXAnchor),
-                adView.centerYAnchor.constraint(equalTo: centerYAnchor),
-                adView.heightAnchor.constraint(lessThanOrEqualTo: heightAnchor),
-                adView.widthAnchor.constraint(equalTo: widthAnchor)
+                adView.topAnchor.constraint(equalTo: topAnchor),
+                adView.bottomAnchor.constraint(equalTo: bottomAnchor),
+                adView.leftAnchor.constraint(equalTo: leftAnchor),
+                adView.rightAnchor.constraint(equalTo: rightAnchor),
             ])
         }
     }

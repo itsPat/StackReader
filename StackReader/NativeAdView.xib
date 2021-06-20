@@ -36,7 +36,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fko-aT-u3q" userLabel="container">
                             <rect key="frame" x="0.0" y="231.5" width="414" height="226.5"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Cap-ED-bMh">
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Cap-ED-bMh">
                                     <rect key="frame" x="10" y="16.5" width="394" height="194"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cOx-gQ-7UD">
@@ -124,9 +124,6 @@
                                             </userDefinedRuntimeAttributes>
                                         </button>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="194" id="7Yf-EN-yfz"/>
-                                    </constraints>
                                 </stackView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
