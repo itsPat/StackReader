@@ -15,6 +15,9 @@
 		78089BD82663F8E800EDDD8B /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78089BD62663F8E800EDDD8B /* PostCell.xib */; };
 		78224C892672E25C00FA4B36 /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78224C882672E25C00FA4B36 /* StoreKitManager.swift */; };
 		786B6283267E52AE00A54BCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 786B6282267E52AE00A54BCD /* GoogleService-Info.plist */; };
+		7877738C268516DE00D16579 /* Substack+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7877738B268516DE00D16579 /* Substack+Item.swift */; };
+		7877738E268517C400D16579 /* AdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7877738D268517C400D16579 /* AdCell.xib */; };
+		78777390268517CE00D16579 /* AdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7877738F268517CE00D16579 /* AdCell.swift */; };
 		7888FB9826793AD700308596 /* AdFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7888FB9626793AD700308596 /* AdFooterView.swift */; };
 		7888FB9B26793DC700308596 /* AdFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7888FB9A26793DC700308596 /* AdFooterView.xib */; };
 		7889070F267658B50099AF18 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7889070E267658B50099AF18 /* CategoryDetailViewController.swift */; };
@@ -56,6 +59,9 @@
 		78089BD62663F8E800EDDD8B /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		78224C882672E25C00FA4B36 /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
 		786B6282267E52AE00A54BCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7877738B268516DE00D16579 /* Substack+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Substack+Item.swift"; sourceTree = "<group>"; };
+		7877738D268517C400D16579 /* AdCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdCell.xib; sourceTree = "<group>"; };
+		7877738F268517CE00D16579 /* AdCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdCell.swift; sourceTree = "<group>"; };
 		7888FB9626793AD700308596 /* AdFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdFooterView.swift; sourceTree = "<group>"; };
 		7888FB9A26793DC700308596 /* AdFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdFooterView.xib; sourceTree = "<group>"; };
 		7889070E267658B50099AF18 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				78DCF4332663C31100D16719 /* Substack.swift */,
+				7877738B268516DE00D16579 /* Substack+Item.swift */,
 				78D1BFA826684E8800A3EE82 /* Substack+Post.swift */,
 				78D1BFA526684E8200A3EE82 /* Substack+Publication.swift */,
 			);
@@ -203,6 +210,8 @@
 				78DCF4422663DE4100D16719 /* PublicationCell.xib */,
 				78089BD52663F8E800EDDD8B /* PostCell.swift */,
 				78089BD62663F8E800EDDD8B /* PostCell.xib */,
+				7877738F268517CE00D16579 /* AdCell.swift */,
+				7877738D268517C400D16579 /* AdCell.xib */,
 				7888FB9626793AD700308596 /* AdFooterView.swift */,
 				7888FB9A26793DC700308596 /* AdFooterView.xib */,
 				78D06711267E32AB002EE424 /* NativeAdView.xib */,
@@ -297,6 +306,7 @@
 				78089BD82663F8E800EDDD8B /* PostCell.xib in Resources */,
 				7888FB9B26793DC700308596 /* AdFooterView.xib in Resources */,
 				78DCF4222663C26900D16719 /* LaunchScreen.storyboard in Resources */,
+				7877738E268517C400D16579 /* AdCell.xib in Resources */,
 				78DCF41F2663C26900D16719 /* Assets.xcassets in Resources */,
 				78DCF4442663DE4100D16719 /* PublicationCell.xib in Resources */,
 				78DCF41D2663C26800D16719 /* Main.storyboard in Resources */,
@@ -352,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7877738C268516DE00D16579 /* Substack+Item.swift in Sources */,
 				7888FB9826793AD700308596 /* AdFooterView.swift in Sources */,
 				78DCF44D2663DFEB00D16719 /* Extension+String.swift in Sources */,
 				78DCF42F2663C2AC00D16719 /* NetworkManager.swift in Sources */,
@@ -375,6 +386,7 @@
 				78D1BFA32668461800A3EE82 /* UserData.swift in Sources */,
 				78DCF43B2663D9F300D16719 /* DiscoverViewController.swift in Sources */,
 				78D1BFA926684E8800A3EE82 /* Substack+Post.swift in Sources */,
+				78777390268517CE00D16579 /* AdCell.swift in Sources */,
 				78DCF4342663C31100D16719 /* Substack.swift in Sources */,
 				78DCF4512663E00C00D16719 /* ImageManager.swift in Sources */,
 				78DCF4182663C26800D16719 /* SceneDelegate.swift in Sources */,

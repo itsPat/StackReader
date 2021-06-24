@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Network
 
 class NetworkManager {
     
@@ -15,8 +16,19 @@ class NetworkManager {
     }
     
     static let shared = NetworkManager()
-    private init() {}
+    private init() {
+        monitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                print("✅ Connected" + (path.isExpensive ? " (isCellular)" : ""))
+            } else {
+                print("❌ No connection")
+            }
+        }
+        monitor.start(queue: monitorQueue)
+    }
     
+    private let monitor = NWPathMonitor()
+    private let monitorQueue = DispatchQueue(label: "Monitor")
     private var tasks = [String: URLSessionDataTask]()
     
     // MARK: - Cancel Network Tasks
