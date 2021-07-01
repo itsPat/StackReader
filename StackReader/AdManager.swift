@@ -38,7 +38,7 @@ class AdManager: NSObject {
     
     // MARK: - Properties
     
-    static let adFrequency = 6
+    static let adFrequency = 9
     private var adLoader: GADAdLoader?
     private var appOpenAd: GADAppOpenAd?
     private var nativeAdQueue = [GADUnifiedNativeAd]()

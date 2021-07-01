@@ -14,52 +14,86 @@ class SectionHeader: UICollectionReusableView {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var chevronBackgroundView: UIView!
+    @IBOutlet weak var chevronImageView: UIImageView!
     @IBOutlet weak var actionButton: UIButton!
     
-    var cellId: String = .uuid
+    private var cellId: String = .uuid
+    private var actionIdentifiers: [UIAction.Identifier] = []
+    
+    // MARK: - Life Cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        actionButton.layer.cornerRadius = 16
-        actionButton.layer.masksToBounds = true
+        chevronBackgroundView.layer.cornerRadius = 12
+        chevronBackgroundView.layer.masksToBounds = true
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        actionIdentifiers.forEach {
+            actionButton.removeAction(identifiedBy: $0, for: .touchUpInside)
+        }
+        actionIdentifiers = []
         NetworkManager.shared.cancel(taskWithId: cellId)
         imageView.image = nil
     }
     
-    func setupBorder() {
+    // MARK: - Private Methods
+    
+    private func setupBorder() {
         backgroundColor = .systemBackground
         imageView.layer.cornerRadius = 8.0
         imageView.layer.cornerCurve = .continuous
         imageView.layer.masksToBounds = true
-        imageView.layer.borderWidth = 0.25
+        imageView.layer.borderWidth = 0.5
         imageView.layer.borderColor = UIColor.systemGray6.cgColor
     }
     
-    func removeBorder() {
+    private func removeBorder() {
         backgroundColor = .clear
         imageView.layer.borderWidth = 0.0
     }
     
-    func configure(with category: Substack.Category, menu: UIMenu? = nil) {
+    private func setupActionButton(title: String, actions: [UIAction]) {
+        if actions.count > 1 {
+            actionButton.menu = UIMenu(children: actions)
+            actionButton.showsMenuAsPrimaryAction = true
+            chevronImageView.image = UIImage(
+                systemName: "ellipsis",
+                withConfiguration: UIImage.SymbolConfiguration(pointSize: 16, weight: .light)
+            )
+            actionButton.isHidden = false
+        } else if let action = actions.first {
+            actionIdentifiers.append(action.identifier)
+            actionButton.menu = nil
+            actionButton.showsMenuAsPrimaryAction = false
+            chevronImageView.image = UIImage(
+                systemName: "chevron.right",
+                withConfiguration: UIImage.SymbolConfiguration(pointSize: 16, weight: .light)
+            )
+            actionButton.addAction(action, for: .touchUpInside)
+            actionButton.isHidden = false
+        } else {
+            actionButton.isHidden = true
+        }
+    }
+    
+    // MARK: - Public Methods
+    
+    func configure(with category: Substack.Category, actions: [UIAction]) {
         label.text = category.title
-        imageView.image = category.icon
-        actionButton.isHidden = menu == nil
-        actionButton.showsMenuAsPrimaryAction = menu != nil
-        actionButton.menu = menu
+        imageView.isHidden = true
+        setupActionButton(title: category.title, actions: actions)
         removeBorder()
         layoutIfNeeded()
     }
     
-    func configure(with publication: Substack.Publication, menu: UIMenu? = nil) {
+    func configure(with publication: Substack.Publication, actions: [UIAction]) {
         label.text = publication.name
         imageView.setImageWith(url: publication.logoUrl ?? publication.authorPhotoUrl, cellId: cellId)
-        actionButton.isHidden = false
-        actionButton.showsMenuAsPrimaryAction = menu != nil
-        actionButton.menu = menu
+        imageView.isHidden = false
+        setupActionButton(title: publication.name, actions: actions)
         setupBorder()
         layoutIfNeeded()
     }

@@ -39,18 +39,12 @@ class StacksViewController: UIViewController, TabBarControllerItem {
                 ofKind: kind,
                 withReuseIdentifier: SectionHeader.reuseId, for: index) as! SectionHeader
             if let publication = self?.dataSource.snapshot().sectionIdentifiers[index.section] {
-                header.configure(
-                    with: publication,
-                    menu: UIMenu(
-                        title: publication.name,
-                        children: [
-                            publication.seeAllAction(presenter: self?.navigationController),
-                            publication.saveAction { [weak self] in
-                                self?.remove(publication: publication)
-                            }
-                        ]
-                    )
-                )
+                header.configure(with: publication, actions: [
+                    publication.seeAllAction(presenter: self?.navigationController),
+                    publication.saveAction { [weak self] in
+                        self?.remove(publication: publication)
+                    }
+                ])
             }
             return header
         }

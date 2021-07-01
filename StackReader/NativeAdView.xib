@@ -37,7 +37,7 @@
                             <rect key="frame" x="0.0" y="231.5" width="414" height="226.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Cap-ED-bMh">
-                                    <rect key="frame" x="10" y="16.5" width="394" height="194"/>
+                                    <rect key="frame" x="10" y="19.5" width="394" height="188"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cOx-gQ-7UD">
                                             <rect key="frame" x="0.0" y="0.0" width="394" height="50"/>
@@ -108,10 +108,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1J-64-F0W">
-                                            <rect key="frame" x="0.0" y="144" width="394" height="50"/>
+                                            <rect key="frame" x="0.0" y="144" width="394" height="44"/>
                                             <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="0.66000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="6F9-9s-Y6r"/>
+                                                <constraint firstAttribute="height" constant="44" id="6F9-9s-Y6r"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
