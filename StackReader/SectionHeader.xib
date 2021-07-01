@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -16,50 +15,67 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h7r-0I-kxy">
-                    <rect key="frame" x="0.0" y="14.5" width="36" height="36"/>
-                    <color key="tintColor" systemColor="labelColor"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="36" id="0LE-xS-1Xg"/>
-                        <constraint firstAttribute="height" constant="36" id="nkC-0r-cvC"/>
-                    </constraints>
-                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="light"/>
-                </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wO8-eZ-AaV">
-                    <rect key="frame" x="44" y="16.5" width="276" height="32"/>
+                    <rect key="frame" x="4" y="0.0" width="79.5" height="65"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQu-NS-TKn">
-                            <rect key="frame" x="0.0" y="0.0" width="236" height="32"/>
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h7r-0I-kxy">
+                            <rect key="frame" x="-36" y="14.5" width="36" height="36"/>
+                            <color key="tintColor" systemColor="labelColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="36" id="0LE-xS-1Xg"/>
+                                <constraint firstAttribute="height" constant="36" id="nkC-0r-cvC"/>
+                            </constraints>
+                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24" scale="small" weight="light"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQu-NS-TKn">
+                            <rect key="frame" x="0.0" y="16.5" width="47.5" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="32" id="hEK-Om-l68"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0s-Ve-eRM">
-                            <rect key="frame" x="244" y="0.0" width="32" height="32"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KIc-SV-vY2" userLabel="backgroundView">
+                            <rect key="frame" x="55.5" y="20.5" width="24" height="24"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="QR9-Jj-axG">
+                                    <rect key="frame" x="2" y="5.5" width="20" height="12.5"/>
+                                    <color key="tintColor" name="AccentColor"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="18" scale="small" weight="light"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="32" id="TG3-8F-QYd"/>
-                                <constraint firstAttribute="height" constant="32" id="ztQ-BB-PCj"/>
+                                <constraint firstItem="QR9-Jj-axG" firstAttribute="top" secondItem="KIc-SV-vY2" secondAttribute="top" constant="2" id="0Lv-oW-oUK"/>
+                                <constraint firstAttribute="trailing" secondItem="QR9-Jj-axG" secondAttribute="trailing" constant="2" id="1HQ-FC-5hn"/>
+                                <constraint firstAttribute="bottom" secondItem="QR9-Jj-axG" secondAttribute="bottom" constant="2" id="SyN-sE-Zt9"/>
+                                <constraint firstItem="QR9-Jj-axG" firstAttribute="leading" secondItem="KIc-SV-vY2" secondAttribute="leading" constant="2" id="TEg-7D-U2W"/>
+                                <constraint firstAttribute="height" constant="24" id="qFu-NN-K51"/>
+                                <constraint firstAttribute="width" constant="24" id="unJ-Ka-BQm"/>
                             </constraints>
-                            <color key="tintColor" name="AccentColor"/>
-                            <state key="normal">
-                                <imageReference key="image" image="ellipsis.circle" catalog="system" symbolScale="large"/>
-                            </state>
-                        </button>
+                        </view>
                     </subviews>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTG-qQ-cNF">
+                    <rect key="frame" x="4" y="0.0" width="79.5" height="65"/>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
             <constraints>
-                <constraint firstItem="h7r-0I-kxy" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="75j-UN-ker"/>
-                <constraint firstItem="wO8-eZ-AaV" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="9Zs-xz-GVB"/>
-                <constraint firstItem="h7r-0I-kxy" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="M4l-oW-5eB"/>
-                <constraint firstItem="wO8-eZ-AaV" firstAttribute="leading" secondItem="h7r-0I-kxy" secondAttribute="trailing" constant="8" id="nzp-X5-jXa"/>
-                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="wO8-eZ-AaV" secondAttribute="trailing" id="zX6-ZL-g4V"/>
+                <constraint firstItem="cTG-qQ-cNF" firstAttribute="centerX" secondItem="wO8-eZ-AaV" secondAttribute="centerX" id="5YH-tI-Zek"/>
+                <constraint firstItem="wO8-eZ-AaV" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="HAi-gY-GIY"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="wO8-eZ-AaV" secondAttribute="bottom" id="I9A-gx-9Qx"/>
+                <constraint firstItem="cTG-qQ-cNF" firstAttribute="centerY" secondItem="wO8-eZ-AaV" secondAttribute="centerY" id="OAh-hj-MrA"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wO8-eZ-AaV" secondAttribute="trailing" constant="4" id="YyE-Y2-hnl"/>
+                <constraint firstItem="cTG-qQ-cNF" firstAttribute="height" secondItem="wO8-eZ-AaV" secondAttribute="height" id="b2P-Cw-piF"/>
+                <constraint firstItem="wO8-eZ-AaV" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="exA-2s-boU"/>
+                <constraint firstItem="wO8-eZ-AaV" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="4" id="l6Q-dG-oNg"/>
+                <constraint firstItem="cTG-qQ-cNF" firstAttribute="width" secondItem="wO8-eZ-AaV" secondAttribute="width" id="qxp-4Z-dP1"/>
             </constraints>
             <connections>
-                <outlet property="actionButton" destination="C0s-Ve-eRM" id="xKR-SE-Xei"/>
+                <outlet property="actionButton" destination="cTG-qQ-cNF" id="8bl-Dg-n2z"/>
+                <outlet property="chevronBackgroundView" destination="KIc-SV-vY2" id="Vpe-Yu-z5L"/>
+                <outlet property="chevronImageView" destination="QR9-Jj-axG" id="LjN-VU-tRP"/>
                 <outlet property="imageView" destination="h7r-0I-kxy" id="uPG-sc-r4c"/>
                 <outlet property="label" destination="TQu-NS-TKn" id="yZ8-rh-BvL"/>
             </connections>
@@ -67,12 +83,15 @@
         </collectionReusableView>
     </objects>
     <resources>
-        <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
         <namedColor name="AccentColor">
             <color red="0.097999997437000275" green="0.6940000057220459" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

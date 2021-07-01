@@ -22,7 +22,7 @@ extension UICollectionViewLayout {
             largeItem.contentInsets = itemInset
             
             // Horizontal Group
-            let dimension: CGFloat = 0.75 * ((isIpad || isHorizontal) ? 0.5 : 1.0)
+            let dimension: CGFloat = 0.75 * (isIpad ? 0.5 : 1.0) * (isHorizontal ? 0.5 : 1.0)
             let hGroup = NSCollectionLayoutGroup.horizontal(
                 layoutSize: .init(widthDimension: .fractionalWidth(dimension), heightDimension: .fractionalWidth(dimension)),
                 subitems: [largeItem]
@@ -40,7 +40,10 @@ extension UICollectionViewLayout {
                 alignment: .top
             )
             let footerItem = NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(450)),
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(0.9 * (isIpad ? 0.75 : 1.0) * (isHorizontal ? 0.75 : 1.0)),
+                    heightDimension: .estimated(500)
+                ),
                 elementKind: UICollectionView.elementKindSectionFooter,
                 alignment: .bottom
             )
@@ -65,7 +68,7 @@ extension UICollectionViewLayout {
         
         // Vertical Group
         let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: .init(widthDimension: .fractionalWidth(0.9), heightDimension: .absolute(300.0)),
+            layoutSize: .init(widthDimension: .fractionalWidth(0.925), heightDimension: .absolute(330.0)),
             subitem: item,
             count: 3
         )

@@ -64,30 +64,6 @@ class Substack {
             }
         }
         
-        var icon: UIImage? {
-            switch self {
-            case .culture: return UIImage(systemName: "person")
-            case .politics: return UIImage(systemName: "building.columns")
-            case .technology: return UIImage(systemName: "iphone")
-            case .business: return UIImage(systemName: "briefcase")
-            case .finance: return UIImage(systemName: "banknote")
-            case .food: return UIImage(systemName: "cart")
-            case .sports: return UIImage(systemName: "megaphone")
-            case .faith: return UIImage(systemName: "lightbulb")
-            case .news: return UIImage(systemName: "newspaper")
-            case .music: return UIImage(systemName: "music.mic")
-            case .literature: return UIImage(systemName: "book")
-            case .art: return UIImage(systemName: "paintbrush.pointed")
-            case .climate: return UIImage(systemName: "thermometer.sun")
-            case .science: return UIImage(systemName: "eyedropper")
-            case .health: return UIImage(systemName: "cross")
-            case .philosophy: return UIImage(systemName: "questionmark")
-            case .history: return UIImage(systemName: "hourglass")
-            case .travel: return UIImage(systemName: "airplane")
-            case .education: return UIImage(systemName: "graduationcap")
-            }
-        }
-        
         func seeAllAction(presenter nav: UINavigationController?) -> UIAction {
             UIAction(title: "See All", image: UIImage(systemName: "chevron.right.circle")) { _ in
                 nav?.pushViewController(

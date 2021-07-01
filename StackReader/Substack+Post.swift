@@ -46,6 +46,15 @@ extension Substack {
             return "https://\(publication.subdomain).substack.com/api/v1/posts/\(slug)"
         }
         
+        var relativePostDate: String? {
+            let isoFormatter = ISO8601DateFormatter()
+            isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+            guard let date = isoFormatter.date(from: postDateString) else { return nil }
+            let formatter = RelativeDateTimeFormatter()
+            formatter.dateTimeStyle = .named
+            return formatter.localizedString(for: date, relativeTo: Date())
+        }
+        
         var isPaidOnly: Bool {
             audience == "only_paid"
         }

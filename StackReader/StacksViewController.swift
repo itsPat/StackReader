@@ -14,14 +14,23 @@ class StacksViewController: UIViewController, TabBarControllerItem {
     
     // MARK: - Computed Properties
     
-    lazy var dataSource: UICollectionViewDiffableDataSource<Substack.Publication, Substack.Post> = {
-        let dataSource = UICollectionViewDiffableDataSource<Substack.Publication, Substack.Post>(
+    lazy var dataSource: UICollectionViewDiffableDataSource<Substack.Publication, Substack.Item> = {
+        let dataSource = UICollectionViewDiffableDataSource<Substack.Publication, Substack.Item>(
             collectionView: collectionView,
-            cellProvider: { collectionView, indexPath, post in
+            cellProvider: { collectionView, indexPath, item in
                 // Cell Configuration
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostCell.reuseId, for: indexPath) as! PostCell
-                cell.configure(with: post)
-                return cell
+                switch item {
+                case .post(let post):
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostCell.reuseId, for: indexPath) as! PostCell
+                    cell.configure(with: post)
+                    return cell
+                case .ad:
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AdCell.reuseId, for: indexPath) as! AdCell
+                    cell.configure()
+                    return cell
+                default:
+                    fatalError("\(#function) has missing implementation for type: \(item)")
+                }
             }
         )
         dataSource.supplementaryViewProvider = { [weak self] collectionView, kind, index in
@@ -30,18 +39,12 @@ class StacksViewController: UIViewController, TabBarControllerItem {
                 ofKind: kind,
                 withReuseIdentifier: SectionHeader.reuseId, for: index) as! SectionHeader
             if let publication = self?.dataSource.snapshot().sectionIdentifiers[index.section] {
-                header.configure(
-                    with: publication,
-                    menu: UIMenu(
-                        title: publication.name,
-                        children: [
-                            publication.seeAllAction(presenter: self?.navigationController),
-                            publication.saveAction { [weak self] in
-                                self?.remove(publication: publication)
-                            }
-                        ]
-                    )
-                )
+                header.configure(with: publication, actions: [
+                    publication.seeAllAction(presenter: self?.navigationController),
+                    publication.saveAction { [weak self] in
+                        self?.remove(publication: publication)
+                    }
+                ])
             }
             return header
         }
@@ -82,6 +85,10 @@ class StacksViewController: UIViewController, TabBarControllerItem {
             PostCell.nib,
             forCellWithReuseIdentifier: PostCell.reuseId
         )
+        collectionView?.register(
+            AdCell.nib,
+            forCellWithReuseIdentifier: AdCell.reuseId
+        )
         refresh()
         collectionView.refreshControl = UIRefreshControl(
             frame: .zero,
@@ -95,7 +102,7 @@ class StacksViewController: UIViewController, TabBarControllerItem {
     }
     
     func resetSnapshot(animated: Bool = false) {
-        var snapshot = NSDiffableDataSourceSnapshot<Substack.Publication, Substack.Post>()
+        var snapshot = NSDiffableDataSourceSnapshot<Substack.Publication, Substack.Item>()
         snapshot.appendSections(UserData.savedPublications)
         dataSource.apply(snapshot, animatingDifferences: animated)
     }
@@ -120,7 +127,8 @@ class StacksViewController: UIViewController, TabBarControllerItem {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             var snapshot = self.dataSource.snapshot()
-            snapshot.appendItems(posts, toSection: publication)
+            let items = posts.map { Substack.Item.post($0) } // + (AdManager.shared.adQueueIsEmpty ? [] : [.ad()])
+            snapshot.appendItems(items, toSection: publication)
             self.dataSource.apply(snapshot, animatingDifferences: animated)
             self.collectionView.refreshControl?.endRefreshing()
         }
@@ -148,36 +156,51 @@ extension StacksViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let publication = dataSource.snapshot().sectionIdentifiers[indexPath.section]
-        let post = dataSource.snapshot().itemIdentifiers(inSection: publication)[indexPath.item]
-        present(.vc(.postDetail(post: post)), animated: true, completion: nil)
+        let item = dataSource.snapshot().itemIdentifiers(inSection: publication)[indexPath.item]
+        switch item {
+        case .post(let post):
+            present(.vc(.postDetail(post: post)), animated: true, completion: nil)
+        default:
+            break
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         contextMenuConfigurationForItemAt indexPath: IndexPath,
                         point: CGPoint) -> UIContextMenuConfiguration? {
         let publication = dataSource.snapshot().sectionIdentifiers[indexPath.section]
-        let post = dataSource.snapshot().itemIdentifiers(inSection: publication)[indexPath.item]
-        return UIContextMenuConfiguration(
-            identifier: "\(indexPath.section),\(indexPath.item)" as NSString,
-            previewProvider: { () -> UIViewController? in
-                return .vc(.postDetail(post: post))
-            },
-            actionProvider: { _ -> UIMenu? in
-                return UIMenu(title: "Quick Actions", children: [post.saveAction {
-                    collectionView.reloadData()
-                }])
-            }
-        )
+        let item = dataSource.snapshot().itemIdentifiers(inSection: publication)[indexPath.item]
+        switch item {
+        case .post(let post):
+            return UIContextMenuConfiguration(
+                identifier: "\(indexPath.section),\(indexPath.item)" as NSString,
+                previewProvider: { () -> UIViewController? in
+                    return .vc(.postDetail(post: post))
+                },
+                actionProvider: { _ -> UIMenu? in
+                    return UIMenu(title: "Quick Actions", children: [post.saveAction {
+                        collectionView.reloadData()
+                    }])
+                }
+            )
+        default:
+            return nil
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
         guard let components = (configuration.identifier as? String)?.components(separatedBy: ","),
-              let section = Int(components.first ?? ""),
-              let item = Int(components.last ?? "") else { return }
-        let publication = dataSource.snapshot().sectionIdentifiers[section]
-        let post = dataSource.snapshot().itemIdentifiers(inSection: publication)[item]
-        animator.addCompletion { [weak self] in
-            self?.present(.vc(.postDetail(post: post)), animated: true, completion: nil)
+              let sectionIndex = Int(components.first ?? ""),
+              let itemIndex = Int(components.last ?? "") else { return }
+        let publication = dataSource.snapshot().sectionIdentifiers[sectionIndex]
+        let item = dataSource.snapshot().itemIdentifiers(inSection: publication)[itemIndex]
+        switch item {
+        case .post(let post):
+            animator.addCompletion { [weak self] in
+                self?.present(.vc(.postDetail(post: post)), animated: true, completion: nil)
+            }
+        default:
+            break
         }
     }
     

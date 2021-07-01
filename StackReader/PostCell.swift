@@ -14,8 +14,8 @@ class PostCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var paidMembersOnlyLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var savePostButton: UIButton!
     
     private let cellId: String = .uuid
@@ -36,7 +36,6 @@ class PostCell: UICollectionViewCell {
         super.prepareForReuse()
         imageView.image = nil
         titleLabel.text = nil
-        descriptionLabel.text = nil
         NetworkManager.shared.cancel(taskWithId: cellId)
         post = nil
     }
@@ -46,8 +45,8 @@ class PostCell: UICollectionViewCell {
         self.didTapSave = didTapSave
         imageView.setImageWith(url: post.coverImageUrl ?? post.publication?.logoUrl ?? post.publication?.authorPhotoUrl, cellId: cellId)
         titleLabel.text = post.title
-        descriptionLabel.text = post.subtitle
-        descriptionLabel.isHidden = post.subtitle.isEmpty
+        dateLabel.text = post.relativePostDate?.localizedCapitalized
+        dateLabel.isHidden = post.relativePostDate == nil
         paidMembersOnlyLabel.isHidden = !post.isPaidOnly
         updateSavePostButton()
     }
