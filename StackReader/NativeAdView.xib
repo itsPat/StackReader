@@ -113,7 +113,6 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="44" id="6F9-9s-Y6r"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
                                             <userDefinedRuntimeAttributes>

@@ -12,43 +12,31 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PostCell" customModule="StackReader" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="508" height="146"/>
+            <rect key="frame" x="0.0" y="0.0" width="489" height="110"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="508" height="146"/>
+                <rect key="frame" x="0.0" y="0.0" width="489" height="110"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xNE-WP-aSK">
-                        <rect key="frame" x="0.0" y="0.0" width="146" height="146"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="xNE-WP-aSK" secondAttribute="height" multiplier="1:1" id="hti-rt-CAN"/>
-                        </constraints>
-                    </imageView>
-                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Xn0-Cf-99t">
-                        <rect key="frame" x="166" y="41.5" width="334" height="63.5"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Xn0-Cf-99t">
+                        <rect key="frame" x="0.0" y="0.0" width="481" height="106"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="vv8-aJ-cpz">
-                                <rect key="frame" x="0.0" y="0.0" width="99.5" height="63.5"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xNE-WP-aSK">
+                                <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="xNE-WP-aSK" secondAttribute="height" multiplier="1:1" id="hti-rt-CAN"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="vv8-aJ-cpz">
+                                <rect key="frame" x="116" y="30.5" width="311" height="45"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribers only" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N58-4J-87s">
-                                        <rect key="frame" x="0.0" y="0.0" width="99.5" height="16"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="16" id="qv1-aB-z1T"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                                        <color key="textColor" systemColor="systemGreenColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7z-pX-3ia">
-                                        <rect key="frame" x="0.0" y="20" width="99.5" height="21.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7z-pX-3ia">
+                                        <rect key="frame" x="0.0" y="0.0" width="311" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggV-FX-4IA">
-                                        <rect key="frame" x="0.0" y="45.5" width="99.5" height="18"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="18" id="ctd-JX-59y"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="25.5" width="311" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
@@ -57,7 +45,7 @@
                                 <viewLayoutGuide key="safeArea" id="Afg-6r-dQf"/>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeS-4b-3WY">
-                                <rect key="frame" x="290" y="9.5" width="44" height="44"/>
+                                <rect key="frame" x="437" y="31" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="a1N-w5-RmY"/>
                                     <constraint firstAttribute="height" constant="44" id="cgk-Wn-5qp"/>
@@ -75,9 +63,21 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="vv8-aJ-cpz" firstAttribute="height" relation="lessThanOrEqual" secondItem="Xn0-Cf-99t" secondAttribute="height" constant="-16" id="SXw-fz-g04"/>
+                            <constraint firstItem="xNE-WP-aSK" firstAttribute="height" secondItem="Xn0-Cf-99t" secondAttribute="height" id="d5e-qW-9IW"/>
+                        </constraints>
                     </stackView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dollarsign.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="tX8-g0-1mp">
+                        <rect key="frame" x="78" y="78.5" width="20" height="19"/>
+                        <color key="tintColor" systemColor="systemGreenColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="Q2u-Nd-Pkl"/>
+                            <constraint firstAttribute="height" constant="20" id="XMl-5n-b92"/>
+                        </constraints>
+                    </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Djv-Am-QWu">
-                        <rect key="frame" x="166" y="145.5" width="342" height="0.5"/>
+                        <rect key="frame" x="116" y="109.5" width="373" height="0.5"/>
                         <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="0.5" id="c9i-Gr-UHb"/>
@@ -87,31 +87,30 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="Xn0-Cf-99t" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="AOF-wB-Dbe"/>
+                <constraint firstItem="tX8-g0-1mp" firstAttribute="bottom" secondItem="xNE-WP-aSK" secondAttribute="bottom" constant="-8" id="ELb-sX-1j5"/>
                 <constraint firstAttribute="trailing" secondItem="Djv-Am-QWu" secondAttribute="trailing" id="Q9F-sH-NFV"/>
-                <constraint firstItem="Xn0-Cf-99t" firstAttribute="leading" secondItem="xNE-WP-aSK" secondAttribute="trailing" constant="20" id="UfV-X9-Jjp"/>
-                <constraint firstItem="xNE-WP-aSK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="VAu-x3-c1e"/>
+                <constraint firstItem="Djv-Am-QWu" firstAttribute="leading" secondItem="vv8-aJ-cpz" secondAttribute="leading" id="XhO-d4-s8q"/>
                 <constraint firstAttribute="trailing" secondItem="Xn0-Cf-99t" secondAttribute="trailing" constant="8" id="Ywc-KE-mGS"/>
-                <constraint firstItem="xNE-WP-aSK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="blk-sJ-EfT"/>
-                <constraint firstAttribute="bottom" secondItem="xNE-WP-aSK" secondAttribute="bottom" id="eNc-Hr-CNg"/>
+                <constraint firstItem="Xn0-Cf-99t" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ZU0-3V-zzw"/>
                 <constraint firstAttribute="bottom" secondItem="Djv-Am-QWu" secondAttribute="bottom" id="hXT-j2-uC4"/>
-                <constraint firstItem="Xn0-Cf-99t" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="m9S-Lt-6VQ"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Xn0-Cf-99t" secondAttribute="bottom" constant="8" id="mHY-sN-dVr"/>
-                <constraint firstItem="Djv-Am-QWu" firstAttribute="leading" secondItem="Xn0-Cf-99t" secondAttribute="leading" id="pgc-L9-bUO"/>
+                <constraint firstItem="Xn0-Cf-99t" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="m9S-Lt-6VQ"/>
+                <constraint firstAttribute="bottom" secondItem="Xn0-Cf-99t" secondAttribute="bottom" constant="4" id="mHY-sN-dVr"/>
+                <constraint firstItem="tX8-g0-1mp" firstAttribute="trailing" secondItem="xNE-WP-aSK" secondAttribute="trailing" constant="-8" id="pou-Ia-KAJ"/>
             </constraints>
-            <size key="customSize" width="508" height="146"/>
+            <size key="customSize" width="489" height="127"/>
             <connections>
                 <outlet property="dateLabel" destination="ggV-FX-4IA" id="A84-Sh-flb"/>
                 <outlet property="imageView" destination="xNE-WP-aSK" id="fNO-Bv-aVr"/>
-                <outlet property="paidMembersOnlyLabel" destination="N58-4J-87s" id="ffv-2k-UHO"/>
+                <outlet property="paidOnlyImageView" destination="tX8-g0-1mp" id="pMQ-TQ-Umc"/>
                 <outlet property="savePostButton" destination="yeS-4b-3WY" id="cuZ-gb-DH3"/>
                 <outlet property="titleLabel" destination="r7z-pX-3ia" id="XKg-al-T1e"/>
             </connections>
-            <point key="canvasLocation" x="-227.536231884058" y="61.607142857142854"/>
+            <point key="canvasLocation" x="-241.30434782608697" y="54.910714285714285"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="bookmark" catalog="system" width="112" height="128"/>
+        <image name="dollarsign.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="AccentColor">
             <color red="0.097999997437000275" green="0.6940000057220459" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -14,7 +14,7 @@ class PostCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var paidMembersOnlyLabel: UILabel!
+    @IBOutlet weak var paidOnlyImageView: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var savePostButton: UIButton!
     
@@ -30,6 +30,16 @@ class PostCell: UICollectionViewCell {
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 0.25
         imageView.layer.borderColor = UIColor.systemGray6.cgColor
+        paidOnlyImageView.layer.shadowPath = UIBezierPath(
+            roundedRect: paidOnlyImageView.bounds,
+            byRoundingCorners: .allCorners,
+            cornerRadii: .init(width: 10.0, height: 10.0)
+        ).cgPath
+        paidOnlyImageView.layer.shadowColor = UIColor.black.cgColor
+        paidOnlyImageView.layer.shadowOpacity = 0.15
+        paidOnlyImageView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        paidOnlyImageView.layer.shadowRadius = 2.0
+        paidOnlyImageView.layer.masksToBounds = false
     }
     
     override func prepareForReuse() {
@@ -47,8 +57,9 @@ class PostCell: UICollectionViewCell {
         titleLabel.text = post.title
         dateLabel.text = post.relativePostDate?.localizedCapitalized
         dateLabel.isHidden = post.relativePostDate == nil
-        paidMembersOnlyLabel.isHidden = !post.isPaidOnly
+        paidOnlyImageView.isHidden = !post.isPaidOnly
         updateSavePostButton()
+        layoutIfNeeded()
     }
 
     @IBAction private func didTapSave(_ sender: UIButton) {

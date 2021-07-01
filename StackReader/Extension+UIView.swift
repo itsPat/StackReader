@@ -12,7 +12,7 @@ extension UIView {
     func pulse(completion: @escaping () -> () = {}) {
         HapticManager.shared.fire(impactStyle: .light)
         UIView.animate(withDuration: 0.1) { [weak self] in
-            self?.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
+            self?.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         } completion: { [weak self] _ in
             UIView.animate(withDuration: 0.2) {
                 self?.transform = .identity
