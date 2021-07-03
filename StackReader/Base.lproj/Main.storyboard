@@ -48,7 +48,7 @@
                                         <string key="text">Tap the bookmark icon on
 any post to save it for later!</string>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -176,7 +176,7 @@ any post to save it for later!</string>
                                         <string key="text">Check out the Discover tab to 
 find interesting publications!</string>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
