@@ -32,7 +32,7 @@ class AdManager: NSObject {
     
     // MARK: - Properties
     
-    static let adFrequency = 9
+    static let adFrequency = 6
     private var adLoader: GADAdLoader?
     private var appOpenAd: GADAppOpenAd?
     private var nativeAdQueue = [GADUnifiedNativeAd]()
@@ -54,6 +54,49 @@ class AdManager: NSObject {
     
     var nextNativeAdView: GADUnifiedNativeAdView? {
         guard let adView = UINib(nibName: "NativeAdView", bundle: .main)
+                .instantiate(withOwner: nil, options: [:])[0] as? GADUnifiedNativeAdView,
+              let ad = nextNativeAd else { return nil }
+        ad.delegate = self
+        (adView.headlineView as? UILabel)?.text = ad.headline
+        adView.mediaView?.mediaContent = ad.mediaContent
+        
+        (adView.bodyView as? UILabel)?.text = ad.body
+        adView.bodyView?.isHidden = ad.body == nil
+
+        (adView.callToActionView as? UIButton)?.setTitle(ad.callToAction, for: .normal)
+        (adView.callToActionView as? UIButton)?.layer.borderWidth = 1
+        (adView.callToActionView as? UIButton)?.layer.borderColor = UIColor(
+            red: 0,
+            green: 150/255,
+            blue: 255/255,
+            alpha: 0.66
+        ).cgColor
+        
+        adView.callToActionView?.isHidden = ad.callToAction == nil
+
+        (adView.iconView as? UIImageView)?.image = ad.icon?.image
+        adView.iconView?.isHidden = ad.icon == nil
+
+        (adView.starRatingView as? UIImageView)?.image = UIImage()
+        adView.starRatingView?.isHidden = ad.starRating == nil
+
+        (adView.storeView as? UILabel)?.text = ad.store
+        adView.storeView?.isHidden = ad.store == nil
+
+        (adView.priceView as? UILabel)?.text = ad.price
+        adView.priceView?.isHidden = ad.price == nil
+
+        (adView.advertiserView as? UILabel)?.text = ad.advertiser
+        adView.advertiserView?.isHidden = ad.advertiser == nil
+
+        // In order for the SDK to process touch events properly, user interaction should be disabled.
+        adView.callToActionView?.isUserInteractionEnabled = false
+        adView.nativeAd = ad
+        return adView
+    }
+    
+    var nextThinNativeAdView: GADUnifiedNativeAdView? {
+        guard let adView = UINib(nibName: "ThinNativeAdView", bundle: .main)
                 .instantiate(withOwner: nil, options: [:])[0] as? GADUnifiedNativeAdView,
               let ad = nextNativeAd else { return nil }
         ad.delegate = self

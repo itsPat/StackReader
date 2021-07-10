@@ -28,8 +28,8 @@ class AdCell: UICollectionViewCell {
         subviews.forEach { $0.removeFromSuperview() }
     }
     
-    func configure() {
-        if let adView = AdManager.shared.nextNativeAdView {
+    func configure(thinAd: Bool = false) {
+        if let adView = thinAd ? AdManager.shared.nextThinNativeAdView : AdManager.shared.nextNativeAdView {
             adView.translatesAutoresizingMaskIntoConstraints = false
             addSubview(adView)
             NSLayoutConstraint.activate([

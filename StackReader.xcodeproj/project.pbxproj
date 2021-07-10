@@ -15,6 +15,7 @@
 		78089BD82663F8E800EDDD8B /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78089BD62663F8E800EDDD8B /* PostCell.xib */; };
 		78224C892672E25C00FA4B36 /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78224C882672E25C00FA4B36 /* StoreKitManager.swift */; };
 		786B6283267E52AE00A54BCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 786B6282267E52AE00A54BCD /* GoogleService-Info.plist */; };
+		787293DD2699D42D0046A2F4 /* ThinNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787293DC2699D42D0046A2F4 /* ThinNativeAdView.xib */; };
 		7877738C268516DE00D16579 /* Substack+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7877738B268516DE00D16579 /* Substack+Item.swift */; };
 		7877738E268517C400D16579 /* AdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7877738D268517C400D16579 /* AdCell.xib */; };
 		78777390268517CE00D16579 /* AdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7877738F268517CE00D16579 /* AdCell.swift */; };
@@ -59,6 +60,7 @@
 		78089BD62663F8E800EDDD8B /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		78224C882672E25C00FA4B36 /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
 		786B6282267E52AE00A54BCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		787293DC2699D42D0046A2F4 /* ThinNativeAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThinNativeAdView.xib; sourceTree = "<group>"; };
 		7877738B268516DE00D16579 /* Substack+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Substack+Item.swift"; sourceTree = "<group>"; };
 		7877738D268517C400D16579 /* AdCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdCell.xib; sourceTree = "<group>"; };
 		7877738F268517CE00D16579 /* AdCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdCell.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				7888FB9626793AD700308596 /* AdFooterView.swift */,
 				7888FB9A26793DC700308596 /* AdFooterView.xib */,
 				78D06711267E32AB002EE424 /* NativeAdView.xib */,
+				787293DC2699D42D0046A2F4 /* ThinNativeAdView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				78DCF4222663C26900D16719 /* LaunchScreen.storyboard in Resources */,
 				7877738E268517C400D16579 /* AdCell.xib in Resources */,
 				78DCF41F2663C26900D16719 /* Assets.xcassets in Resources */,
+				787293DD2699D42D0046A2F4 /* ThinNativeAdView.xib in Resources */,
 				78DCF4442663DE4100D16719 /* PublicationCell.xib in Resources */,
 				78DCF41D2663C26800D16719 /* Main.storyboard in Resources */,
 			);

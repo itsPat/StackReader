@@ -26,7 +26,7 @@ class StacksViewController: UIViewController, TabBarControllerItem {
                     return cell
                 case .ad:
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AdCell.reuseId, for: indexPath) as! AdCell
-                    cell.configure()
+                    cell.configure(thinAd: true)
                     return cell
                 default:
                     fatalError("\(#function) has missing implementation for type: \(item)")
@@ -34,19 +34,32 @@ class StacksViewController: UIViewController, TabBarControllerItem {
             }
         )
         dataSource.supplementaryViewProvider = { [weak self] collectionView, kind, index in
-            // Header Configuration
-            let header = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind,
-                withReuseIdentifier: SectionHeader.reuseId, for: index) as! SectionHeader
-            if let publication = self?.dataSource.snapshot().sectionIdentifiers[index.section] {
-                header.configure(with: publication, actions: [
-                    publication.seeAllAction(presenter: self?.navigationController),
-                    publication.saveAction { [weak self] in
-                        self?.remove(publication: publication)
-                    }
-                ])
+            switch kind {
+            case UICollectionView.elementKindSectionHeader:
+                // Header Configuration
+                let header = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: SectionHeader.reuseId, for: index) as! SectionHeader
+                if let publication = self?.dataSource.snapshot().sectionIdentifiers[index.section] {
+                    header.configure(with: publication, actions: [
+                        publication.seeAllAction(presenter: self?.navigationController),
+                        publication.saveAction { [weak self] in
+                            self?.remove(publication: publication)
+                        }
+                    ])
+                }
+                return header
+            default:
+                guard let footer = collectionView.dequeueReusableSupplementaryView(
+                        ofKind: kind,
+                        withReuseIdentifier: AdFooterView.reuseId,
+                        for: index
+                      ) as? AdFooterView else {
+                    fatalError("Unable to dequeue AdFooterView: \(#file), \(#line)")
+                }
+                footer.configure()
+                return footer
             }
-            return header
         }
         return dataSource
     }()
@@ -80,6 +93,11 @@ class StacksViewController: UIViewController, TabBarControllerItem {
             SectionHeader.nib,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: SectionHeader.reuseId
+        )
+        collectionView.register(
+            AdFooterView.nib,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+            withReuseIdentifier: AdFooterView.reuseId
         )
         collectionView?.register(
             PostCell.nib,
@@ -121,13 +139,14 @@ class StacksViewController: UIViewController, TabBarControllerItem {
                 }
             }
         }
+        emptyStateView.isHidden = !UserData.savedPublications.isEmpty
     }
     
     private func updateSnapshot(for publication: Substack.Publication, with posts: [Substack.Post], animated: Bool = true) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             var snapshot = self.dataSource.snapshot()
-            let items = posts.map { Substack.Item.post($0) } // + (AdManager.shared.adQueueIsEmpty ? [] : [.ad()])
+            let items = posts.map { Substack.Item.post($0) } + (AdManager.shared.adQueueIsEmpty ? [] : [.ad()])
             snapshot.appendItems(items, toSection: publication)
             self.dataSource.apply(snapshot, animatingDifferences: animated)
             self.collectionView.refreshControl?.endRefreshing()
