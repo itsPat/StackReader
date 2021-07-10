@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import GoogleMobileAds
+import AppTrackingTransparency
 
 protocol AdManagerDelegate: AnyObject {
     func didReceiveNativeAds()
@@ -28,17 +29,10 @@ class AdManager: NSObject {
             "ca-app-pub-5610582410461852/5396328881"
         #endif
     }
-    private var appOpenAdUnitId: String {
-        #if DEBUG
-            "ca-app-pub-3940256099942544/5662855259"
-        #else
-            "ca-app-pub-5610582410461852/7639348847"
-        #endif
-    }
     
     // MARK: - Properties
     
-    static let adFrequency = 9
+    static let adFrequency = 6
     private var adLoader: GADAdLoader?
     private var appOpenAd: GADAppOpenAd?
     private var nativeAdQueue = [GADUnifiedNativeAd]()
@@ -70,6 +64,57 @@ class AdManager: NSObject {
         adView.bodyView?.isHidden = ad.body == nil
 
         (adView.callToActionView as? UIButton)?.setTitle(ad.callToAction, for: .normal)
+        (adView.callToActionView as? UIButton)?.layer.borderWidth = 1
+        (adView.callToActionView as? UIButton)?.layer.borderColor = UIColor(
+            red: 0,
+            green: 150/255,
+            blue: 255/255,
+            alpha: 0.66
+        ).cgColor
+        
+        adView.callToActionView?.isHidden = ad.callToAction == nil
+
+        (adView.iconView as? UIImageView)?.image = ad.icon?.image
+        adView.iconView?.isHidden = ad.icon == nil
+
+        (adView.starRatingView as? UIImageView)?.image = UIImage()
+        adView.starRatingView?.isHidden = ad.starRating == nil
+
+        (adView.storeView as? UILabel)?.text = ad.store
+        adView.storeView?.isHidden = ad.store == nil
+
+        (adView.priceView as? UILabel)?.text = ad.price
+        adView.priceView?.isHidden = ad.price == nil
+
+        (adView.advertiserView as? UILabel)?.text = ad.advertiser
+        adView.advertiserView?.isHidden = ad.advertiser == nil
+
+        // In order for the SDK to process touch events properly, user interaction should be disabled.
+        adView.callToActionView?.isUserInteractionEnabled = false
+        adView.nativeAd = ad
+        return adView
+    }
+    
+    var nextThinNativeAdView: GADUnifiedNativeAdView? {
+        guard let adView = UINib(nibName: "ThinNativeAdView", bundle: .main)
+                .instantiate(withOwner: nil, options: [:])[0] as? GADUnifiedNativeAdView,
+              let ad = nextNativeAd else { return nil }
+        ad.delegate = self
+        (adView.headlineView as? UILabel)?.text = ad.headline
+        adView.mediaView?.mediaContent = ad.mediaContent
+        
+        (adView.bodyView as? UILabel)?.text = ad.body
+        adView.bodyView?.isHidden = ad.body == nil
+
+        (adView.callToActionView as? UIButton)?.setTitle(ad.callToAction, for: .normal)
+        (adView.callToActionView as? UIButton)?.layer.borderWidth = 1
+        (adView.callToActionView as? UIButton)?.layer.borderColor = UIColor(
+            red: 0,
+            green: 150/255,
+            blue: 255/255,
+            alpha: 0.66
+        ).cgColor
+        
         adView.callToActionView?.isHidden = ad.callToAction == nil
 
         (adView.iconView as? UIImageView)?.image = ad.icon?.image
@@ -96,42 +141,28 @@ class AdManager: NSObject {
     // MARK: - Methods
     
     func fetchAds(with rootVC: UIViewController) {
-        let multipleAdsOption = GADMultipleAdsAdLoaderOptions()
-        multipleAdsOption.numberOfAds = 4
-        adLoader = GADAdLoader(
-            adUnitID: nativeAdUnitId,
-            rootViewController: rootVC,
-            adTypes: [.unifiedNative],
-            options: [multipleAdsOption]
-        )
-        adLoader?.delegate = self
-        adLoader?.load(GADRequest())
+        requestIDFAPermission { [weak self] in
+            let multipleAdsOption = GADMultipleAdsAdLoaderOptions()
+            multipleAdsOption.numberOfAds = 4
+            self?.adLoader = GADAdLoader(
+                adUnitID: self?.nativeAdUnitId ?? "",
+                rootViewController: rootVC,
+                adTypes: [.unifiedNative],
+                options: [multipleAdsOption]
+            )
+            self?.adLoader?.delegate = self
+            self?.adLoader?.load(GADRequest())
+        }
     }
     
     func fetchMoreNativeAds(count: Int = 4) {
         adLoader?.load(GADRequest())
     }
     
-    func setupAppOpenAd() {
-        GADAppOpenAd.load(
-            withAdUnitID: AdManager.shared.appOpenAdUnitId,
-            request: GADRequest(),
-            orientation: .portrait
-        ) { [weak self] ad, err in
-            if let err = err {
-                print("\(#function) failed with error: \(err)")
-            } else {
-                self?.appOpenAd = ad
-                ad?.fullScreenContentDelegate = self
-            }
-        }
-    }
-    
-    func presentAppOpenAd(from vc: UIViewController) {
-        if let ad = appOpenAd {
-            ad.present(fromRootViewController: vc)
-        } else {
-            setupAppOpenAd()
+    private func requestIDFAPermission(completion: @escaping () -> ()) {
+        ATTrackingManager.requestTrackingAuthorization { status in
+            print("ATTrackingManager.AuthorizationStatus is: \(status)")
+            completion()
         }
     }
     

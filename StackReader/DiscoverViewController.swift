@@ -53,11 +53,7 @@ class DiscoverViewController: UIViewController, TabBarControllerItem {
                         withReuseIdentifier: AdFooterView.reuseId,
                         for: index
                       ) as? AdFooterView else {
-                    return collectionView.dequeueReusableSupplementaryView(
-                        ofKind: kind,
-                        withReuseIdentifier: AdFooterView.reuseId,
-                        for: index
-                    )
+                    fatalError("Unable to dequeue AdFooterView: \(#file), \(#line)")
                 }
                 footer.configure()
                 return footer

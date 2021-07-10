@@ -108,8 +108,9 @@ extension SearchResultsViewController: UICollectionViewDataSourcePrefetching {
 extension SearchResultsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let regularWidth = collectionView.bounds.inset(by: collectionView.contentInset).width
-        let w = UIDevice.current.userInterfaceIdiom == .pad ? (regularWidth - 10) / 2.0 : regularWidth
+        let numberOfColumns: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 3 : 1
+        let spacing: CGFloat = 10 * (numberOfColumns - 1)
+        let w: CGFloat = (collectionView.bounds.inset(by: collectionView.contentInset).width - spacing) / numberOfColumns
         return CGSize(width: w, height: w)
     }
     

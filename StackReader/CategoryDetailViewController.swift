@@ -118,11 +118,10 @@ extension CategoryDetailViewController: UICollectionViewDataSourcePrefetching {
 extension CategoryDetailViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let w = collectionView.bounds.inset(by: collectionView.contentInset).width
-        let halfW = (w - 10.0) / 2.0
-        let isIpad = UIDevice.current.userInterfaceIdiom == .pad
-        let size = isIpad ? halfW : w
-        return CGSize(width: size, height: size)
+        let numberOfColumns: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 3 : 1
+        let spacing: CGFloat = 10 * (numberOfColumns - 1)
+        let w: CGFloat = (collectionView.bounds.inset(by: collectionView.contentInset).width - spacing) / numberOfColumns
+        return CGSize(width: w, height: w)
     }
     
 }
