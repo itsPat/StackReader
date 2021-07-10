@@ -226,5 +226,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>This identifier is used to deliver ads thats are relevant to you.</string>
 </dict>
 </plist>

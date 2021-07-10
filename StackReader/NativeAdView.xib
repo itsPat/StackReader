@@ -36,7 +36,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fko-aT-u3q" userLabel="container">
                             <rect key="frame" x="0.0" y="231.5" width="414" height="226.5"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Cap-ED-bMh">
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Cap-ED-bMh">
                                     <rect key="frame" x="10" y="19.5" width="394" height="188"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cOx-gQ-7UD">
@@ -70,6 +70,12 @@
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                            <integer key="value" value="4"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
@@ -109,11 +115,13 @@
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1J-64-F0W">
                                             <rect key="frame" x="0.0" y="144" width="394" height="44"/>
-                                            <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="0.66000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="44" id="6F9-9s-Y6r"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="3Uu-Ox-hgv"/>
+                                                <constraint firstAttribute="height" constant="44" id="n7K-99-YhR"/>
                                             </constraints>
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                            <color key="tintColor" red="0.0" green="0.58823529411764708" blue="1" alpha="0.66000000000000003" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                             <state key="normal" title="Button"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -127,10 +135,10 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="Cap-ED-bMh" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fko-aT-u3q" secondAttribute="top" constant="10" id="HIn-V1-QdT"/>
+                                <constraint firstItem="Cap-ED-bMh" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fko-aT-u3q" secondAttribute="top" constant="8" id="HIn-V1-QdT"/>
                                 <constraint firstItem="Cap-ED-bMh" firstAttribute="centerY" secondItem="fko-aT-u3q" secondAttribute="centerY" id="Kd9-N0-dmH"/>
                                 <constraint firstAttribute="trailing" secondItem="Cap-ED-bMh" secondAttribute="trailing" constant="10" id="c4U-bk-ApL"/>
-                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Cap-ED-bMh" secondAttribute="bottom" constant="10" id="kGt-86-4Eo"/>
+                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Cap-ED-bMh" secondAttribute="bottom" constant="8" id="kGt-86-4Eo"/>
                                 <constraint firstItem="Cap-ED-bMh" firstAttribute="leading" secondItem="fko-aT-u3q" secondAttribute="leading" constant="10" id="wHR-us-qCr"/>
                             </constraints>
                         </view>
