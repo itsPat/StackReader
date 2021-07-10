@@ -43,6 +43,7 @@ enum ViewController {
             vc.dismissButtonStyle = .close
             vc.preferredBarTintColor = .systemBackground
             vc.preferredControlTintColor = .stackBlue
+            StoreKitManager.shared.willPresent(controller: vc)
             return vc
         case .alert(let title, let subtitle, let actions, let style, let barButtonItem, let sourceView):
             let alertVC = UIAlertController(title: title, message: subtitle, preferredStyle: style)
@@ -66,7 +67,7 @@ extension UIViewController {
     
     func requestReviewIfNeeded() {
         guard UserData.postsConsumed > 10 else { return }
-        StoreKitManager.requestReview(from: self)
+        StoreKitManager.shared.requestReview(from: self)
     }
     
 }
